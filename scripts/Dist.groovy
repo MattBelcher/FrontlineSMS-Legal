@@ -1,5 +1,3 @@
-import org.codehaus.groovy.grails.commons.ApplicationHolder
-
 includeTargets << grailsScript("_GrailsSettings")
 includeTargets << grailsScript("_GrailsWar")
 
