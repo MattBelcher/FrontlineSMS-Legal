@@ -13,3 +13,8 @@ grails.project.dependency.resolution = {
     dependencies {
     }
 }
+
+coverage {
+    xml = true
+    enabledByDefault = true
+}

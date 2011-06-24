@@ -3,3 +3,4 @@ target
 stacktrace.log
 .idea
 *.iml
+cobertura.ser
