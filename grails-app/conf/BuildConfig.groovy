@@ -17,9 +17,10 @@ grails.project.dependency.resolution = {
         compile "org.codehaus.geb:geb-spock:latest.release"
         test 'org.seleniumhq.selenium:selenium-chrome-driver:latest.release'
         test 'org.seleniumhq.selenium:selenium-ie-driver:latest.release'
-
+        test 'org.spockframework:spock-core:0.5-groovy-1.7'
 
     }
+
 }
 
 coverage {
