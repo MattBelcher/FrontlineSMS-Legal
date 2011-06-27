@@ -5,7 +5,7 @@ def winstoneDir = "target/winstone"
 def winstoneManifest = "${winstoneDir}/META-INF/MANIFEST.MF"
 def warFileName = "target/${metadata["app.name"]}-${metadata["app.version"]}.war"
 
-target(main: "The description of the script goes here!") {
+target(dist: "Packages the final distribution file") {
     depends(war)
     ant.mkdir(dir: winstoneDir)
     ant.unzip(src: "lib/winstone-0.9.10.jar", dest: winstoneDir)
@@ -13,4 +13,4 @@ target(main: "The description of the script goes here!") {
     ant.jar(destfile: "target/frontlinesms-legal.jar", basedir: winstoneDir, manifest: winstoneManifest)
 }
 
-setDefaultTarget(main)
+setDefaultTarget(dist)
