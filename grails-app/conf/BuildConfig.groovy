@@ -11,6 +11,7 @@ grails.project.dependency.resolution = {
         grailsCentral()
     }
     dependencies {
+        runtime 'org.grails.plugins:jquery-calendar:0.2.3'
     }
 }
 
