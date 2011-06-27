@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><g:layoutTitle default="Grails" /></title>
+        <title><g:layoutTitle default="Calendar" /></title>
+
+        <script src="../js/jquery-1.5.2.min.js" type="text/javascript" />
+        <script src="../js/jquery-ui-1.8.11.custom.min.js" type="text/javascript" />
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <link href="${resource(dir:'css',file:'fullcalendar.css')}" rel="stylesheet" />
