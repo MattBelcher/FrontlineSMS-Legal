@@ -12,7 +12,7 @@ class CaseControllerSpec extends ControllerSpec {
         controller.params.description = newCase.description
 
         when:
-        controller.create()
+        controller.save()
 
         then:
         redirectArgs == [action: "show", params: [id: newCase.caseId]]

@@ -2,9 +2,9 @@ package frontlinesms.legal
 
 class CaseController {
 
-    def index = { }
+    def create = {}
 
-    def create = {
+    def save = {
         def newCase = new Case()
         newCase.caseId = params.caseId
         newCase.description = params.description
@@ -13,5 +13,4 @@ class CaseController {
     }
 
     def show = {}
-
 }
