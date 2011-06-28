@@ -4,3 +4,4 @@ stacktrace.log
 .idea
 *.iml
 cobertura.ser
+out
