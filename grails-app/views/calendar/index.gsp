@@ -10,9 +10,14 @@
 <html>
   <head><title>Simple GSP page</title>
   </head>
-  <body><div id="calendar"></div>
+  <body>
+    <div id="left"></div>
+    <div id="right"><div id="calendar"></div></div>
+
     <script type="text/javascript">
-        $('#calendar').fullCalendar({});
+        $('#calendar').fullCalendar({
+            weekMode: 'liquid'
+        });
     </script>
   </body>
 </html>
