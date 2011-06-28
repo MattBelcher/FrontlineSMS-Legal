@@ -1,6 +1,11 @@
 package frontlinesms.legal
 
-class LegalCase {
+class Case {
+
+    static mapping = {
+        table 'legal_case'
+    }
+
     String caseId
     String description
 }

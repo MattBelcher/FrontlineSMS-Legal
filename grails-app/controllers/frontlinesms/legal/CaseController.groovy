@@ -5,7 +5,7 @@ class CaseController {
     def index = { }
 
     def create = {
-        def newCase = new LegalCase()
+        def newCase = new Case()
         newCase.caseId = params.caseId
         newCase.description = params.description
 
