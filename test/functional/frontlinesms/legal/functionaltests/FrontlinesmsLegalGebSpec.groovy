@@ -6,8 +6,13 @@ import geb.Browser
 class FrontlinesmsLegalGebSpec extends GebSpec {
     Browser createBrowser() {
         Browser browser = new Browser()
-        browser.baseUrl = "http://localhost:8080/frontlinesms-legal/"
+        String port = getPort()
+        browser.baseUrl = "http://localhost:${port}/frontlinesms-legal/"
         browser
+    }
+
+    String getPort() {
+        System.getProperty("server.port", "8080")
     }
 }
 
