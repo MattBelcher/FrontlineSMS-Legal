@@ -13,4 +13,10 @@ class CaseController {
     }
 
     def show = {}
+
+
+    def search = {
+       Case.findByCaseId(params.caseId)
+
+    }
 }
