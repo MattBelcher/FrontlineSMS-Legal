@@ -8,6 +8,11 @@
         <g:layoutHead />
     </head>
     <body>
-        <g:layoutBody />
+        <div id="header"></div>
+        <div id="content-wrapper">
+            <div id="sidebar"></div>
+            <div id="main-content"><g:layoutBody /></div>
+        </div>
+        <div id="footer"></div>
     </body>
 </html>
