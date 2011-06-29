@@ -31,4 +31,21 @@ class CaseControllerSpec extends ControllerSpec {
         then:
         Case.count() == 1
     }
+
+    def 'should display list of cases matching search criteria'() {
+        given:
+        def casesList = []
+        casesList.add(new Case(caseId: '456'))
+        mockDomain(Case, casesList)
+
+        controller.params.caseId = '456'
+
+        when:
+       def foundCases = controller.search()
+
+        then:
+        foundCases
+
+
+    }
 }
