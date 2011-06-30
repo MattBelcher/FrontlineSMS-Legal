@@ -23,13 +23,13 @@ class CaseViewIntegrationSpec extends IntegrationSpec{
     def "retrieve case details from database"(){
         given:
         def newCase = new Case(caseId: "1234", description: "Whatever")
-         def caseController=new CaseViewController()
+        def caseViewController=new CaseViewController()
         when:
         newCase.save(flush: true)
-        caseController.params.id="1234"
-          then:
-      def caseDetails= caseController.caseview().theCase
-         caseDetails.caseId=="1234"
+        caseViewController.params.id="1234"
+        then:
+        def caseDetails= caseViewController.caseview().theCase
+        caseDetails.caseId=="1234"
         caseDetails.description=="Whatever"
     }
 }

@@ -16,19 +16,19 @@ class CaseViewSpec  extends FrontlinesmsLegalGebSpec{
     def "create page on any case id"(){
 
         given:
-     //   def newCase = new Case(caseId: "1234", description: "whatever")
+        def newCase = new Case(caseId: "5678", description: "whatever")
+            newCase.save()
 
-            to CaseViewPage
 
         when:
-    //    newCase.save(flush:true)
+                to CaseViewPage
 
-           true
         then:
         title == "Case View"
-     //   id.value() == "1234"
-      //  description.value()=="whatever"
+        id.value() == "5678"
+        description.value()=="whatever"
     }
+
 
 
 

@@ -8,7 +8,7 @@ package frontlinesms.legal.functionaltests.pages.cases
  * To change this template use File | Settings | File Templates.
  */
 class CaseViewPage extends geb.Page {
-    static url="caseView/caseview/1234"
+    static url="caseView/caseview/5678"
     static content= {
         id { $("input", id: "case-id") }
         description { $("input", id: "case-description") }
