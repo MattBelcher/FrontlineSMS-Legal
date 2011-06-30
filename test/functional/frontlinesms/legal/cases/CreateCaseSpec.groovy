@@ -6,12 +6,14 @@ import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
 
 class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
 
+
     def "should be able to create case with id and description"() {
+
         given:
         to NewCasePage
 
         when:
-        caseId = "1234"
+        caseId = "123"
         description = "whatever"
 
         and:
