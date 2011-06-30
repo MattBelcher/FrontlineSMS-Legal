@@ -1,14 +1,24 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
+import frontlinesms.legal.functionaltests.pages.HomePage
 import frontlinesms.legal.functionaltests.pages.cases.NewCasePage
 import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
 
 class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
 
+    def "should be able to navigate to the create case page from the menu"() {
+        given:
+        to HomePage
+
+        when:
+        createNewCase.click()
+
+        then:
+        at NewCasePage
+    }
 
     def "should be able to create case with id and description"() {
-
         given:
         to NewCasePage
 

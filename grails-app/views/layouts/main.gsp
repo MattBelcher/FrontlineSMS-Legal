@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><g:layoutTitle default="Grails" /></title>
-        <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
-        <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-        <g:javascript library="jquery-1.6.1" />
-        <g:layoutHead />
-    </head>
-    <body>
-        <div id="header">
-            <div id="logo"></div>
-        </div>
-        <div id="content-wrapper">
-            <div id="sidebar"></div>
-            <div id="main-content"><g:layoutBody /></div>
-        </div>
-    </body>
+<head>
+    <title><g:layoutTitle default="Grails"/></title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
+    <g:javascript library="jquery-1.6.1"/>
+    <g:layoutHead/>
+</head>
+
+<body>
+<div id="header">
+    <div id="logo"></div>
+</div>
+
+<div id="content-wrapper">
+    <div id="sidebar">
+        <ul>
+            <li>Create New..
+                <ul>
+                     <g:link controller="case" action="create" name="createNewCase">Case</g:link>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="main-content"><g:layoutBody/></div>
+</div>
+</body>
 </html>
