@@ -8,6 +8,6 @@ class NewCasePage extends Page {
         caseId { $("input", id: "case-id") }
         description { $("input", id: "case-description") }
         save { $("input", id: "case-save") }
-        status { $("div", id: "status").text() }
+        errorMessage { $("div", id: "errorMessage").text() }
     }
 }
