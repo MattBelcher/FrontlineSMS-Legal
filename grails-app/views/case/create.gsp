@@ -4,7 +4,7 @@
 
 <body>
 <g:form action="save">
-    <g:textField name="id" id="case-id"/>
+    <g:textField name="caseId" id="case-id"/>
     <g:textField name="description" id="case-description"/>
     <g:actionSubmit id="case-save" value="save"/>
 </g:form>

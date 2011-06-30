@@ -1,4 +1,3 @@
-
 target(sass: "Compiles SASS files into the project") {
     ant.java(jar: "lib/java/jruby-complete-1.6.2.jar", fork: "true") {
         def command = "-rlib/ruby/sass.jar "
