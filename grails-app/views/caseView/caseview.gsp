@@ -12,8 +12,8 @@
 
 <body>
 <g:form action="save">
-    <g:textField name="id" id="case-id" value="1234" />
-    <g:textField name="description" id="case-description"/>
+    <g:textField name="id" id="case-id" value="${theCase.caseId}" />
+    <g:textField name="description" id="case-description" value="${theCase.description}"/>
     <g:actionSubmit id="case-save" value="save"/>
 </g:form>
 </body>

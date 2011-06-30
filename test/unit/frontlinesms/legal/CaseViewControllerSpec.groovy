@@ -14,10 +14,9 @@ class CaseViewControllerSpec extends ControllerSpec {
         controller.params.id = "1234"
 
         when:
-        def thisCase = controller.caseview()
-
+true
         then:
-        thisCase.caseId == cases[0].caseId
+        controller.caseview().theCase.caseId == cases[0].caseId
     }
 }
 
