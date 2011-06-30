@@ -22,7 +22,23 @@
     </g:form>
 </div>
 <g:if test="${foundCase}">
-    <div id="SearchResults"><%=foundCase.caseId%></div>
+    <div id="SearchResults" align="center">
+        <br/><br/>
+        <br/><br/>
+
+        <table width= 15% border=3>
+
+            <tr>
+                <th id="title">Case Id</th>
+
+            </tr>
+
+            <tr>
+                <td align="center"><%=foundCase.caseId%></td>
+            </tr>
+
+        </table>
+    </div>
 </g:if>
 </body>
 </html>
