@@ -2,6 +2,7 @@ package frontlinesms.legal.cases
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.NewCasePage
+import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
 
 class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
 
@@ -10,13 +11,14 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         to NewCasePage
 
         when:
-        id = "1234"
+        caseId = "1234"
         description = "whatever"
 
         and:
         save.click()
 
         then:
+        at ShowCasePage
         status == "success"
     }
 }
