@@ -32,6 +32,18 @@ class CaseControllerSpec extends ControllerSpec {
         Case.count() == 1
     }
 
+    def 'should display error message and redirect to create when case id is blank'() {
+        given:
+        mockDomain(Case)
+
+        when:
+        controller.save()
+
+        then:
+        redirectArgs == [action: "create"]
+        controller.flash.error == "Case number is required"
+    }
+
     def 'should display list of cases matching search criteria'() {
         given:
         def casesList = []
