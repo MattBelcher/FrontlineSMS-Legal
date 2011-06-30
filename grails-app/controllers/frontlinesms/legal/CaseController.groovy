@@ -7,9 +7,15 @@ class CaseController {
     def save = {
         def newCase = new Case(params)
 
-        newCase.save()
+        if(newCase.save(flush: true)) {
+            redirect(action: 'show', params: [id: newCase.caseId])
+        }
+        else {
+            redirect( action : 'create')
+            flash.error = "Case number is required"
 
-        redirect(action: 'show', params: [id: newCase.caseId])
+        }
+
     }
 
     def show = {}
