@@ -7,16 +7,17 @@ class CaseController {
     def save = {
         def newCase = new Case(params)
 
-        newCase.save()
+        newCase.save(flush: true)
 
         redirect(action: 'show', params: [id: newCase.caseId])
     }
 
     def show = {}
 
-
     def search = {
-       Case.findByCaseId(params.caseId)
+        if (params.caseId) {
+            [foundCase: Case.findByCaseId(params.caseId)]
+        }
 
     }
 }

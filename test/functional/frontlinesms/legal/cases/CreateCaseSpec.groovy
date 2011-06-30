@@ -19,4 +19,5 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         then:
         status == "success"
     }
+
 }

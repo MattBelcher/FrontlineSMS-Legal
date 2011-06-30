@@ -38,13 +38,13 @@ class CaseControllerSpec extends ControllerSpec {
         casesList.add(new Case(caseId: '456'))
         mockDomain(Case, casesList)
 
-        controller.params.caseId = '456'
 
+        controller.params.caseId = '456'
         when:
-       def foundCases = controller.search()
+        def foundCases = controller.search()
 
         then:
-        foundCases
+        foundCases['foundCase'].caseId == '456'
 
 
     }
