@@ -10,19 +10,24 @@ class CaseController {
         if(newCase.save(flush: true)) {
             redirect(action: 'show', params: [id: newCase.caseId])
         }
-        else {
-            redirect( action : 'create')
+        else if(params.caseId == "" || params.caseId == null) {
             flash.error = "Case number is required"
-
+            redirect( action : 'create')
+        }
+        else {
+            flash.error = "Case number already exists. Please enter a unique case number"
+            redirect( action : 'create')
         }
 
     }
+   
 
     def show = {}
 
-
     def search = {
-       Case.findByCaseId(params.caseId)
+        if (params.caseId) {
+            [foundCase: Case.findByCaseId(params.caseId)]
+        }
 
     }
 }

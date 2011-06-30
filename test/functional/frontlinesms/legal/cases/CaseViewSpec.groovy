@@ -2,6 +2,7 @@ package frontlinesms.legal.cases
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.CaseViewPage
+import frontlinesms.legal.Case
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,16 +13,22 @@ import frontlinesms.legal.functionaltests.pages.cases.CaseViewPage
  */
 class CaseViewSpec  extends FrontlinesmsLegalGebSpec{
 
-    def "create view on any case id"(){
+    def "create page on any case id"(){
 
         given:
-        to CaseViewPage
+        def newCase = new Case(caseId: "5678", description: "whatever")
+            newCase.save()
+
+
         when:
-        true
+                to CaseViewPage
+
         then:
         title == "Case View"
-        id.value() == "1234"
+        id.value() == "5678"
+        description.value()=="whatever"
     }
+
 
 
 
