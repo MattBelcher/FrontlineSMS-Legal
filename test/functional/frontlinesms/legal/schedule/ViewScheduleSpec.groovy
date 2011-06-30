@@ -9,6 +9,6 @@ class ViewScheduleSpec extends FrontlinesmsLegalGebSpec {
         to SchedulePage
 
         then:
-        events.first().text() == "Appointment"
+        events.first().text() == "Past Appointment"
     }
 }

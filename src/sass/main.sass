@@ -1,0 +1,52 @@
+$headerHeight: 80px
+$sidebarWidth: 200px
+$footerHeight: 20px
+$panelBorder: 1px solid lightgray
+$logoSide: 48px
+$logoMargin: ($headerHeight - $logoSide) / 2
+
+*
+  :margin 0
+  :padding 0
+  :font-family 'Lucida Grande', Helvetica, Arial
+
+#header
+  :position fixed
+  :height $headerHeight
+  :top 0
+  :left 0
+  :right 0
+  :background-color #fff
+  :z-index 2
+  :border-bottom $panelBorder
+
+#content-wrapper
+  :margin-top $headerHeight
+
+#sidebar
+  :width $sidebarWidth
+  :position fixed
+  :left 0
+  :top $headerHeight
+  :bottom 0
+  :background-color white
+  :z-index 2
+  :border-right $panelBorder
+
+#main-content
+  :margin-left $sidebarWidth
+
+#logo
+  :margin $logoMargin
+  :height $logoSide
+  :width  $logoSide
+  :background url("/frontlinesms-legal/images/projectavatar.png")
+
+#schedule
+  :padding 10px
+
+.fc-header-title
+  :padding 5px 0px 0px 5px
+//
+//.fc-header-right > span
+//  :margin 5px 5px 0px 0px
