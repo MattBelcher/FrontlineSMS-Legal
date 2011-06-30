@@ -10,11 +10,19 @@ class CaseController {
         if(newCase.save(flush: true)) {
             redirect(action: 'show', params: [id: newCase.caseId])
         }
-        else {
+        else if(params.caseId == null)
+        {
             redirect( action : 'create')
             flash.error = "Case number is required"
 
         }
+        else
+        {
+            redirect( action : 'create')
+            flash.error = "Case number already exists. Please enter a unique case number"
+        }
+
+
 
     }
    

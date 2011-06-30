@@ -2,9 +2,16 @@ package frontlinesms.legal
 
 import grails.plugin.spock.IntegrationSpec
 
-class CaseViewIntegrationSpec extends IntegrationSpec {
+/**
+ * Created by IntelliJ IDEA.
+ * User: devam
+ * Date: 6/30/11
+ * Time: 10:01 AM
+ * To change this template use File | Settings | File Templates.
+ */
+class CaseViewIntegrationSpec extends IntegrationSpec{
 
-    def "save should change the database state"() {
+    def "save should change the database state"(){
         given:
         def newCase = new Case(caseId: "134", description: "Whatever")
         when:

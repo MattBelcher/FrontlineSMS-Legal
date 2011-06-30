@@ -58,6 +58,20 @@ class CaseControllerSpec extends ControllerSpec {
         then:
         foundCases['foundCase'].caseId == '456'
 
+    }
 
+    def 'should display an error when creating a case with duplicate id'(){
+        given:
+        def cases=[]
+        cases.add(new Case(caseId: '1234'))
+        mockDomain(Case, cases)
+
+        controller.params.caseId = '1234'
+
+        when:
+        controller.save()
+
+        then:
+        controller.flash.error == 'Case number already exists. Please enter a unique case number'
     }
 }
