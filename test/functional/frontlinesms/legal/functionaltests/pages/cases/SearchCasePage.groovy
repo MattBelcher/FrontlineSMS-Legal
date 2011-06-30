@@ -10,7 +10,7 @@ class SearchCasePage extends Page {
     static content = {
         id { $("input", id: "caseId") }
         search { $("input", id: "case-search") }
-        Results { $("div", id: "Results").text() }
+        SearchResults { $("div", id: "SearchResults").text()}
     }
 }
 

@@ -1,18 +1,21 @@
 package frontlinesms.legal.cases
 
-import frontlinesms.legal.Case
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.SearchCasePage
-import org.codenarc.results.Results
-import org.springframework.stereotype.Controller
+import frontlinesms.legal.functionaltests.pages.cases.NewCasePage
 
 class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
     def "should be able to search case with caseId"() {
-        setup:
-        Case someCase = new Case(caseId: "9999", description: "blah")
+        given:
+        to NewCasePage
 
-        someCase.save(flush: true)
+        and:
+        caseId = "9999"
+        description = "whatever"
+
+        and:
+        save.click()
 
         and:
         to SearchCasePage
@@ -25,7 +28,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         at SearchCasePage
-        Results == "9999"
+        SearchResults == "9999"
 
 
     }

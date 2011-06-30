@@ -10,7 +10,7 @@
 
 </g:form>
 <g:if test="${foundCase}">
-    <div id="Results"><%=foundCase.caseId%></div>
+    <div id="SearchResults"><%=foundCase.caseId%></div>
 </g:if>
 </body>
 </html>
