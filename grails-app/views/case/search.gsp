@@ -22,7 +22,7 @@
     </g:form>
 </div>
 <g:if test="${foundCase}">
-    <div id="SearchResults" align="center">
+    <div align="center">
         <br/><br/>
         <br/><br/>
 
@@ -34,7 +34,9 @@
             </tr>
 
             <tr>
-                <td align="center"><%=foundCase.caseId%></td>
+                <td align="center">
+
+                        <g:link controller="caseView" action="caseview" id="${foundCase.caseId}"><div id="SearchResults"><%=foundCase.caseId%></g:link></div></td>
             </tr>
 
         </table>
