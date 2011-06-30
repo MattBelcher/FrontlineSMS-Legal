@@ -3,6 +3,8 @@ package frontlinesms.legal.cases
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.CaseViewPage
 import frontlinesms.legal.Case
+import frontlinesms.legal.functionaltests.pages.cases.LinkContactsPage
+import frontlinesms2.Contact
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,6 +32,29 @@ class CaseViewSpec  extends FrontlinesmsLegalGebSpec{
     }
 
 
+    def "pop up window on clicking link button"(){
+        given:
+        to CaseViewPage
 
+        when:
+        linkCase.click();
+        then:
+        at LinkContactsPage
+        title == "Link Contacts"
+        searchField.isEmpty()
+
+    }
+
+    def "link contacts page should contain table for contacts"(){
+        given:
+        to LinkContactsPage
+        when:
+        true
+        then:
+        nameCellofContactsTable == "Contacts"
+
+
+    }
 
 }
+

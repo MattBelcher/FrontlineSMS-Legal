@@ -11,10 +11,10 @@
   <head><title>Case View</title></head>
 
 <body>
-<g:form action="save">
+<g:form action="link">
     <g:textField name="id" id="case-id" value="${theCase.caseId}" />
     <g:textField name="description" id="case-description" value="${theCase.description}"/>
-    <g:actionSubmit id="case-save" value="save"/>
+    <g:actionSubmit id="case-link" value="link Contacts"/>
 </g:form>
 </body>
 </html>
