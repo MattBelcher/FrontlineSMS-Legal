@@ -7,3 +7,4 @@ cobertura.ser
 out
 .sass-cache
 *.css
+web-app/js/*.js
