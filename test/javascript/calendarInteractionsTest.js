@@ -1,5 +1,13 @@
-CalendarInteractionsTest = TestCase('CalendarInteractionsTest');
+describe('Calculator', function () {
+    var counter = 0
 
-CalendarInteractionsTest.prototype.testHelloWorld = function() {
-    assertEquals("Hello World", "Hello World");
-}
+    it('can add a number', function () {
+        counter = counter + 2;
+        expect(counter).toEqual(2);
+    });
+
+    it('can multiply a number', function () {
+        counter = counter * 5;
+        expect(counter).toEqual(10);
+    });
+});

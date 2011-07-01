@@ -11,7 +11,7 @@ target(jsTestDriver: "The description of the script goes here!") {
 
     ant.mkdir(dir: reportsDir)
     ant.java(jar: jsTestDriverJar, fork: "true") {
-        command = "--basePath . --config src/javascript/jsTestDriver.conf "
+        command = "--basePath . --config src/javascript/jsTestDriver.conf --port 9876 "
         command += "--tests all --testOutput ${reportsDir} --browser ${browser}"
         arg(line: command)
     }
