@@ -1,20 +1,19 @@
 package frontlinesms.legal
 
-import spock.lang.*
-import grails.plugin.spock.*
+import grails.plugin.spock.ControllerSpec
 
 class CaseViewControllerSpec extends ControllerSpec {
 
     def "retrieve case details given case ID "() {
         setup:
-        def cases =[]
+        def cases = []
         cases.add(new Case(caseId: "1234", description: "whatever"))
-        mockDomain(Case,cases)
+        mockDomain(Case, cases)
 
         controller.params.id = "1234"
 
         when:
-true
+        true
         then:
         controller.caseview().theCase.caseId == cases[0].caseId
     }

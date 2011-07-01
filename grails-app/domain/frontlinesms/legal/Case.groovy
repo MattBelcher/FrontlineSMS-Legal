@@ -11,6 +11,8 @@ class Case {
         description(nullable: true)
     }
 
+    static hasMany = [contacts: LegalContact]
     String caseId
     String description
+
 }
