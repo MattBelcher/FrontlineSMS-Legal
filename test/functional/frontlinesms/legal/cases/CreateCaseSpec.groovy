@@ -16,6 +16,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         at NewCasePage
+        this.getBrowser().page.getUrl() == NewCasePage.getUrl()
     }
 
     def "should be able to create case with id and description"() {
@@ -46,7 +47,6 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         save.click()
 
         then:
-        at NewCasePage
         errorMessage == "Case number is required"
     }
 
@@ -66,7 +66,61 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         save.click()
 
         then:
-        at NewCasePage
         errorMessage == "Case number already exists. Please enter a unique case number"
     }
+
+    def 'should open confirmation dialog when cancel is clicked'(){
+        given:
+        to NewCasePage
+
+        when:
+        cancel.click()
+
+        then:
+        caseCancelDialog.displayed == true
+    }
+
+    def 'should hide cancel confirm dialog when no is clicked'(){
+        given:
+        to NewCasePage
+
+        when:
+        cancel.click()
+
+        and:
+        cancelNo.click()
+
+        then:
+        caseCancelDialog.displayed == false
+    }
+
+    def 'should hide cancel confirm dialog when yes is clicked'(){
+        given:
+        to NewCasePage
+
+        when:
+        cancel.click()
+
+        and:
+        cancelYes.click()
+
+        then:
+        caseCancelDialog.displayed == false
+    }
+
+    def 'should remain on Create case page  when no is clicked on cancel confirm dialog'(){
+        given:
+        to NewCasePage
+
+        when:
+        cancel.click()
+
+        and:
+        cancelNo.click()
+
+        then:
+        this.getBrowser().page.getUrl() == NewCasePage.getUrl()
+    }
+
+
 }

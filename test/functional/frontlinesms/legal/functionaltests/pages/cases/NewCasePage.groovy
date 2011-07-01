@@ -8,6 +8,10 @@ class NewCasePage extends Page {
         caseId { $("input", id: "case-id") }
         description { $("input", id: "case-description") }
         save { $("input", id: "case-save") }
+        cancel { $("button", id: "case-cancel") }
         errorMessage { $("div", id: "errorMessage").text() }
+        caseCancelDialog { $("div" , id: "case-cancel-dialog")}
+        cancelYes { $("button", id: "cancel-confirm-yes")}
+        cancelNo { $("button", id: "cancel-confirm-no")}
     }
 }

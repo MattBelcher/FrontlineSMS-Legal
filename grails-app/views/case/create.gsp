@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <title>Simple GSP page</title>
+    <g:javascript library="caseCreate" />
+    <title>Create New Case</title>
 </head>
 
 <body>
@@ -11,12 +12,18 @@
     <div id="errorMessage">${flash.error}</div>
 </g:if>
 
-<g:form action="save">
+<form action="save" method="post">
     <label>Case Number </label>
     <g:textField name="caseId" id="case-id"/>  <br>
     <label>Description </label>
     <g:textArea name="description" id="case-description" cols="100" rows="10"/><br>
-    <g:actionSubmit id="case-save" value="Save"/>
-</g:form>
+    <input type="submit" id="case-save" value="Save"/>
+    <button id="case-cancel" onclick="frontlinesms.cancelConfirmAction(); return false;">Cancel</button>
+</form>
+
+<div id="case-cancel-dialog" title="Cancel case creation?" style="display: none;">
+    <p>Are you sure you do not want to save this case?</p>
+</div>
+
 </body>
 </html>
