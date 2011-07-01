@@ -15,7 +15,7 @@ class CaseControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        redirectArgs == [action: "show", params: [id: "1234"]]
+        redirectArgs == [action: "show", params: [caseId: "1234"]]
     }
 
     def "should save case"() {
@@ -60,7 +60,7 @@ class CaseControllerSpec extends ControllerSpec {
 
     }
 
-    def 'should display an error when creating a case with duplicate id'(){
+    def 'should display an error when creating a case with duplicate id'() {
         given:
         def cases=[]
         cases.add(new Case(caseId: '1234'))
@@ -74,4 +74,18 @@ class CaseControllerSpec extends ControllerSpec {
         then:
         controller.flash.error == 'Case number already exists. Please enter a unique case number'
     }
+
+    def 'should display case details given case id'() {
+        given:
+        def newCase = new Case(caseId: "1234")
+        mockDomain(Case, [newCase])
+        controller.params.caseId = "1234"
+
+        when:
+        def displayedCase = controller.show().caseToDisplay
+
+        then:
+        displayedCase.caseId == newCase.caseId
+    }
+
 }
