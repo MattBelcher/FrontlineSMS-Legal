@@ -1,4 +1,4 @@
-describe('Calculator', function () {
+describe('calculate', function () {
     var counter = 0
 
     it('can add a number', function () {

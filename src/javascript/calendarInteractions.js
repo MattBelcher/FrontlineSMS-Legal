@@ -1,4 +1,4 @@
-frontlinesms = {};
+var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.calculateScheduleHeight = function () {
     var windowHeight = $(window).height();
