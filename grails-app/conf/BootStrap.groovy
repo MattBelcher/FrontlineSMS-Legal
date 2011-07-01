@@ -25,8 +25,7 @@ class BootStrap {
                 command += "-- --watch src/sass:web-app/css"
                 arg(line: command)
             }
-        }
-        else {
+        } else {
             ant.delete(dir: "web-app/js", includes: "*.js")
             ant.copy(todir: "web-app/js/"){
                 fileset(dir: "src/javascript/", includes: "*.js")

@@ -13,15 +13,15 @@ frontlinesms.calendarInteractions = function() {
         events: [
             {
                 title: 'Appointment',
-                start: 'Wed, 29 Jun 2011 13:00:00 EST'
+                start: 'Wed, 29 Jul 2011 13:00:00 EST'
             },
             {
                 title: 'Another Appointment',
-                start: 'Wed, 29 Jun 2011 13:00:00 EST'
+                start: 'Wed, 29 Jul 2011 13:00:00 EST'
             },
             {
                 title: 'Past Appointment',
-                start: 'Wed, 16 Jun 2011 13:00:00 EST'
+                start: 'Wed, 16 Jul 2011 13:00:00 EST'
             }
         ],
         windowResize: function () {

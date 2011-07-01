@@ -1,5 +1,5 @@
 target(jsTestDriver: "The description of the script goes here!") {
-    def reportsDir = "target/js-test-reports"
+    def reportsDir = "target/test-reports"
     def jsTestDriverJar = "lib/java/JsTestDriver-1.3.2.jar"
     def browser = loadBrowserPath()
 
