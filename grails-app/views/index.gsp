@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>FrontlineSMS- Legal</title>
+    <title>FrontlineSMS-Legal</title>
     <meta name="layout" content="main"/>
 </head>
 

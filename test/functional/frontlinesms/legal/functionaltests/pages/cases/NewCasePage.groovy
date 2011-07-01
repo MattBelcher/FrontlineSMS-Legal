@@ -3,6 +3,7 @@ package frontlinesms.legal.functionaltests.pages.cases
 import geb.Page
 
 class NewCasePage extends Page {
+    static at = { $("title").text() == "Create New Case" }
     static url = "case/create"
     static content = {
         caseId { $("input", id: "case-id") }

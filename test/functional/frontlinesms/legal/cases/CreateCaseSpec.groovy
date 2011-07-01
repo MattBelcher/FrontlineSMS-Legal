@@ -15,8 +15,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         createNewCase.click()
 
         then:
-        at NewCasePage
-        this.getBrowser().page.getUrl() == NewCasePage.getUrl()
+        assert at(NewCasePage)
     }
 
     def "should be able to create case with id and description"() {
@@ -31,8 +30,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         save.click()
 
         then:
-        at ShowCasePage
-        status == "Case created"
+        assert at(ShowCasePage)
     }
 
     def "should display error message when creating a case without an id"() {
@@ -94,21 +92,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         caseCancelDialog.displayed == false
     }
 
-    def 'should hide cancel confirm dialog when yes is clicked'(){
-        given:
-        to NewCasePage
-
-        when:
-        cancel.click()
-
-        and:
-        cancelYes.click()
-
-        then:
-        caseCancelDialog.displayed == false
-    }
-
-    def 'should remain on Create case page  when no is clicked on cancel confirm dialog'(){
+    def 'should remain on Create case page when no is clicked on cancel confirm dialog'(){
         given:
         to NewCasePage
 
@@ -119,7 +103,21 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         cancelNo.click()
 
         then:
-        this.getBrowser().page.getUrl() == NewCasePage.getUrl()
+        assert at(NewCasePage)
+    }
+
+    def 'should go to home page when yes is clicked on cancel confirm dialog'() {
+        given:
+        to NewCasePage
+
+        when:
+        cancel.click()
+
+        and:
+        cancelYes.click()
+
+        then:
+        assert at(HomePage)
     }
 
 
