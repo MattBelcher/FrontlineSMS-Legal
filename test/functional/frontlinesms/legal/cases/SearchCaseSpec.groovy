@@ -33,4 +33,46 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
     }
 
+    def "should return all the cases stored in the database when an empty search is carried out"(){
+
+        given:
+        to NewCasePage
+
+        and:
+        caseId = "1234"
+        description = "someCase"
+
+        and:
+        save.click()
+
+        and:
+        to NewCasePage
+
+        and:
+
+        caseId = "5678"
+        description = "anotherCase"
+
+        and:
+        save.click()
+
+        and:
+        to SearchCasePage
+
+        when:
+        caseId = ""
+
+        and:
+        search.click()
+
+        then:
+        at SearchCasePage
+        SearchResults.contains('1234')
+
+        and:
+        SearchResults.contains('5678')
+
+    }
+
+
 }
