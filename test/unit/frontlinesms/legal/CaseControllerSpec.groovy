@@ -15,7 +15,7 @@ class CaseControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        redirectArgs == [action: "show", params: [caseId: "1234"]]
+        redirectArgs == [action: "show", params: [id: "1234"]]
     }
 
     def "should save case"() {
@@ -79,7 +79,7 @@ class CaseControllerSpec extends ControllerSpec {
         given:
         def newCase = new Case(caseId: "1234")
         mockDomain(Case, [newCase])
-        controller.params.caseId = "1234"
+        controller.params.id = "1234"
 
         when:
         def displayedCase = controller.show().caseToDisplay

@@ -8,7 +8,7 @@ class CaseController {
         def newCase = new Case(params)
 
         if (newCase.save(flush: true)) {
-            redirect(action: 'show', params: [caseId: newCase.caseId])
+            redirect(action: 'show', params: [id: newCase.caseId])
         }
         else if (params.caseId == "" || params.caseId == null) {
             flash.error = "Case number is required"
@@ -23,7 +23,7 @@ class CaseController {
 
 
     def show = {
-        [caseToDisplay: Case.findByCaseId(params.caseId)]
+        [caseToDisplay: Case.findByCaseId(params.id)]
     }
 
     def search = {
