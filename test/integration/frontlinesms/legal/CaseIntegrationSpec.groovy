@@ -110,7 +110,7 @@ class CaseIntegrationSpec extends IntegrationSpec {
         given:
         def newCase = new Case(caseId: "4567", description: "adding contacts")
         newCase.save()
-        def contact = new LegalContact(Contact: new Contact(name: "Dumbledore").save(), phoneNumber: "987654321")
+        def contact = new LegalContact(Contact: new Contact(name: "Dumbledore").save(), phoneNumber: "987654321", type: "Client")
         contact.save()
 
         when:

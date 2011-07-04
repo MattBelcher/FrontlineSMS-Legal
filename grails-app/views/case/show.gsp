@@ -13,7 +13,7 @@
         <label>Description </label>
         <g:textArea name="description" id="case-description" cols="100" rows="10" value="${caseToDisplay.description}"/><br>
         <g:actionSubmit id="link-contact" value="Link contacts" action="linkContact"/>
-        <g:if test="${contacts.size > 0}">
+        <g:if test="${contacts?.size > 0}">
             <table name="contacts" id="contacts">
                 <tr>
                     <th>Contact Name</th>
