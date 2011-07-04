@@ -4,14 +4,21 @@
     <title><g:layoutTitle default="Grails"/></title>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}" />
     <g:javascript library="jquery-1.6.1"/>
     <g:javascript library="jquery-ui-1.8.14.custom.min"/>
     <g:javascript library="mainLayout"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}"/>
+    <g:javascript library="tabs"/>
+    <script type="text/javascript">
+        $(function() {
+            frontlinesms.tabs();
+        });
+    </script>
     <g:layoutHead/>
 </head>
 
 <body>
+<<<<<<< HEAD
 <g:if test="${flash.error}">
     <div id="errorMessage"><span class="flash-message">${flash.error}</span></div>
 </g:if>
@@ -19,8 +26,16 @@
     <div id="status"><span class="flash-message">${flash.message}</span></div>
 </g:if>
 
+=======
+<span id="active-tab" class="${pageProperty(name: "body.class")}"></span>
+>>>>>>> 9ee4731c8c91fe0b4970a8662b0e26fe9b117e85
 <div id="header">
     <div id="logo"></div>
+    <div id="tabs">
+        <div class="tab schedule">
+            <g:link controller="schedule">Schedule</g:link>
+        </div>
+    </div>
 </div>
 
 <div id="content-wrapper">

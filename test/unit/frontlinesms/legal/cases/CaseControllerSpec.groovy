@@ -1,6 +1,7 @@
-package frontlinesms.legal
+package frontlinesms.legal.cases
 
 import grails.plugin.spock.ControllerSpec
+import frontlinesms.legal.Case
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -56,7 +57,7 @@ class CaseControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        controller.flash.error == 'Case number already exists. Please enter a unique case number'
+        controller.flash.error == 'Case number already exists. Please enter a unique case number.'
     }
 
     def 'should display list of cases matching search criteria'() {

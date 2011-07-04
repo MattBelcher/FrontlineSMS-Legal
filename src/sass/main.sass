@@ -4,11 +4,17 @@ $footerHeight: 20px
 $panelBorder: 1px solid lightgray
 $logoSide: 48px
 $logoMargin: ($headerHeight - $logoSide) / 2
+$tabMargin: 40px
+$tabHeight: 25px
 
 *
   :margin 0
   :padding 0
   :font-family 'Lucida Grande', Helvetica, Arial
+
+a, a:hover, a:visited
+  :text-decoration none
+  :color black
 
 #header
   :position fixed
@@ -67,4 +73,23 @@ $logoMargin: ($headerHeight - $logoSide) / 2
   :height $logoSide
   :width  $logoSide
   :background url("/frontlinesms-legal/images/projectavatar.png")
+  :float left
 
+#tabs
+  :height $tabHeight
+  :margin-left $sidebarWidth
+  :margin-top $headerHeight - $tabHeight
+
+.tab
+  :height $tabHeight
+  :margin-left $tabMargin
+  :margin-right $tabMargin
+  :width 100px
+  :text-align center
+  :border-right $panelBorder
+  :border-left $panelBorder
+  :border-top $panelBorder
+  :text-padding 5px
+
+.selected
+  :background-color #cccccc

@@ -1,4 +1,4 @@
-frontlinesms = {};
+var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.activateDatePicker = function() {
     $('#event-date').datepicker({

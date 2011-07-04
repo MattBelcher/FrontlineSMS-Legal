@@ -13,7 +13,7 @@ class CaseController {
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
         }
-        else if (params.caseId == "" || params.caseId.isAllWhitespace() || params.caseId == null) {
+        else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number is required"
             redirect(action: 'create')
         }
@@ -33,12 +33,11 @@ class CaseController {
         if (params.caseId) {
             [foundCase: Case.findByCaseId(params.caseId)]
             //[foundCase: Case.findAll("from legal_case as l where l.caseId='9999'")]
-             //[foundCase:Case.findAll("from legal_case as b where b.caseId=:caseId", [caseId:'9999'])]
+            //[foundCase:Case.findAll("from legal_case as b where b.caseId=:caseId", [caseId:'9999'])]
 
 
         }
-        else
-        {
+        else {
             [foundCase: Case.getAll()]
         }
     }
