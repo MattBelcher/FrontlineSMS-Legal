@@ -14,11 +14,10 @@
     <g:textField id="event-title" name="event-title"/><br><br>
     <label>Date</label>
     <g:textField name="dateField" id="event-date"/><br><br>
-    <script type="text/javascript">
-        $(function() {
-            frontlinesms.activateDatePicker();
-        });
-    </script>
+    <label>Start time</label>
+    <g:textField name="startTimeField" id="event-start-time"/><br><br>
+    <label>End time</label>
+    <g:textField name="endTimeField" id="event-end-time"/><br><br>
     <input type="submit" id="event-save" value="Save"/>
     <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();
     return false;">Cancel</button>
@@ -27,5 +26,11 @@
 <div id="event-cancel-dialog" title="Cancel event creation?" style="display: none;">
     <p>Are you sure you want to cancel this event? Your event will not be saved?</p>
 </div>
+<script type="text/javascript">
+    $(function() {
+        frontlinesms.activateDatePicker();
+        frontlinesms.activateTimePicker();
+    });
+</script>
 </body>
 </html>
