@@ -2,10 +2,7 @@ var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.calculateScheduleHeight = function (windowHeight) {
     var headerHeight = $("#header").outerHeight();
-    console.log(windowHeight);
     var schedulePadding = parseInt($("#schedule").css('padding-top')) + parseInt($("#schedule").css('padding-bottom'));
-    console.log(headerHeight);
-    console.log(schedulePadding);
     return windowHeight - headerHeight - schedulePadding;
 };
 
