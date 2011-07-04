@@ -6,24 +6,18 @@ import frontlinesms.legal.functionaltests.pages.events.NewEventPage
 
 class CreateEventSpec extends FrontlinesmsLegalGebSpec {
      def "should be able to navigate to the create event page from the menu"() {
-        given:
-        to HomePage
+        given: to HomePage
 
-        when:
-        createNewEvent.click()
+        when: createNewEvent.click()
 
-        then:
-        assert at(NewEventPage)
+        then: at(NewEventPage)
     }
 
     def "should show date picker when date field is focused"(){
-        given:
-        to NewEventPage
+        given: to NewEventPage
 
-        when:
-        dateField.click()
+        when: dateFieldSelected
 
-        then:
-        assert datePicker.displayed == true
+        then: datePicker.present
     }
 }

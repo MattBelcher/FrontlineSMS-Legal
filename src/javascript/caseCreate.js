@@ -1,4 +1,4 @@
-frontlinesms = {}
+var frontlinesms = this.frontlinesms ||  {};
 
 frontlinesms.caseCancelConfirmAction = function() {
     $("#case-cancel-dialog").dialog({
