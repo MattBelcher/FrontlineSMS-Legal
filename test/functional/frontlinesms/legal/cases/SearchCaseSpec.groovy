@@ -3,6 +3,7 @@ package frontlinesms.legal.cases
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.SearchCasePage
 import frontlinesms.legal.functionaltests.pages.cases.NewCasePage
+import frontlinesms.legal.Case
 
 class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
@@ -28,7 +29,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         at SearchCasePage
-        SearchResults == "9999"
+         SearchResults.collect { it -> it.caseId }.contains("9999")
 
 
     }
@@ -39,7 +40,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         to NewCasePage
 
         and:
-        caseId = "1234"
+        caseId = "14"
         description = "someCase"
 
         and:
@@ -66,12 +67,8 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         search.click()
 
         then:
-        at SearchCasePage
-        SearchResults.contains('1234')
-
-        and:
-        SearchResults.contains('5678')
-
+        SearchResults.collect { it -> it.caseId }.contains("5678")
+        SearchResults.collect { it -> it.caseId }.contains("14")
     }
 
 

@@ -42,4 +42,11 @@ class CaseController {
             [foundCase: Case.getAll()]
         }
     }
+
+    def linkContact = {
+        redirect(controller: "legalContact", action: "linkContact",
+                params: [id: params.currentId, newCaseId: params.newCaseId, newCaseDescription: params.newCaseDescription,
+                        contactNames: params.contactNames, contactNumbers: params.contactPhone, contactTypes: params.contactType]
+        )
     }
+}

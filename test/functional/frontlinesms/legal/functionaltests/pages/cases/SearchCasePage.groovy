@@ -1,6 +1,7 @@
 package frontlinesms.legal.functionaltests.pages.cases
 
 import geb.Page
+import geb.Module
 
 class SearchCasePage extends Page {
 
@@ -10,10 +11,19 @@ class SearchCasePage extends Page {
     static content = {
         id { $("input", id: "caseId") }
         search { $("input", id: "case-search") }
-        SearchResults { $("div", id: "SearchResults").text()}
+        SearchResults {$("tbody tr").collect {module CaseRow, it}
+
+        }
     }
 }
 
+        class CaseRow extends Module {
+            static content = {
+                cell { i -> $("td", i) }
+                caseId { cell(0).text() }
 
+
+            }
+        }
 
 
