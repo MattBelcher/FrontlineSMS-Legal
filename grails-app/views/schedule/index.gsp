@@ -15,7 +15,7 @@
     <title>Schedule</title>
 </head>
 
-<body>
-<div id="schedule"></div>
+<body class="schedule">
+    <div id="schedule"></div>
 </body>
 </html>
