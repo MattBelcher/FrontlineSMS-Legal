@@ -6,11 +6,19 @@
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
     <g:javascript library="jquery-1.6.1"/>
     <g:javascript library="jquery-ui-1.8.14.custom.min"/>
+    <g:javascript library="mainLayout"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}"/>
     <g:layoutHead/>
 </head>
 
 <body>
+<g:if test="${flash.error}">
+    <div id="errorMessage"><span class="flash-message">${flash.error}</span></div>
+</g:if>
+<g:if test="${flash.message}">
+    <div id="status"><span class="flash-message">${flash.message}</span></div>
+</g:if>
+
 <div id="header">
     <div id="logo"></div>
 </div>

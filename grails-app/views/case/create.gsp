@@ -8,10 +8,6 @@
 
 <body>
 <h1>Case Details</h1>  <br><br><br>
-<g:if test="${flash.error}">
-    <div id="errorMessage">${flash.error}</div>
-</g:if>
-
 <form action="save" method="post">
     <label>Case Number </label>
     <g:textField name="caseId" id="case-id"/>  <br><br>

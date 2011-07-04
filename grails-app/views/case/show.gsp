@@ -6,12 +6,6 @@
       <meta name="layout" content="main">
   </head>
   <body>
-  <g:if test="${flash.error}">
-    <div id="errorMessage">${flash.error}</div>
-</g:if>
-<g:if test="${flash.message}">
-    <div id="status">${flash.message}</div>
-</g:if>
   <h1>Case Details</h1>
     <g:form action="save" id="save-case-form">
         <label>Case Number </label>
