@@ -14,6 +14,8 @@
             frontlinesms.tabs();
         });
     </script>
+    <g:javascript library="jquery.timeentry.min"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}"/>
     <g:layoutHead/>
 </head>
 

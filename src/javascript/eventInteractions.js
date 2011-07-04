@@ -8,20 +8,28 @@ frontlinesms.activateDatePicker = function() {
             });
 
 }
+frontlinesms.activateTimePicker = function() {
+    $('#event-start-time').timeEntry({
+                spinnerImage: ''
+            });
+     $('#event-end-time').timeEntry({
+                spinnerImage: ''
+            });
+}
 
 frontlinesms.eventCancelConfirmAction = function() {
     $("#event-cancel-dialog").dialog({
                 modal: true,
                 buttons: [
                     {
-                        text: "Yes, Cancel",
+                        text: "Yes, Cancel This Event",
                         click: function() {
                             $(window.location).attr("href", "/frontlinesms-legal");
                         },
                         id: "cancel-confirm-yes"
                     },
                     {
-                        text: "No",
+                        text: "No, Don't Cancel This Event",
                         click: function() {
                             $(this).dialog("close")
                         },

@@ -10,6 +10,14 @@ class NewEventPage extends Page {
             $("input", id: "event-date").click()
             waitFor(3) { datePicker.present }
         }
-        datePicker { $("div" , id: "ui-datepicker-div")}
+        datePicker { $("div", id: "ui-datepicker-div")}
+        save { $("input", id: "event-save") }
+        cancel { $("button", id: "event-cancel") }
+        errorMessage { $("div", id: "errorMessage").text() }
+        eventCancelDialog { $("div", id: "event-cancel-dialog")}
+        cancelYes { $("button", id: "cancel-confirm-yes")}
+        cancelNo { $("button", id: "cancel-confirm-no")}
+        startTimeField { $("input", id: "event-start-time")}
+        endTimeField { $("input", id: "event-end-time")}
     }
 }
