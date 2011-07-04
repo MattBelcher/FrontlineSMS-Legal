@@ -79,7 +79,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         save.click()
 
         then:
-        errorMessage == "Case number already exists. Please enter a unique case number"
+        errorMessage == "Case number already exists. Please enter a unique case number."
     }
 
     def 'should open confirmation dialog when cancel is clicked'(){

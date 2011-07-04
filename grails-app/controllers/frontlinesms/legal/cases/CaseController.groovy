@@ -18,7 +18,7 @@ class CaseController {
             redirect(action: 'create')
         }
         else {
-            flash.error = "Case number already exists. Please enter a unique case number"
+            flash.error = "Case number already exists. Please enter a unique case number."
             redirect(action: 'create')
         }
 
