@@ -26,19 +26,24 @@
         <br/><br/>
         <br/><br/>
 
-        <table width= 15% border=3>
-
+        <table width=15% border=3 id="SearchResults">
+            <thead>
             <tr>
                 <th id="title">Case Id</th>
-
             </tr>
+            </thead>
+            <tbody>
 
-            <tr>
+            <g:each in="${foundCase}" var="legalCase">
+                <tr>
+
                 <td align="center">
 
-                        <g:link controller="caseView" action="caseview" id="${foundCase.caseId}"><div id="SearchResults"><%=foundCase.caseId%></g:link></div></td>
-            </tr>
-
+                <g:link controller="case" action="show"
+                                id="${legalCase.caseId}"><%=legalCase.caseId%></g:link></td>
+                </tr>
+            </g:each>
+            </tbody>
         </table>
     </div>
 </g:if>

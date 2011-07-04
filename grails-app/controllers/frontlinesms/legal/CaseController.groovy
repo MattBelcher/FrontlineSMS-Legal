@@ -29,14 +29,10 @@ class CaseController {
     def search = {
         if (params.caseId) {
             [foundCase: Case.findByCaseId(params.caseId)]
-            //[foundCase: Case.findAll("from legal_case as l where l.caseId='9999'")]
-             //[foundCase:Case.findAll("from legal_case as b where b.caseId=:caseId", [caseId:'9999'])]
-
 
         }
-        else
-        {
+        else {
             [foundCase: Case.getAll()]
         }
     }
-    }
+}
