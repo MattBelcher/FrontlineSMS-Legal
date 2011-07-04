@@ -7,5 +7,5 @@ stacktrace.log
 cobertura.ser
 out
 .sass-cache
-*.css
+web-app/css/*.css
 web-app/js/*.js
