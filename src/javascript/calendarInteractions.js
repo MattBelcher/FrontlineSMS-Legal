@@ -1,15 +1,17 @@
 var frontlinesms = this.frontlinesms || {};
 
-frontlinesms.calculateScheduleHeight = function () {
-    var windowHeight = $(window).height();
+frontlinesms.calculateScheduleHeight = function (windowHeight) {
     var headerHeight = $("#header").outerHeight();
+    console.log(windowHeight);
     var schedulePadding = parseInt($("#schedule").css('padding-top')) + parseInt($("#schedule").css('padding-bottom'));
+    console.log(headerHeight);
+    console.log(schedulePadding);
     return windowHeight - headerHeight - schedulePadding;
 };
 
 frontlinesms.calendarInteractions = function() {
     $('#schedule').fullCalendar({
-        height: frontlinesms.calculateScheduleHeight(),
+        height: frontlinesms.calculateScheduleHeight($(window).height()),
         events: [
             {
                 title: 'Appointment',
@@ -25,7 +27,7 @@ frontlinesms.calendarInteractions = function() {
             }
         ],
         windowResize: function () {
-            $("#schedule").fullCalendar("option", "height", frontlinesms.calculateScheduleHeight())
+            $("#schedule").fullCalendar("option", "height", frontlinesms.calculateScheduleHeight($(window).height()))
         }
     })
 }
