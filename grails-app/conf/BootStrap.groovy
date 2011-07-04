@@ -3,15 +3,12 @@ import grails.util.Environment
 class BootStrap {
 
     def runnable = {
-        def ant = new AntBuilder()
         while (!Thread.currentThread().interrupted()) {
-            ant.copy(todir: "web-app/js/", verbose: "true") {
-                fileset(dir: "src/javascript/", includes: "*.js")
-                fileset(dir: "lib/javascript/", includes: "*.js")
-            }
+            updateJsFiles()
             Thread.sleep(2000)
         }
     } as Runnable
+
     def jsWatcher = new Thread(runnable)
 
     def init = { servletContext ->
@@ -27,10 +24,7 @@ class BootStrap {
             }
         } else {
             ant.delete(dir: "web-app/js", includes: "*.js")
-            ant.copy(todir: "web-app/js/"){
-                fileset(dir: "src/javascript/", includes: "*.js")
-                fileset(dir: "lib/javascript/", includes: "*.js")
-            }
+            updateJsFiles()
         }
 
     }
@@ -38,5 +32,12 @@ class BootStrap {
     def destroy = {
         jsWatcher.interrupt()
         jsWatcher.join()
+    }
+
+    private def updateJsFiles() {
+        new AntBuilder().copy(todir: "web-app/js/", verbose: "true") {
+            fileset(dir: "src/javascript/", includes: "*.js")
+            fileset(dir: "lib/javascript/", includes: "*.js")
+        }
     }
 }
