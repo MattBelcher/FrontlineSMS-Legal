@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
     <g:javascript library="jquery-1.6.1"/>
     <g:javascript library="jquery-ui-1.8.14.custom.min"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}" />
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}"/>
     <g:layoutHead/>
 </head>
 
@@ -20,7 +20,8 @@
         <ul>
             <li>Create New..
                 <ul>
-                     <g:link controller="case" action="create" name="createNewCase">Case</g:link>
+                    <li><g:link controller="case" action="create" name="createNewCase">Case</g:link></li>
+                    <li><g:link controller="event" action="create" name="createNewEvent">Event</g:link></li>
                 </ul>
             </li>
         </ul>

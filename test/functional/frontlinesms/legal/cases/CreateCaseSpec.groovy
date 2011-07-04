@@ -48,6 +48,21 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         errorMessage == "Case number is required"
     }
 
+    def "should display error message when creating a case with an id of only whitespace"() {
+        given:
+        to NewCasePage
+
+        when:
+        caseId = "      "
+        description = "some description"
+
+        and:
+        save.click()
+
+        then:
+        errorMessage == "Case number is required"
+    }
+
     def 'should display error message when creating a case with duplicate case Id'() {
         given:
         to NewCasePage

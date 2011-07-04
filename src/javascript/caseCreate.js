@@ -1,6 +1,6 @@
 frontlinesms = {}
 
-frontlinesms.cancelConfirmAction = function() {
+frontlinesms.caseCancelConfirmAction = function() {
     $("#case-cancel-dialog").dialog({
         modal: true,
         buttons: [

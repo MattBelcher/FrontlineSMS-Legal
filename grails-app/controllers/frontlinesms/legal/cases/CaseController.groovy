@@ -1,4 +1,6 @@
-package frontlinesms.legal
+package frontlinesms.legal.cases
+
+import frontlinesms.legal.Case
 
 class CaseController {
 
@@ -8,9 +10,10 @@ class CaseController {
         def newCase = new Case(params)
 
         if (newCase.save(flush: true)) {
+            flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
         }
-        else if (params.caseId == "" || params.caseId == null) {
+        else if (params.caseId == "" || params.caseId.isAllWhitespace() || params.caseId == null) {
             flash.error = "Case number is required"
             redirect(action: 'create')
         }
