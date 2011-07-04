@@ -1,4 +1,6 @@
-package frontlinesms.legal
+package frontlinesms.legal.cases
+
+import frontlinesms.legal.Case
 
 class CaseController {
 
@@ -8,14 +10,15 @@ class CaseController {
         def newCase = new Case(params)
 
         if (newCase.save(flush: true)) {
+            flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
         }
-        else if (params.caseId == "" || params.caseId == null) {
+        else if (params.caseId == "" || params.caseId.isAllWhitespace() || params.caseId == null) {
             flash.error = "Case number is required"
             redirect(action: 'create')
         }
         else {
-            flash.error = "Case number already exists. Please enter a unique case number"
+            flash.error = "Case number already exists. Please enter a unique case number."
             redirect(action: 'create')
         }
 
@@ -39,4 +42,11 @@ class CaseController {
             [foundCase: Case.getAll()]
         }
     }
+
+    def linkContact = {
+        redirect(controller: "legalContact", action: "linkContact",
+                params: [id: params.currentId, newCaseId: params.newCaseId, newCaseDescription: params.newCaseDescription,
+                        contactNames: params.contactNames, contactNumbers: params.contactPhone, contactTypes: params.contactType]
+        )
     }
+}

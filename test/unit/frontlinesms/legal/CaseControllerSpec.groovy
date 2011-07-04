@@ -44,6 +44,21 @@ class CaseControllerSpec extends ControllerSpec {
         controller.flash.error == "Case number is required"
     }
 
+    def 'should display an error when creating a case with duplicate id'() {
+        given:
+        def cases=[]
+        cases.add(new Case(caseId: '1234'))
+        mockDomain(Case, cases)
+
+        controller.params.caseId = '1234'
+
+        when:
+        controller.save()
+
+        then:
+        controller.flash.error == 'Case number already exists. Please enter a unique case number'
+    }
+
     def 'should display list of cases matching search criteria'() {
         given:
         def casesList = []
@@ -60,21 +75,6 @@ class CaseControllerSpec extends ControllerSpec {
 
     }
 
-    def 'should display an error when creating a case with duplicate id'() {
-        given:
-        def cases=[]
-        cases.add(new Case(caseId: '1234'))
-        mockDomain(Case, cases)
-
-        controller.params.caseId = '1234'
-
-        when:
-        controller.save()
-
-        then:
-        controller.flash.error == 'Case number already exists. Please enter a unique case number'
-    }
-
     def 'should display case details given case id'() {
         given:
         def newCase = new Case(caseId: "1234")
@@ -88,4 +88,23 @@ class CaseControllerSpec extends ControllerSpec {
         displayedCase.caseId == newCase.caseId
     }
 
+    def "linkContact should redirect to contact controller with case details as params"() {
+        given:
+        def newCase = new Case(caseId: "1234", description: "some description")
+        mockDomain(Case, [newCase])
+        controller.params.currentId = newCase.id
+        def newCaseId = controller.params.newCaseId = "4567"
+        def newCaseDescription = controller.params.newCaseDescription = "Other description"
+        def contactNames = controller.params.contactNames = ["John", "James"]
+        def contactNumbers = controller.params.contactPhone = ["123456789", "987654321"]
+        def contactTypes = controller.params.contactType = ["Client", "Witness"]
+
+        when:
+        controller.linkContact()
+
+        then:
+        redirectArgs == [controller: "legalContact", action: "linkContact",
+                params: [id: newCase.id, newCaseId: newCaseId, newCaseDescription: newCaseDescription,
+                        contactNames: contactNames, contactNumbers: contactNumbers, contactTypes: contactTypes]]
+    }
 }
