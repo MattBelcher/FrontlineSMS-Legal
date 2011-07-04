@@ -26,6 +26,38 @@ a, a:hover, a:visited
   :z-index 2
   :border-bottom $panelBorder
 
+  #logo
+    :margin $logoMargin
+    :height $logoSide
+    :width  $logoSide
+    :background url("/frontlinesms-legal/images/projectavatar.png")
+    :float left
+
+  #tabs
+    :height $tabHeight
+    :position absolute
+    :left $sidebarWidth
+    :bottom 0px
+
+  .tab
+    :height $tabHeight
+    :margin-left $tabMargin
+    :margin-right $tabMargin
+    :width 100px
+    :text-align center
+    :border-right $panelBorder
+    :border-left $panelBorder
+    :border-top $panelBorder
+
+    a
+      :display inline-block
+      :width 100%
+      :height 100%
+
+  .selected
+    :background-color #cccccc
+
+
 #errorMessage, #status
   :position fixed
   :top 0px
@@ -68,28 +100,3 @@ a, a:hover, a:visited
 #main-content
   :margin-left $sidebarWidth
 
-#logo
-  :margin $logoMargin
-  :height $logoSide
-  :width  $logoSide
-  :background url("/frontlinesms-legal/images/projectavatar.png")
-  :float left
-
-#tabs
-  :height $tabHeight
-  :margin-left $sidebarWidth
-  :margin-top $headerHeight - $tabHeight
-
-.tab
-  :height $tabHeight
-  :margin-left $tabMargin
-  :margin-right $tabMargin
-  :width 100px
-  :text-align center
-  :border-right $panelBorder
-  :border-left $panelBorder
-  :border-top $panelBorder
-  :text-padding 5px
-
-.selected
-  :background-color #cccccc

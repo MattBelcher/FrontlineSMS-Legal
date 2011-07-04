@@ -18,7 +18,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 <g:if test="${flash.error}">
     <div id="errorMessage"><span class="flash-message">${flash.error}</span></div>
 </g:if>
@@ -26,9 +25,7 @@
     <div id="status"><span class="flash-message">${flash.message}</span></div>
 </g:if>
 
-=======
 <span id="active-tab" class="${pageProperty(name: "body.class")}"></span>
->>>>>>> 9ee4731c8c91fe0b4970a8662b0e26fe9b117e85
 <div id="header">
     <div id="logo"></div>
     <div id="tabs">
