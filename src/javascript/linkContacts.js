@@ -7,11 +7,9 @@ frontlinesms.linkContacts = function() {
         modal: true,
         buttons: {
             "Save": function() {
-                console.log("saved");
                 $(this).dialog("close");
             },
             "Cancel": function() {
-                console.log("cancel");
                 $(this).dialog("close");
             }
         }
@@ -19,5 +17,6 @@ frontlinesms.linkContacts = function() {
 
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
+        return false;
     });
 };
