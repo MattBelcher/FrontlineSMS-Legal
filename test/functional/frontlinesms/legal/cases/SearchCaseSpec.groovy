@@ -71,5 +71,23 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         SearchResults.collect { it -> it.caseId }.contains("14")
     }
 
+    def 'should display an error message if no cases are found matching a given search criteria'(){
+
+        given:
+        to SearchCasePage
+
+        when:
+        caseId = "anIncorrectId"
+
+        and:
+        search.click()
+
+        then:
+
+        errorText == "There were no results returned for your search. Please try again"
+
+
+    }
+
 
 }
