@@ -2,31 +2,21 @@
 <html>
 <head><title>Search page</title>
     <meta name="layout" content="main">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
 </head>
 
 <body>
-<div align="center">
-    <h1>Search for Case by Case Id</h1>
+<h1 class="form-header">Search for Case by Case Id</h1>
 
-</div>
-
-<br/><br/>
-
-<div align="center">
-    <p>Enter the case Id to search for cases</p>
-    <br/>
-    <g:form action="search" method="POST">
-        <g:textField name="caseId" id="caseId"/>
+<g:form action="search" method="POST">
+    <label>Enter the case Id to search for cases</label>
+    <g:textField class="wide-text-box" name="caseId" id="caseId"/>
+    <div class="form-submit-area">
         <g:actionSubmit id="case-search" value="Search"/>
+    </div>
 
-    </g:form>
-</div>
-<g:if test="${foundCase}">
-    <div align="center">
-        <br/><br/>
-        <br/><br/>
-
-        <table width=15% border=3 id="SearchResults">
+    <g:if test="${foundCase}">
+        <table class="search-results" id="SearchResults">
             <thead>
             <tr>
                 <th id="title">Case Id</th>
@@ -37,15 +27,14 @@
             <g:each in="${foundCase}" var="legalCase">
                 <tr>
 
-                <td align="center">
-
-                <g:link controller="case" action="show"
+                    <td>
+                        <g:link controller="case" action="show"
                                 id="${legalCase.caseId}"><%=legalCase.caseId%></g:link></td>
                 </tr>
             </g:each>
             </tbody>
         </table>
-    </div>
-</g:if>
+    </g:if>
+</g:form>
 </body>
 </html>
