@@ -1,5 +1,12 @@
 var frontlinesms = this.frontlinesms ||  {};
 
+frontlinesms.createNewCaseOnLoad = function() {
+    $("#case-cancel").click(function(){
+        frontlinesms.caseCancelConfirmAction();
+        return false;
+    });
+}
+
 frontlinesms.caseCancelConfirmAction = function() {
     $("#case-cancel-dialog").dialog({
         modal: true,
@@ -13,7 +20,9 @@ frontlinesms.caseCancelConfirmAction = function() {
             },
             {
                 text: "No",
-                click: function() { $(this).dialog("close")},
+                click: function() {
+                    $(this).dialog("close");
+                },
                 id: "cancel-confirm-no"
             }
         ]

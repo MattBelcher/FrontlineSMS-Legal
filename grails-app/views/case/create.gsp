@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
     <g:javascript library="caseCreate"/>
     <title>Create New Case</title>
+    <script type="text/javascript">
+        $(function(){
+            frontlinesms.createNewCaseOnLoad();
+        })
+    </script>
 </head>
 
 <body>
@@ -17,7 +22,7 @@
     <g:textArea name="description" id="case-description" cols="100" rows="10"/>
     <div class="form-submit-area">
         <input type="submit" id="case-save" value="Save"/>
-        <button id="case-cancel" onclick="frontlinesms.caseCancelConfirmAction(); return false;">Cancel</button>
+        <button id="case-cancel">Cancel</button>
     </div>
 </form>
 
