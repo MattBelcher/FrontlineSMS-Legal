@@ -31,13 +31,13 @@ class CaseController {
 
     def search = {
         if (params.caseId) {
-            def foundCases = Case.findByCaseId(params.caseId)
-            if (foundCases == null) {
+            def foundCases = Case.findAllByCaseIdLike("${params.caseId}%")
+            if (foundCases.size()== 0) {
                 flash.error = "There were no results returned for your search. Please try again"
                 redirect(action: 'search')
             }
             else {
-                [foundCase: Case.findByCaseId(params.caseId)]
+                [foundCase: foundCases]
             }
 
         }

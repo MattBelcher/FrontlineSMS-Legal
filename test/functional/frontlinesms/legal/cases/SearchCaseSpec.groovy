@@ -112,5 +112,32 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         errorText == "There were no results returned for your search. Please try again"
     }
 
+    def 'should return a list of case Ids that partially match the given search criteria'() {
+
+        given:
+        to NewCasePage
+
+        and:
+        caseId = "case-Id"
+
+        and:
+        save.click()
+
+        when:
+        to SearchCasePage
+
+        and:
+        caseId = "case"
+
+        and:
+        search.click()
+
+        then:
+        def results = SearchResults.collect { it -> it.caseId }
+        results.size() == 1
+        results.contains("case-Id")
+
+    }
+
 
 }
