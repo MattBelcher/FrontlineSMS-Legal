@@ -72,7 +72,7 @@ class CaseControllerSpec extends ControllerSpec {
         def foundCases = controller.search()
 
         then:
-        foundCases['foundCase'].caseId == '456'
+        foundCases['foundCase'].get(0).caseId == '456'
 
     }
 
