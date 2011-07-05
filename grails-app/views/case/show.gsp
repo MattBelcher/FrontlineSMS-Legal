@@ -3,6 +3,12 @@
 <head>
     <title>Simple GSP page</title>
     <meta name="layout" content="main">
+    <g:javascript library="linkContacts"/>
+    <script type="text/javascript">
+        $(function() {
+            frontlinesms.linkContacts();
+        })
+    </script>
 </head>
 
 <body>
@@ -12,8 +18,8 @@
     <g:hiddenField name="currentId" id="current-id" value="${caseToDisplay.id}"/>
     <g:textField name="caseId" id="case-id" value="${caseToDisplay.caseId}"/><br>
     <label>Description</label>
-    <g:textArea name="description" id="case-description" cols="100" rows="10" value="${caseToDisplay.description}"/><br>
-    <g:actionSubmit id="link-contact" value="Link contacts" action="linkContact"/>
+    <g:textArea name="description" id="case-description" cols="100" rows="10" value="${caseToDisplay.description}"/>
+
     <g:if test="${contacts?.size > 0}">
         <table name="contacts" id="contacts">
             <tr>
@@ -32,7 +38,17 @@
     </g:if>
 
     <g:actionSubmit id="case-save" value="Save"/>
+
 </g:form>
+
+<div id="link-contacts" title="Link Contacts">
+    <g:form action="">
+        <g:textField name="contactNameSearch" id="contact-name-search"/>
+        <g:actionSubmit id="search-button" value="Search"/>
+    </g:form>
+</div>
+<button id="link-contact-button">Link contacts</button>
+
 </body>
 
 </html>
