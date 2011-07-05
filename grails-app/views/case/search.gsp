@@ -3,6 +3,13 @@
 <head><title>Search page</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+    <g:javascript library="picnet.table.filter.min"/>
+    <g:javascript library="caseSearch"/>
+    <script type="text/javascript">
+        $(function(){
+            frontlinesms.caseSearchOnLoad();
+        })
+    </script>
 </head>
 
 <body>
