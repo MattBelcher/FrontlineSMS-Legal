@@ -26,10 +26,9 @@
 
             <g:each in="${foundCase}" var="legalCase">
                 <tr>
-
                     <td>
-                        <g:link controller="case" action="show"
-                                id="${legalCase.caseId}"><%=legalCase.caseId%></g:link></td>
+                        <g:link controller="case" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
+                    </td>
                 </tr>
             </g:each>
             </tbody>
