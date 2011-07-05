@@ -10,6 +10,6 @@ class Event {
         title(nullable: true)
     }
     String title
-    Date eventDate
-    Time startTime, endTime
+    Date dateFieldSelected
+    Time startTimeField, endTimeField
 }
