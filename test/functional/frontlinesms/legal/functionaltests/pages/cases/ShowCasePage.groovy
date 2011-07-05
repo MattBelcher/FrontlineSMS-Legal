@@ -10,6 +10,16 @@ class ShowCasePage extends Page {
         description { $("textarea", id: "case-description").value()}
         saveCaseButton{$("input",id:"case-save")}
         status { $("div", id: "status").text() }
+        contact { name,type ->
+            $("#link-contact-button").click()
+            $("#contact-name-search").value(name)
+            $("#search-button").click()
+            $("#search-results td a").first().click()
+            $("#contact-type").value(type)
+            $("#add-contact").click()
+        }
+        contactName { $("#contacts td.contact-name").first().text() }
+        contactType { $("#contacts td.contact-type").first().text() }
     }
 
 }

@@ -45,6 +45,15 @@
                     <li><g:link controller="event" action="create" name="createNewEvent">Event</g:link></li>
                 </ul>
             </li>
+            </ul>
+        <ul>
+            </br>
+            </br>
+            </br>
+            <li>Search By...</li>
+            <ul>
+                <li><g:link controller="case" action="search" name="searchByCaseId">Case Id</g:link></li>
+            </ul>
         </ul>
     </div>
 

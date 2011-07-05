@@ -18,7 +18,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         assert at(NewCasePage)
     }
 
-    def "should be able to create case with id and description"() {
+    def "should be able to create case with id, description"() {
         given:
         to NewCasePage
 
@@ -82,7 +82,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         errorMessage == "Case number already exists. Please enter a unique case number."
     }
 
-    def 'should open confirmation dialog when cancel is clicked'(){
+    def 'should open confirmation dialog when cancel is clicked'() {
         given:
         to NewCasePage
 
@@ -93,7 +93,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         caseCancelDialog.displayed == true
     }
 
-    def 'should hide cancel confirm dialog when no is clicked'(){
+    def 'should hide cancel confirm dialog when no is clicked'() {
         given:
         to NewCasePage
 
@@ -107,7 +107,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         caseCancelDialog.displayed == false
     }
 
-    def 'should remain on Create case page when no is clicked on cancel confirm dialog'(){
+    def 'should remain on Create case page when no is clicked on cancel confirm dialog'() {
         given:
         to NewCasePage
 

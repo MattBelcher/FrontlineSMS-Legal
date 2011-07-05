@@ -14,5 +14,6 @@ class NewCasePage extends Page {
         caseCancelDialog { $("div" , id: "case-cancel-dialog")}
         cancelYes { $("button", id: "cancel-confirm-yes")}
         cancelNo { $("button", id: "cancel-confirm-no")}
+
     }
 }

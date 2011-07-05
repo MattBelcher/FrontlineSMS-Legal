@@ -11,8 +11,8 @@ class SearchCasePage extends Page {
     static content = {
         id { $("input", id: "caseId") }
         search { $("input", id: "case-search") }
+        errorText {$("div", id:"errorMessage").text() }
         SearchResults {$("tbody tr").collect {module CaseRow, it}
-
         }
     }
 }
