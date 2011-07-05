@@ -29,12 +29,12 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         at SearchCasePage
-         SearchResults.collect { it -> it.caseId }.contains("9999")
+        SearchResults.collect { it -> it.caseId }.contains("9999")
 
 
     }
 
-    def "should return all the cases stored in the database when an empty search is carried out"(){
+    def "should return all the cases stored in the database when an empty search is carried out"() {
 
         given:
         to NewCasePage
@@ -71,7 +71,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         SearchResults.collect { it -> it.caseId }.contains("14")
     }
 
-    def 'should display an error message if no cases are found matching a given search criteria'(){
+    def 'should display an error message if no cases are found matching a given search criteria'() {
 
         given:
         to SearchCasePage
@@ -87,6 +87,29 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         errorText == "There were no results returned for your search. Please try again"
 
 
+    }
+
+    def 'should display an error message when the case Id specified to search is in the incorrect case'() {
+        given:
+        to NewCasePage
+
+        and:
+        caseId = "abc"
+
+        and:
+        save.click()
+
+        when:
+        to SearchCasePage
+
+        and:
+        caseId = "ABC"
+
+        and:
+        search.click()
+
+        then:
+        errorText == "There were no results returned for your search. Please try again"
     }
 
 
