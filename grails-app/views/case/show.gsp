@@ -4,6 +4,7 @@
     <title>Simple GSP page</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+    <g:javascript library="caseCreate"/>
 </head>
 
 <body>
@@ -36,8 +37,14 @@
 
     <div class="form-submit-area">
         <g:actionSubmit id="case-save" value="Save"/>
+        <button id="case-cancel" onclick="frontlinesms.caseCancelConfirmAction(); return false;">Cancel</button>
     </div>
 </g:form>
+
+<div id="case-cancel-dialog" style="display: none;">
+    <p>Cancel any changes?</p>
+</div>
+
 </body>
 
 </html>
