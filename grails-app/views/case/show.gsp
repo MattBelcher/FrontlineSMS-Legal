@@ -51,7 +51,33 @@
 <div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
-        <button id="search-button">Search</button>
+        <table id="link-contact-outer-table">
+            <thead>
+            <tr><td>Name</td><td>Phone</td></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <div id="link-contacts-inner-table-div">
+                            <table>
+                                <tbody>
+                                <g:each in="${legalContactList}" var="legalContact">
+                                    <tr>
+                                        <td>
+                                            <%=legalContact.contact.name%>
+                                        </td>
+                                        <td>
+                                            <%=legalContact.phoneNumber%>
+                                        </td>
+                                    </tr>
+                                </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </g:form>
 </div>
 

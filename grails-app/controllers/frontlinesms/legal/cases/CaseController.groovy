@@ -1,6 +1,8 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
+import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
 
 class CaseController {
 
@@ -27,7 +29,9 @@ class CaseController {
 
 
     def show = {
-        [caseToDisplay: Case.findByCaseId(params.id)]
+
+        [caseToDisplay: Case.findByCaseId(params.id), legalContactList: LegalContact.list()]
+
     }
 
     def search = {
@@ -47,10 +51,5 @@ class CaseController {
         }
     }
 
-    def linkContact = {
-        redirect(controller: "legalContact", action: "linkContact",
-                params: [id: params.currentId, newCaseId: params.newCaseId, newCaseDescription: params.newCaseDescription,
-                        contactNames: params.contactNames, contactNumbers: params.contactPhone, contactTypes: params.contactType]
-        )
-    }
+
 }
