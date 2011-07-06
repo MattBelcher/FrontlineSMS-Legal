@@ -11,9 +11,9 @@
 
 <form action="save" name="createEventForm">
     <label>Title</label>
-    <g:textField id="event-title" name="event-title"/><br><br>
+    <g:textField id="event-title" name="eventTitle"/><br><br>
     <label>Date</label>
-    <g:textField name="dateField" id="event-date"/><br><br>
+    <g:textField name="dateFieldSelected" id="event-date"/><br><br>
     <label>Start time</label>
     <g:textField name="startTimeField" id="event-start-time"/><br><br>
     <label>End time</label>

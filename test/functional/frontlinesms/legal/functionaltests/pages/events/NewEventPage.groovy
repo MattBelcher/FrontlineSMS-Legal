@@ -6,7 +6,7 @@ class NewEventPage extends Page {
     static at = { $("title").text() == "Create New Event" }
     static url = "event/create"
     static content = {
-        title { $("input", id: "event-title") }
+        eventTitle { $("input", id: "event-title") }
         dateFieldSelected {
             $("input", id: "event-date").click()
             waitFor(3) { datePicker.present }

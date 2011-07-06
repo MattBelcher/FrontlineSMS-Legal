@@ -19,6 +19,9 @@ class EventController {
 
             def newEvent = new Event(title: params.title, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(params.startTimeField), endTimeField: Time.valueOf(params.endTimeField))
             newEvent.save(flush: true)
+            if (true){
+            redirect(controller: "schedule", action: "index")
+        }
         }
     }
 
