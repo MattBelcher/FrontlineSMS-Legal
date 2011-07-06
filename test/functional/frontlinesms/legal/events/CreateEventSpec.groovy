@@ -3,7 +3,8 @@ package frontlinesms.legal.events
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.HomePage
 import frontlinesms.legal.functionaltests.pages.events.NewEventPage
-import frontlinesms.legal.functionaltests.pages.cases.NewCasePage
+import frontlinesms.legal.functionaltests.pages.schedule.SchedulePage
+import spock.lang.Ignore
 
 class CreateEventSpec extends FrontlinesmsLegalGebSpec {
      def "should be able to navigate to the create event page from the menu"() {
@@ -73,7 +74,27 @@ class CreateEventSpec extends FrontlinesmsLegalGebSpec {
         then:
         assert at(HomePage)
     }
-    def 'should not display any garbage text on start time and end time field'() {
+
+    @Ignore
+    def 'should navigate to schedule page when event is created'() {
+
+        given:
+        to NewEventPage
+
+        title="event"
+        dateFieldSelected="July 11, 2011"
+        startTimeField="08:09PM"
+        endTimeField="08:56AM"
+
+        when:
+
+        save.click()
+
+        then:
+        assert at(SchedulePage)
+
+
+
 
     }
 }
