@@ -13,10 +13,10 @@
 </head>
 
 <body>
-<h1 class="form-header">Search for Case by Case Id</h1>
+<h1 class="form-header">Search for Case by Case ID</h1>
 
 <g:form action="search" method="POST">
-    <label>Enter the case Id to search for cases</label>
+    <label>Enter the case ID to search for cases</label>
     <g:textField class="wide-text-box" name="caseId" id="caseId"/>
     <div class="form-submit-area">
         <g:actionSubmit id="case-search" value="Search"/>
@@ -26,7 +26,7 @@
         <table class="search-results" id="SearchResults">
             <thead>
             <tr>
-                <th id="title">Case Id</th>
+                <th id="title">Case ID</th>
             </tr>
             </thead>
             <tbody>

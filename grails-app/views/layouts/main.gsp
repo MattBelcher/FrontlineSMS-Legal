@@ -52,7 +52,7 @@
             </br>
             <li>Search By...</li>
             <ul>
-                <li><g:link controller="case" action="search" name="searchByCaseId">Case Id</g:link></li>
+                <li><g:link controller="case" action="search" name="searchByCaseId">Case ID</g:link></li>
             </ul>
         </ul>
     </div>
