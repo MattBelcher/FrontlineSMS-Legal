@@ -7,7 +7,7 @@ class FrontlinesmsLegalGebSpec extends GebSpec {
     Browser createBrowser() {
         Browser browser = new Browser()
         String port = getPort()
-        browser.baseUrl = "http://localhost:${port}/frontlinesms-legal/"
+        browser.baseUrl = "http://localhost:${port}/"
         browser
     }
 

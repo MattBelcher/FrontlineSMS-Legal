@@ -24,7 +24,7 @@ frontlinesms.eventCancelConfirmAction = function() {
                     {
                         text: "Yes, Cancel This Event",
                         click: function() {
-                            $(window.location).attr("href", "/frontlinesms-legal");
+                            $(window.location).attr("href", "/");
                         },
                         id: "cancel-confirm-yes"
                     },

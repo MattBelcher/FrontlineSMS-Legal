@@ -6,17 +6,25 @@ frontlinesms.linkContacts = function() {
         autoOpen: false,
         modal: true,
         buttons: {
-            "Save": function() {
-                $(this).dialog("close");
-            },
             "Cancel": function() {
                 $(this).dialog("close");
             }
         }
     });
 
+    $("#search-button").click(function() {
+        $.getJSON("/legalContact/search",{keyword: $("#contact-name-search").value}, frontlinesms.updateSearchResults);
+        return false;
+    });
+
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
         return false;
     });
+};
+
+frontlinesms.updateSearchResults = function (results) {
+
+    alert(results)
+        
 };

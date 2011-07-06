@@ -9,9 +9,13 @@ class LegalContact {
 
     static constraints = {
         type(nullable: true)
+        phoneNumber(unique: true,blank: false)
     }
 
     def static findByContactName(keyword) {
+        if(keyword!=null && !keyword.toString().isEmpty())
         executeQuery("select val.contact.name,val.phoneNumber from LegalContact val where val.contact.name like '%" + keyword + "%'")
+        else
+        executeQuery("select val.contact.name,val.phoneNumber from LegalContact val")
     }
 }
