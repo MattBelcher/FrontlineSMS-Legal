@@ -30,7 +30,7 @@ class CaseController {
     }
 
     def search = {
-        if (params.caseId) {
+        if (params.caseId && !params.caseId.isAllWhitespace()) {
             def foundCases = Case.findAllByCaseIdLike("${params.caseId}%")
             if (foundCases.size()== 0) {
                 flash.error = "There were no results returned for your search. Please try again"

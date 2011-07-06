@@ -139,5 +139,44 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
     }
 
+    def 'should return a list of all the cases in the database if the search box contains just spaces'(){
+        given:
+        to NewCasePage
+
+        and:
+        caseId = "0123"
+
+        and:
+        save.click()
+
+        and:
+        to NewCasePage
+
+        and:
+        caseId = "0123456"
+
+        and:
+        save.click()
+
+        when:
+        to SearchCasePage
+
+        and:
+        caseId = "  "
+
+        and:
+        search.click()
+
+        then:
+        def results = SearchResults.collect { it -> it.caseId }
+        results.contains("0123")
+        results.contains("0123456")
+
+
+
+
+
+    }
+
 
 }
