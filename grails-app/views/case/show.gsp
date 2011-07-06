@@ -51,7 +51,7 @@
 <div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
-        <g:actionSubmit id="search-button" value="Search"/>
+        <button id="search-button">Search</button>
     </g:form>
 </div>
 
