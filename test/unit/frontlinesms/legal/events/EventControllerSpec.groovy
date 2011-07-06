@@ -1,20 +1,17 @@
 package frontlinesms.legal.events
-import frontlinesms2.Contact
-import grails.plugin.spock.IntegrationSpec
-import grails.plugin.spock.ControllerSpec
-import frontlinesms.legal.Event
 
+import frontlinesms.legal.Event
+import grails.plugin.spock.ControllerSpec
 
 class EventControllerSpec extends ControllerSpec {
 
         def "should save event"(){
             setup:
-            //def events =[]
             mockDomain(Event)
             controller.params.title = "Meeting with someone"
             controller.params.dateFieldSelected = "July 12, 2011"
             controller.params.startTimeField = "08:45AM"
-            controller.params.endTimeField = "17:00PM"
+            controller.params.endTimeField = "06:00PM"
 
             when:
             controller.save()
