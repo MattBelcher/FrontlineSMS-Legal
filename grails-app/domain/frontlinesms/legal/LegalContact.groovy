@@ -7,4 +7,11 @@ class LegalContact {
     String phoneNumber
     String type
 
+    static constraints = {
+        type(nullable: true)
+    }
+
+    def static findByContactName(keyword) {
+        executeQuery("select val.contact.name,val.phoneNumber from LegalContact val where val.contact.name like '%" + keyword + "%'")
+    }
 }

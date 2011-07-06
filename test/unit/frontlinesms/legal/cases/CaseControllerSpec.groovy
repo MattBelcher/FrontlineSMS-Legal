@@ -88,24 +88,4 @@ class CaseControllerSpec extends ControllerSpec {
         then:
         displayedCase.caseId == newCase.caseId
     }
-
-    def "linkContact should redirect to contact controller with case details as params"() {
-        given:
-        def newCase = new Case(caseId: "1234", description: "some description")
-        mockDomain(Case, [newCase])
-        controller.params.currentId = newCase.id
-        def newCaseId = controller.params.newCaseId = "4567"
-        def newCaseDescription = controller.params.newCaseDescription = "Other description"
-        def contactNames = controller.params.contactNames = ["John", "James"]
-        def contactNumbers = controller.params.contactPhone = ["123456789", "987654321"]
-        def contactTypes = controller.params.contactType = ["Client", "Witness"]
-
-        when:
-        controller.linkContact()
-
-        then:
-        redirectArgs == [controller: "legalContact", action: "linkContact",
-                params: [id: newCase.id, newCaseId: newCaseId, newCaseDescription: newCaseDescription,
-                        contactNames: contactNames, contactNumbers: contactNumbers, contactTypes: contactTypes]]
-    }
 }
