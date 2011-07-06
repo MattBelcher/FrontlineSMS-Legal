@@ -9,4 +9,5 @@ frontlinesms.initializeAutocomplete = function() {
         additionalFilterTriggers: [$("#caseId")]
     });
     $("#SearchResults thead tr.filters").remove();
+    $("#caseId").removeAttr("title");
 }
