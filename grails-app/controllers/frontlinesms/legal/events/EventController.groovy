@@ -9,14 +9,20 @@ class EventController {
     def index = { }
     def create = { }
     def save = {
-        params.startTimeField = TimeFormatter.formatTime(params.startTimeField)
-        params.endTimeField = TimeFormatter.formatTime(params.endTimeField)
+        if( checkForNullDateTimes() ){
 
-        def newEvent = new Event(title: params.title, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(params.startTimeField), endTimeField: Time.valueOf(params.endTimeField))
-        newEvent.save(flush: true)
+            flash.error = "Please complete date and time fields."
+        }
+        else {
+            params.startTimeField = TimeFormatter.formatTime(params.startTimeField)
+            params.endTimeField = TimeFormatter.formatTime(params.endTimeField)
 
-
+            def newEvent = new Event(title: params.title, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(params.startTimeField), endTimeField: Time.valueOf(params.endTimeField))
+            newEvent.save(flush: true)
+        }
     }
 
-
+    private def checkForNullDateTimes() {
+        return (params.dateFieldSelected == null || params.startTimeField == null || params.endTimeField == null)
+    }
 }
