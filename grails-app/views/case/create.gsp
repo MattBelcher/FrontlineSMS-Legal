@@ -6,7 +6,7 @@
     <g:javascript library="caseCreate"/>
     <title>Create New Case</title>
     <script type="text/javascript">
-        $(function(){
+        $(function() {
             frontlinesms.createNewCaseOnLoad();
         })
     </script>
@@ -19,7 +19,17 @@
     <label>Case Number</label>
     <g:textField name="caseId" id="case-id"/>
     <label>Description</label>
-    <g:textArea name="description" id="case-description" cols="100" rows="10"/>
+
+
+
+    <g:if test="${!params.description}">
+        <g:textArea name="description" id="case-description" cols="100" rows="10"/>
+    </g:if>
+
+    <g:if test="${params.description}">
+        <g:textArea name="description" id="case-description" cols="100" rows="10" value="${params.description}"/>
+    </g:if>
+
     <div class="form-submit-area">
         <input type="submit" id="case-save" value="Save"/>
         <button id="case-cancel">Cancel</button>

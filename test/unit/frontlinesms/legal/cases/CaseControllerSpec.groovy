@@ -36,18 +36,19 @@ class CaseControllerSpec extends ControllerSpec {
     def 'should display error message and redirect to create when case id is blank'() {
         given:
         mockDomain(Case)
+        controller.params.description = '1234'
 
         when:
         controller.save()
 
         then:
-        redirectArgs == [action: "create"]
+        redirectArgs == [action: "create", params: [description: "1234"]]
         controller.flash.error == "Case number is required"
     }
 
     def 'should display an error when creating a case with duplicate id'() {
         given:
-        def cases=[]
+        def cases = []
         cases.add(new Case(caseId: '1234'))
         mockDomain(Case, cases)
 
