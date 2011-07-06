@@ -9,3 +9,7 @@ out
 .sass-cache
 web-app/css/*.css
 web-app/js/*.js
+devDB.log
+devDB.script
+devDB.properties
+
