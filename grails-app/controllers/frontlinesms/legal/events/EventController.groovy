@@ -41,6 +41,7 @@ class EventController {
     }
 
     private def checkForNullDateTimes() {
+        params.eventTitle = params.eventTitle ? params.eventTitle : ""
         return (params.dateFieldSelected == null || params.startTimeField == null || params.endTimeField == null)
     }
 }
