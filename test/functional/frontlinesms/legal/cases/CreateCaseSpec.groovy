@@ -38,6 +38,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         to NewCasePage
 
         when:
+        caseId = "123"
         cancel.click()
 
         and:
@@ -52,6 +53,7 @@ class CreateCaseSpec extends FrontlinesmsLegalGebSpec {
         to NewCasePage
 
         when:
+        caseId = "123"
         cancel.click()
 
         and:

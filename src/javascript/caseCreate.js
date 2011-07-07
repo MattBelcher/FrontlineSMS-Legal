@@ -7,7 +7,13 @@ frontlinesms.createNewCaseOnLoad = function() {
     });
 }
 
+
 frontlinesms.caseCancelConfirmAction = function() {
+
+    if(($("#case-id").val().trim() == "") && ($("#case-description").val().trim() == "")) {
+         $(window.location).attr("href" ,"/");
+    }
+    else {
     $("#case-cancel-dialog").dialog({
         modal: true,
         buttons: [
@@ -27,4 +33,5 @@ frontlinesms.caseCancelConfirmAction = function() {
             }
         ]
     });
+    }
 }

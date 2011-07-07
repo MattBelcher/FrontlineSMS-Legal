@@ -22,7 +22,8 @@ class CaseController {
         }
         else {
             flash.error = "Case number already exists. Please enter a unique case number."
-            redirect(action: 'create')
+            def enteredDescription = params.description
+            redirect(action: 'create', params: [description: params.description])
         }
 
     }
