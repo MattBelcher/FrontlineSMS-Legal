@@ -13,7 +13,7 @@ frontlinesms.linkContacts = function() {
     });
 
     $("#search-button").click(function() {
-        $.getJSON("/legalContact/search",{keyword: $("#contact-name-search").value}, frontlinesms.updateSearchResults);
+        $.getJSON("/legalContact/search", {keyword: $("#contact-name-search").value}, frontlinesms.updateSearchResults);
         return false;
     });
 
@@ -26,5 +26,5 @@ frontlinesms.linkContacts = function() {
 frontlinesms.updateSearchResults = function (results) {
 
     alert(results)
-        
+
 };

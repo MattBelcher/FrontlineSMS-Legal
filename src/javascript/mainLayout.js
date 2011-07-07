@@ -1,5 +1,5 @@
 var frontlinesms = this.frontlinesms || {};
 
-frontlinesms.dismissFlashMessage = function(){
+frontlinesms.dismissFlashMessage = function() {
     //$('#errorMessage, #success').remove();
 }

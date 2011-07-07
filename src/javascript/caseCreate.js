@@ -1,7 +1,7 @@
-var frontlinesms = this.frontlinesms ||  {};
+var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.createNewCaseOnLoad = function() {
-    $("#case-cancel").click(function(){
+    $("#case-cancel").click(function() {
         frontlinesms.caseCancelConfirmAction();
         return false;
     });
@@ -20,7 +20,7 @@ frontlinesms.caseCancelConfirmAction = function() {
             {
                 text: "Yes",
                 click: function() {
-                    $(window.location).attr("href","/");
+                    $(window.location).attr("href", "/");
                 },
                 id: "cancel-confirm-yes"
             },
