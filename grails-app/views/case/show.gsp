@@ -64,9 +64,7 @@
                                         <td>
                                             <%=contact.name%>
                                         </td>
-                                        <td>
-                                            <%=contact.primaryMobile%>
-                                        </td>
+
                                     </tr>
                                 </g:each>
                                 </tbody>
