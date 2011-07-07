@@ -8,7 +8,7 @@ class EventControllerSpec extends ControllerSpec {
     def "should save event"(){
         setup:
         mockDomain(Event)
-        controller.params.title = "Meeting with someone"
+        controller.params.eventTitle = "Meeting with someone"
         controller.params.dateFieldSelected = "July 12, 2011"
         controller.params.startTimeField = "08:45AM"
         controller.params.endTimeField = "06:00PM"
@@ -23,7 +23,7 @@ class EventControllerSpec extends ControllerSpec {
     def "should show error message when date is not specified"(){
         setup:
         mockDomain(Event)
-        controller.params.title = "Meeting with someone"
+        controller.params.eventTitle = "Meeting with someone"
         controller.params.startTimeField = "08:45AM"
         controller.params.endTimeField = "06:00PM"
 
@@ -31,13 +31,16 @@ class EventControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        controller.flash.error == "Please complete date and time fields."
+
+
+       controller.flash.error == 'Please complete date and time fields.'
+
     }
 
     def "should show error message when start time is not specified"(){
         setup:
         mockDomain(Event)
-        controller.params.title = "Meeting with someone"
+        controller.params.eventTitle = "Meeting with someone"
         controller.params.dateFieldSelected = "July 12, 2011"
         controller.params.endTimeField = "06:00PM"
 
@@ -45,13 +48,14 @@ class EventControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
+
         controller.flash.error == "Please complete date and time fields."
     }
 
     def "should show error message when end time is not specified"(){
         setup:
         mockDomain(Event)
-        controller.params.title = "Meeting with someone"
+        controller.params.eventTitle = "Meeting with someone"
         controller.params.dateFieldSelected = "July 12, 2011"
         controller.params.startTimeField = "08:45AM"
 

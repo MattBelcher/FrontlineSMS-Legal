@@ -4,7 +4,9 @@ import frontlinesms.legal.Case
 
 class CaseController {
 
-    def create = {}
+    def create = {
+
+    }
 
     def save = {
         def newCase = new Case(params)

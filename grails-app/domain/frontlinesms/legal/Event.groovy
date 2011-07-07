@@ -7,9 +7,9 @@ class Event {
         table "legal_event"
     }
     static constraints = {
-        title(nullable: true)
+        eventTitle(nullable: true)
     }
-    String title
+    String eventTitle
     Date dateFieldSelected
     Time startTimeField, endTimeField
 }

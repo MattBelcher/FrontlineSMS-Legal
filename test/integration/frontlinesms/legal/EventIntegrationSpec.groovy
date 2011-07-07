@@ -7,7 +7,7 @@ import java.sql.Time
 class EventIntegrationSpec extends IntegrationSpec {
     def "should save event when title,date, start time and end time are specified"() {
         given:
-        def newEvent = new Event(title: "Meeting with someone", dateFieldSelected: new Date("July 12, 2011"), startTimeField: Time.valueOf("08:45:00"), endTimeField: Time.valueOf("09:00:00"))
+        def newEvent = new Event(eventTitle: "Meeting with someone", dateFieldSelected: new Date("July 12, 2011"), startTimeField: Time.valueOf("08:45:00"), endTimeField: Time.valueOf("09:00:00"))
 
         when:
         def success = newEvent.save(flush: true)
@@ -48,6 +48,7 @@ class EventIntegrationSpec extends IntegrationSpec {
         def success = newEvent.save(flush: true)
 
         then:
+
         !success
 
     }
@@ -61,6 +62,7 @@ class EventIntegrationSpec extends IntegrationSpec {
         def success = newEvent.save(flush: true)
 
         then:
+
         !success
 
     }

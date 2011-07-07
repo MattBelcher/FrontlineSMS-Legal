@@ -76,25 +76,5 @@ class CreateEventSpec extends FrontlinesmsLegalGebSpec {
     }
 
 
-    def 'should navigate to schedule page when event is created'() {
 
-        given:
-        to NewEventPage
-        when:
-
-        eventTitle="event"
-        dateFieldSelected="July 11, 2011"
-        startTimeField="08:09PM"
-        endTimeField="08:56AM"
-
-        and:
-        save.click()
-
-        then:
-        assert at(SchedulePage)
-
-
-
-
-    }
 }
