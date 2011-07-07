@@ -22,7 +22,7 @@ class BootStrap {
                 command += "-- --watch src/sass:web-app/css"
                 arg(line: command)
             }
-        } else {
+
             ant.delete(dir: "web-app/js", includes: "*.js")
             updateJsFiles()
         }

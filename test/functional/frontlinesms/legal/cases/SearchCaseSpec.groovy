@@ -34,6 +34,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
     }
 
+
     def "should return all the cases stored in the database when an empty search is carried out"() {
 
         given:

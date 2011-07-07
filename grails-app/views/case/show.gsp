@@ -33,9 +33,7 @@
         <g:if test="${contacts?.size > 0}">
             <g:each in="${contacts}">
                 <tr>
-                    <td><g:textField value="${it.contact.name}" name="contactName"/></td>
-                    <td><g:textField value="${it.phoneNumber}" name="contactPhone"/></td>
-                    <td><g:textField value="${it.type}" name="contactType"/></td>
+                    <td><g:textField value="${it.name}" name="contactName"/></td>
                 </tr>
             </g:each>
         </g:if>
@@ -51,7 +49,31 @@
 <div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
-        <button id="search-button">Search</button>
+        <table id="link-contact-outer-table">
+            <thead>
+            <tr><td>Name</td><td>Phone</td></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <div id="link-contacts-inner-table-div">
+                            <table id="contactsTable">
+                                <tbody>
+                                <g:each in="${contactList}" var="contact">
+                                    <tr>
+                                        <td>
+                                            <%=contact.name%>
+                                        </td>
+
+                                    </tr>
+                                </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </g:form>
 </div>
 

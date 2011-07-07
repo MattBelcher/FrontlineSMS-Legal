@@ -8,5 +8,7 @@ class HomePage extends Page {
     static content = {
         createNewCase { $("a", name: "createNewCase") }
         createNewEvent { $("a", name: "createNewEvent") }
+        errorMessage { $("div", id: "errorMessage")}
+        statusMessage { $("div", id: "status")}
     }
 }

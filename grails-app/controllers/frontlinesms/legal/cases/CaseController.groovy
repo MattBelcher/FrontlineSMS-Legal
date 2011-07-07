@@ -1,6 +1,7 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
+import frontlinesms2.Contact
 
 class CaseController {
 
@@ -17,19 +18,20 @@ class CaseController {
         }
         else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number is required"
-            def enteredDescription = params.description
             redirect(action: 'create', params: [description: params.description])
         }
         else {
             flash.error = "Case number already exists. Please enter a unique case number."
-            redirect(action: 'create')
+            def enteredDescription = params.description
+            redirect(action: 'create', params: [description: params.description])
         }
 
     }
 
 
     def show = {
-        [caseToDisplay: Case.findByCaseId(params.id)]
+        [caseToDisplay: Case.findByCaseId(params.id), contactList: Contact.list()]
+
     }
 
     def search = {
@@ -49,10 +51,5 @@ class CaseController {
         }
     }
 
-    def linkContact = {
-        redirect(controller: "legalContact", action: "linkContact",
-                params: [id: params.currentId, newCaseId: params.newCaseId, newCaseDescription: params.newCaseDescription,
-                        contactNames: params.contactNames, contactNumbers: params.contactPhone, contactTypes: params.contactType]
-        )
-    }
+
 }

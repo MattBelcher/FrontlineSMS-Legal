@@ -2,6 +2,8 @@ package frontlinesms.legal.cases
 
 import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.Case
+import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -80,13 +82,34 @@ class CaseControllerSpec extends ControllerSpec {
     def 'should display case details given case id'() {
         given:
         def newCase = new Case(caseId: "1234")
+        def contactList = []
         mockDomain(Case, [newCase])
+        mockDomain(Contact, contactList)
         controller.params.id = "1234"
 
         when:
-        def displayedCase = controller.show().caseToDisplay
+        def displayedCase = controller.show()['caseToDisplay']
 
         then:
         displayedCase.caseId == newCase.caseId
     }
+
+    def 'should display all the contacts when the popup appears'() {
+        given:
+        def newCase = new Case(caseId: "4567")
+        mockDomain(Case, [newCase])
+        controller.params.id = "4567"
+        def newContact = [new Contact()]
+        mockDomain(Contact, newContact)
+
+        when:
+        def models = controller.show()
+
+        then:
+        models['contactList'] == newContact
+
+
+    }
+
+
 }
