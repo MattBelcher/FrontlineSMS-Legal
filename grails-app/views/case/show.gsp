@@ -34,7 +34,6 @@
             <g:each in="${contacts}">
                 <tr>
                     <td><g:textField value="${it.name}" name="contactName"/></td>
-                    <td><g:textField value="${it.primaryMobile}" name="contactPhone"/></td>
                 </tr>
             </g:each>
         </g:if>

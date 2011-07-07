@@ -39,8 +39,8 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
     def "should display all contacts in contact list table in pop-up dialog on load"() {
         setup:
-        new Contact(name: "fabio", primaryMobile: "1234 a").save(flush:true)
-        new Contact(name: "dev", primaryMobile: "5678 b").save(flush:true)
+        new Contact(name: "fabio").save(flush:true)
+        new Contact(name: "dev").save(flush:true)
         new Case(caseId: "1112").save(flush:true)
         when:
         to ShowCasePage, "1112"
