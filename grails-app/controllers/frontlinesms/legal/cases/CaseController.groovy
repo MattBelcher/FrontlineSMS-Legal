@@ -1,7 +1,6 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
-import frontlinesms.legal.LegalContact
 import frontlinesms2.Contact
 
 class CaseController {
@@ -17,7 +16,6 @@ class CaseController {
         }
         else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number is required"
-            def enteredDescription = params.description
             redirect(action: 'create', params: [description: params.description])
         }
         else {
@@ -30,8 +28,7 @@ class CaseController {
 
 
     def show = {
-
-        [caseToDisplay: Case.findByCaseId(params.id), legalContactList: LegalContact.list()]
+        [caseToDisplay: Case.findByCaseId(params.id), contactList: Contact.list()]
 
     }
 

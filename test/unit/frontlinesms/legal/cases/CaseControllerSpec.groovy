@@ -3,6 +3,7 @@ package frontlinesms.legal.cases
 import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -83,11 +84,11 @@ class CaseControllerSpec extends ControllerSpec {
         def newCase = new Case(caseId: "1234")
         def contactList = []
         mockDomain(Case, [newCase])
-        mockDomain(LegalContact, contactList)
+        mockDomain(Contact, contactList)
         controller.params.id = "1234"
 
         when:
-        def displayedCase = controller.show().caseToDisplay
+        def displayedCase = controller.show()['caseToDisplay']
 
         then:
         displayedCase.caseId == newCase.caseId
@@ -98,14 +99,14 @@ class CaseControllerSpec extends ControllerSpec {
         def newCase = new Case(caseId: "4567")
         mockDomain(Case, [newCase])
         controller.params.id = "4567"
-        def newLegalContact = [new LegalContact()]
-        mockDomain(LegalContact, newLegalContact)
+        def newContact = [new Contact()]
+        mockDomain(Contact, newContact)
 
         when:
         def models = controller.show()
 
         then:
-        models['legalContactList'] == newLegalContact
+        models['contactList'] == newContact
 
 
     }

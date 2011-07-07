@@ -33,9 +33,8 @@
         <g:if test="${contacts?.size > 0}">
             <g:each in="${contacts}">
                 <tr>
-                    <td><g:textField value="${it.contact.name}" name="contactName"/></td>
-                    <td><g:textField value="${it.phoneNumber}" name="contactPhone"/></td>
-                    <td><g:textField value="${it.type}" name="contactType"/></td>
+                    <td><g:textField value="${it.name}" name="contactName"/></td>
+                    <td><g:textField value="${it.primaryMobile}" name="contactPhone"/></td>
                 </tr>
             </g:each>
         </g:if>
@@ -59,15 +58,15 @@
                 <tr>
                     <td colspan="2">
                         <div id="link-contacts-inner-table-div">
-                            <table>
+                            <table id="contactsTable">
                                 <tbody>
-                                <g:each in="${legalContactList}" var="legalContact">
+                                <g:each in="${contactList}" var="contact">
                                     <tr>
                                         <td>
-                                            <%=legalContact.contact.name%>
+                                            <%=contact.name%>
                                         </td>
                                         <td>
-                                            <%=legalContact.phoneNumber%>
+                                            <%=contact.primaryMobile%>
                                         </td>
                                     </tr>
                                 </g:each>
