@@ -14,6 +14,7 @@ frontlinesms.calendarInteractions = function() {
             type: 'POST',
             dataType: 'json'
         },
+        eventColor: "rgb(100,100,100)",
 
         windowResize: function () {
             $("#schedule").fullCalendar("option", "height", frontlinesms.calculateScheduleHeight($(window).height()))

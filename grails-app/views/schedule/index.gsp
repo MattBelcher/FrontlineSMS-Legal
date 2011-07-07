@@ -3,7 +3,6 @@
 <head>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.print.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css',file:'schedule.css')}" />
     <g:javascript library="fullcalendar"/>
     <g:javascript library="calendarInteractions"/>
