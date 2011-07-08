@@ -1,14 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Simple GSP page</title>
+    <title>ShowCasePage</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
     <g:javascript library="linkContacts"/>
     <g:javascript library="caseCreate"/>
-    <script type="text/javascript">
+    <g:javascript library="picnet.table.filter.min"/>
+     <g:javascript library="contactSearch"/>
+   <script type="text/javascript">
         $(function() {
             frontlinesms.linkContacts();
+            frontlinesms.contactSearchOnLoad();
         })
     </script>
 </head>
@@ -49,34 +52,39 @@
 <div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
-        <table id="link-contact-outer-table">
+        <table id="link-contacts-outer-table">
             <thead>
-            <tr><td>Name</td><td>Phone</td></tr>
+            <tr><td>Name</td></tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="2">
-                        <div id="link-contacts-inner-table-div">
-                            <table id="contactsTable">
-                                <tbody>
-                                <g:each in="${contactList}" var="contact">
-                                    <tr>
-                                        <td>
-                                            <%=contact.name%>
-                                        </td>
-
-                                    </tr>
-                                </g:each>
-                                </tbody>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <div id="link-contacts-inner-table-div" style="height:200px;overflow: scroll; width:200px">
+                        <table id="contactsTable">
+                            <thead>
+                            <tr><td>Name</td></tr>
+                            </thead>
+                            <tbody>
+                            <g:each in="${contactList}" var="contact">
+                                <tr>
+                                    <td>
+                                        <g:link controller="case" action="show" params="[id: caseToDisplay.caseId]" name="contactName"><%=contact.name%></g:link>
+                                    </td>
+                                     <td class="contact-number">
+                                        <%=contact.primaryMobile%>
+                                    </td>
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
+
     </g:form>
 </div>
-
 <div id="case-cancel-dialog" style="display: none;">
     <p>Cancel any changes?</p>
 </div>

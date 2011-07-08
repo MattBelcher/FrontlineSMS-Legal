@@ -15,7 +15,7 @@
 <body>
 <h1 class="form-header">Search for Case by Case ID</h1>
 
-<g:form action="search" method="POST">
+<g:form action="search" method="POST">                                                                        n
     <label>Enter the case ID to search for cases</label>
     <g:textField class="wide-text-box" name="caseId" id="caseId"/>
     <div class="form-submit-area">
