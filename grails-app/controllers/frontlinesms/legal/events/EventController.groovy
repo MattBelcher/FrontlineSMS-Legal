@@ -26,7 +26,7 @@ class EventController {
         else {
             params.startTimeField = TimeFormatter.formatTime(params.startTimeField)
             params.endTimeField = TimeFormatter.formatTime(params.endTimeField)
-            params.eventTitle = params.eventTitle ? params.eventTitle : "Untitled Event"
+            params.eventTitle = (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
 
             def newEvent = new Event(eventTitle: params.eventTitle, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(params.startTimeField), endTimeField: Time.valueOf(params.endTimeField))
             if(newEvent.save(flush: true)){
