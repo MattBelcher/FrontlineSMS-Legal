@@ -1,6 +1,8 @@
 import grails.util.Environment
 
+
 class BootStrap {
+
 
     def runnable = {
         while (!Thread.currentThread().interrupted()) {
@@ -12,6 +14,7 @@ class BootStrap {
     def jsWatcher = new Thread(runnable)
 
     def init = { servletContext ->
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
         def ant = new AntBuilder()
         if (Environment.current == Environment.DEVELOPMENT) {
             jsWatcher.start()
