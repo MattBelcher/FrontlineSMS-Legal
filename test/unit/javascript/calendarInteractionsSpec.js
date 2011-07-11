@@ -15,7 +15,7 @@ describe('calculateScheduleHeight', function () {
                     events: [
                         {
                             title: 'All Day Event',
-                            start: new Date(y, m, 1)
+                            start: new Date()
                         }
                     ]
                 });
