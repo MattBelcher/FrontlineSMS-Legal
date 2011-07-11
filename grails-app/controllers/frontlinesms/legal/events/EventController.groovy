@@ -8,7 +8,6 @@ class EventController {
 
     def index = { }
     def create = {
-
         params.eventTitle = params.eventTitle ? params.eventTitle : ""
         params.startTimeField = params.startTimeField ? params.startTimeField : ""
         params.dateFieldSelected = params.dateFieldSelected ? params.dateFieldSelected : ""

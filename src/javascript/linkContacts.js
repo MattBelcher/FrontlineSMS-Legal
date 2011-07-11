@@ -12,19 +12,9 @@ frontlinesms.linkContacts = function() {
         }
     });
 
-    $("#search-button").click(function() {
-        $.getJSON("/legalContact/search", {keyword: $("#contact-name-search").value}, frontlinesms.updateSearchResults);
-        return false;
-    });
-
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
         return false;
     });
 };
 
-frontlinesms.updateSearchResults = function (results) {
-
-    alert(results)
-
-};

@@ -2,27 +2,42 @@ package frontlinesms.legal.events
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.events.NewEventPage
-import spock.lang.Ignore
+import frontlinesms.legal.functionaltests.pages.schedule.SchedulePage
 
+class DeleteEventSpec extends FrontlinesmsLegalGebSpec {
 
-class DeleteEventSpec extends FrontlinesmsLegalGebSpec{
-    @Ignore
-    def 'should display pop-up dialog with event details on selecting an event in schedule page'() {
+    def 'should delete event on clicking delete button on the pop-up dialog with event details'() {
         given:
         to NewEventPage
-
-        when:
-        eventTitle="Test event"
-        dateFieldSelected= new Date().format("MMMM d, yyyy")
-        startTimeField="08:09PM"
-        endTimeField="08:56AM"
-
-        and:
+        eventTitle = "Test Event"
+        dateFieldSelected = new Date().format("MMMM d, yyyy")
+        startTimeField = "08:09PM"
+        endTimeField = "08:56AM"
         save.click()
 
+        when:
+        to SchedulePage, "index"
+        def eventList = events.collect {it}
+        for (def event in eventList) {
+            if (event.text().contains("Test Event")) {
+                event.click()
+                break;
+            }
+        }
+        def oldEventListSize = events.size();
+        events[0].click()
+        deleteEventButton.click()
+        def newEventListSize = events.size();
+
         then:
+        oldEventListSize == events.size() + 1;
 
-        assert events.collect{it -> it.text()}.contains("super SPECIAL event!")
+        and:
 
+        when:
+        to SchedulePage , "index"
+
+        then:
+        newEventListSize == events.size()
     }
 }
