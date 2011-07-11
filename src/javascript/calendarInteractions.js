@@ -35,6 +35,9 @@ frontlinesms.calendarInteractions = function() {
                 }
             })
 
+}    ;
+
+frontlinesms.deleteEvent = function(){
     var ajaxDefaults = {
         dataType: 'json',
         cache: false
@@ -68,5 +71,4 @@ frontlinesms.calendarInteractions = function() {
 
     });
 
-
-}
+}                ;

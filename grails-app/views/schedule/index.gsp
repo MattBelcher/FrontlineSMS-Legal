@@ -14,6 +14,7 @@
         $(function() {
             frontlinesms.calendarInteractions();
             frontlinesms.eventDetails();
+            frontlinesms.deleteEvent();
             $('#event-id').hide();
         });
     </script>
@@ -33,8 +34,8 @@
 
 </div>
 
-<div id="event-cancel-dialog" title="Cancel case creation?" style=\"display: none;\">\
-                '<p>Are you sure you want to delete this appointment? Yes or No.</p>'\
-            '</div>
+<div id="event-cancel-dialog" title="Cancel case creation?" style="display: none;">
+                <p>Are you sure you want to delete this appointment? Yes or No.</p>
+            </div>
 </body>
 </html>

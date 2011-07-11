@@ -8,5 +8,3 @@ describe('calculateScheduleHeight', function () {
         expect(frontlinesms.calculateScheduleHeight(windowHeight)).toEqual(windowHeight - 10 - 10 - 5);
     });
 });
-
-
