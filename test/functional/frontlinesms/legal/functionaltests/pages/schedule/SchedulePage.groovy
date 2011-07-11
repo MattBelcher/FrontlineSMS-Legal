@@ -10,8 +10,7 @@ class SchedulePage extends Page {
             try {
                 $("span[class='fc-event-title']")
             }
-            catch(Exception e)
-            {
+            catch (Exception e) {
                 null
             }
         }
@@ -20,15 +19,14 @@ class SchedulePage extends Page {
                 $("span[class='fc-event-title']").size()
 
             }
-            catch(Exception e)
-            {
+            catch (Exception e) {
                 0
             }
         }
         deleteEvent {
             $('#delete-event').click()
-           $('#cancel-confirm-yes').click()
-           true
+            $('#cancel-confirm-yes').click()
+            true
         }
         popupDialogEventTitle {$('#event-title').text()}
 
