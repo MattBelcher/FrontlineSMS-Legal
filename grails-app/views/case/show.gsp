@@ -4,13 +4,13 @@
     <title>ShowCasePage</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
-    <g:javascript library="linkContacts"/>
+    <g:javascript library="linkContactToCase"/>
     <g:javascript library="caseCreate"/>
     <g:javascript library="picnet.table.filter.min"/>
      <g:javascript library="contactSearch"/>
    <script type="text/javascript">
         $(function() {
-            frontlinesms.linkContacts();
+            frontlinesms.linkContactToCase();
             frontlinesms.contactSearchOnLoad();
         })
     </script>
@@ -49,7 +49,7 @@
     </div>
 </g:form>
 
-<div id="link-contacts" title="Link Contacts">
+<div id="link-contacts" title="Link Contacts" >
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
         <table id="link-contacts-outer-table">
@@ -68,10 +68,10 @@
                             <g:each in="${contactList}" var="contact">
                                 <tr>
                                     <td>
-                                        <g:link controller="case" action="show" params="[id: caseToDisplay.caseId]" name="contactName"><%=contact.name%></g:link>
+                                        <a href="#" class="contactLink" id="${contact.name}"><%=contact.name%></a>
                                     </td>
                                      <td class="contact-number">
-                                        <%=contact.primaryMobile%>
+                                        <a class="contactLink" href="#" id="${contact.primaryMobile}"><%=contact.primaryMobile%></a>
                                     </td>
                                 </tr>
                             </g:each>

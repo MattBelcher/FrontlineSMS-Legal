@@ -50,4 +50,5 @@ class CaseController {
             [foundCase: Case.getAll()]
         }
     }
+
 }
