@@ -65,14 +65,17 @@
                             <tr><td>Name</td></tr>
                             </thead>
                             <tbody>
-                            <g:each in="${contactList}" var="contact">
-                                <tr>
-                                    <td>
-                                        <a href="#" class="contactLink" id="${contact.name}"><%=contact.name%></a>
+                            <g:each in="${contactList}" var="contact" >
+                                <tr class="contactLink" id="${contact.name}">
+
+                                    <td class="contact-name">
+                                        <a href="#"><%=contact.name%></a>
                                     </td>
+
                                      <td class="contact-number">
-                                        <a class="contactLink" href="#" id="${contact.primaryMobile}"><%=contact.primaryMobile%></a>
+                                        <a href="#" ><%=contact.primaryMobile%></a>
                                     </td>
+
                                 </tr>
                             </g:each>
                             </tbody>

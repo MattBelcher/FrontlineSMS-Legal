@@ -20,6 +20,7 @@ frontlinesms.linkContactToCase = function() {
     });
 
     $(".contactLink").click(function() {
+        $('#contacts').append('<tr><td>'+$(this).attr('id')+'</td><td>'+$(this).attr('id')+'</td></tr>');
         $("#link-contacts").dialog("close");
         return false;
     });
