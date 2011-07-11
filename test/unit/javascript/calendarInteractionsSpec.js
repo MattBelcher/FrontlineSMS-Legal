@@ -2,6 +2,7 @@ describe('calculateScheduleHeight', function () {
     beforeEach(function () {
         $('#fixture').remove();
         $("<div id=\"header\"></div><div id=\"schedule\"></div>").appendTo('#fixtures')
+        $('head').append("<script type=\"text/javascript\" src=\"/js/fullcalendar.js\"></script>");
         $('body').append("<div id=\"view-event\" title=\"Event Details\">\
     <label>Title :</label>\
     <label name=\"eventTitle\" id=\"event-title\"></label><br/>\
