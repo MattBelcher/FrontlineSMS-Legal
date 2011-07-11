@@ -24,6 +24,7 @@ frontlinesms.calendarInteractions = function() {
                 eventColor: "rgb(100,100,100)",
                 eventClick: function(calEvent, jsEvent, view) {
                     $("#event-title").text(calEvent.title);
+
                     $("#event-date").text(calEvent.start.toString());
                     $('#event-id').text(calEvent.id);
                     $("#view-event").dialog("open");

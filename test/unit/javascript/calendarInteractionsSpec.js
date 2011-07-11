@@ -1,7 +1,7 @@
 describe('calculateScheduleHeight', function () {
     beforeEach(function () {
         $('#fixture').remove();
-        $('body').append("<div id=\"header\"></div><div id=\"schedule\"></div>");
+        $("<div id=\"header\"></div><div id=\"schedule\"></div>").appendTo('#fixtures')
         $('body').append("<div id=\"view-event\" title=\"Event Details\">\
     <label>Title :</label>\
     <label name=\"eventTitle\" id=\"event-title\"></label><br/>\
@@ -9,6 +9,7 @@ describe('calculateScheduleHeight', function () {
     <label name=\"eventDate\" id=\"event-date\"></label><br/>\
     <input type=\"button\" id=\"delete-event\" value=\"Delete\"/>\
     <label name=\"eventId\" id=\"event-id\"></label>");
+
         $("#header").css("height", 5);
         $("#schedule").css("padding", 10);
         $('#schedule').fullCalendar({
@@ -35,8 +36,8 @@ describe('calculateScheduleHeight', function () {
 
     it('show pop-up dialog on clicking an event', function() {
 
-
-        span[class = 'fc-event-title'].first().click();
+        $('body').append("<div id=\"header\"></div><div id=\"schedule\"></div>");
+        $("span[class = 'fc-event-title']").first().click();
         expect($('#view-event').is(':visible'));
     });
     it('show cancel confirm dialog on clicking delete button', function() {
