@@ -19,9 +19,9 @@ frontlinesms.linkContactToCase = function() {
     });
 
     $(".contactLink").click(function() {
-        var involvement = prompt("INVOLVEMENT", "")
+        var involvement = prompt('INVOLVEMENT', '');
         if (!involvement) {
-            involvement = ""
+            involvement = "";
         }
         var row = $('#contactsTable').find('#' + $(this).attr('id'));
         $('#contacts').append('<tr><td>' + $(row).find('.contact-name').text() + '</td><td>' + $(row).find('.contact-number').text() + '</td><td>' + involvement + '</td></tr>');
