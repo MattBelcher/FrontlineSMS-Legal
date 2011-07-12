@@ -7,8 +7,8 @@
     <g:javascript library="linkContactToCase"/>
     <g:javascript library="caseCreate"/>
     <g:javascript library="picnet.table.filter.min"/>
-     <g:javascript library="contactSearch"/>
-   <script type="text/javascript">
+    <g:javascript library="contactSearch"/>
+    <script type="text/javascript">
         $(function() {
             frontlinesms.linkContactToCase();
             frontlinesms.contactSearchOnLoad();
@@ -49,7 +49,7 @@
     </div>
 </g:form>
 
-<div id="link-contacts" title="Link Contacts" >
+<div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
         <table id="link-contacts-outer-table">
@@ -65,15 +65,15 @@
                             <tr><td>Name</td></tr>
                             </thead>
                             <tbody>
-                            <g:each in="${contactList}" var="contact" >
+                            <g:each in="${contactList}" var="contact">
                                 <tr class="contactLink" id="${contact.name}">
 
                                     <td class="contact-name">
                                         <a href="#"><%=contact.name%></a>
                                     </td>
 
-                                     <td class="contact-number">
-                                        <a href="#" ><%=contact.primaryMobile%></a>
+                                    <td class="contact-number">
+                                        <a href="#"><%=contact.primaryMobile%></a>
                                     </td>
 
                                 </tr>
@@ -88,6 +88,7 @@
 
     </g:form>
 </div>
+
 <div id="case-cancel-dialog" style="display: none;">
     <p>Cancel any changes?</p>
 </div>
