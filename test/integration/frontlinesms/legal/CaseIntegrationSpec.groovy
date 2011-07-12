@@ -106,7 +106,7 @@ class CaseIntegrationSpec extends IntegrationSpec {
         caseToUpdate.save() == null
     }
 
-    def "add contacts to case"() {
+    def "add frontlinesms.legal.contacts to case"() {
         given:
         def newCase = new Case(caseId: "4567", description: "adding contact")
         newCase.save()

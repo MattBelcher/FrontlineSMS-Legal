@@ -33,7 +33,7 @@
             <th>Phone</th>
             <th>Contact Type</th>
         </tr>
-        <g:if test="${contacts?.size > 0}">
+        <g:if test="${frontlinesms.legal.contacts?.size > 0}">
             <g:each in="${contacts}">
                 <tr>
                     <td><g:textField value="${it.name}" name="contactName"/></td>

@@ -12,7 +12,7 @@ class ShowCasePage extends Page {
         saveCaseButton {$("input", id: "case-save")}
         status { $("div", id: "status").text() }
         clickLinkContact {$("#link-contact-button")}
-        contactsTable {$("#link-contacts-inner-table-div #contactsTable tbody tr").collect {module ContactRow, it} }
+        contactsTable {$("#link-frontlinesms.legal.contacts-inner-table-div #contactsTable tbody tr").collect {module ContactRow, it} }
 
     }
 

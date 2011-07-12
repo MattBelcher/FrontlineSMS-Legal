@@ -46,7 +46,6 @@
                     <li><g:link controller="legalContact" action="create" name="createNewContact">Contact</g:link></li>
                 </ul>
             </li>
-            </ul>
         <ul>
             </br>
             </br>

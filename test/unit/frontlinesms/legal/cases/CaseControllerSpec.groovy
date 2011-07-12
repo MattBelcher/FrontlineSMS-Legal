@@ -94,7 +94,7 @@ class CaseControllerSpec extends ControllerSpec {
         displayedCase.caseId == newCase.caseId
     }
 
-    def 'should display all the contacts when the popup appears'() {
+    def 'should display all the frontlinesms.legal.contacts when the popup appears'() {
         given:
         def newCase = new Case(caseId: "4567")
         mockDomain(Case, [newCase])

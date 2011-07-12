@@ -2,7 +2,7 @@ var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.linkContactToCase = function() {
    
-    $("#link-contacts").dialog({
+    $("#link-frontlinesms.legal.contacts").dialog({
         autoOpen: false,
         modal: true,
         buttons: {
@@ -15,13 +15,13 @@ frontlinesms.linkContactToCase = function() {
     
 
     $("#link-contact-button").click(function() {
-        $("#link-contacts").dialog("open");
+        $("#link-frontlinesms.legal.contacts").dialog("open");
         return false;
     });
 
     $(".contactLink").click(function() {
-        $('#contacts').append('<tr><td>'+$(this).attr('id')+'</td><td>'+$(this).attr('id')+'</td></tr>');
-        $("#link-contacts").dialog("close");
+        $('#frontlinesms.legal.contacts').append('<tr><td>'+$(this).attr('id')+'</td><td>'+$(this).attr('id')+'</td></tr>');
+        $("#link-frontlinesms.legal.contacts").dialog("close");
         return false;
     });
 };
