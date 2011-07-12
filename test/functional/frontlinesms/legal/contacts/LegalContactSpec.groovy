@@ -12,4 +12,7 @@ class LegalContactSpec extends FrontlinesmsLegalGebSpec{
         then:
         assert at (CreateLegalContactPage)
     }
+
+
+
 }

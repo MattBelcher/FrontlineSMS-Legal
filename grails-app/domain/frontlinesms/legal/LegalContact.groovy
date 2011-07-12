@@ -5,7 +5,8 @@ import frontlinesms2.Contact
 class LegalContact extends Contact{
 
     static constraints = {
-        primaryMobile(unique: true, blank: false)
+        primaryMobile(unique: true, blank: false,nullable: false)
     }
 
+    String primaryMobile
 }
