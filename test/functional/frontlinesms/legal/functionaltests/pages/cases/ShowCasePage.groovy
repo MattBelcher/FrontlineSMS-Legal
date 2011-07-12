@@ -12,9 +12,9 @@ class ShowCasePage extends Page {
         saveCaseButton {$("input", id: "case-save")}
         status { $("div", id: "status").text() }
         clickLinkContact {$("#link-contact-button")}
-        contactsTable {$("#link-contacts-inner-table-div #contactsTable tbody tr").collect {module ContactRow, it} }
+        contactsTable {$("#link-contact-inner-table-div #contactsTable tbody tr").collect {module ContactRow, it} }
         contactName { $("a", name:"contactName").first() }
-        contactNumber { $("#link-contacts-inner-table-div #contactsTable tbody tr td.contact-number").first() }
+        contactNumber { $("#link-contact-inner-table-div #contactsTable tbody tr td.contact-number").first() }
     }
 
 }

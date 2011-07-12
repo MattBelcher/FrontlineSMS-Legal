@@ -1,8 +1,8 @@
 var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.linkContacts = function() {
-    $("#link-contacts").hide();
-    $("#link-contacts").dialog({
+    $("#link-contact").hide();
+    $("#link-contact").dialog({
         autoOpen: false,
         modal: true,
         buttons: {
@@ -13,7 +13,7 @@ frontlinesms.linkContacts = function() {
     });
 
     $("#link-contact-button").click(function() {
-        $("#link-contacts").dialog("open");
+        $("#link-contact").dialog("open");
         return false;
     });
 };

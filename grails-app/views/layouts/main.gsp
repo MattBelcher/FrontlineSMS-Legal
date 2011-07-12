@@ -43,6 +43,7 @@
                 <ul>
                     <li><g:link controller="case" action="create" name="createNewCase">Case</g:link></li>
                     <li><g:link controller="event" action="create" name="createNewEvent">Event</g:link></li>
+                    <li><g:link controller="legalContact" action="create" name="createNewContact">Contact</g:link></li>
                 </ul>
             </li>
             </ul>
