@@ -5,6 +5,7 @@
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
     <g:javascript library="picnet.table.filter.min"/>
+    <g:javascript library="jquery.timeentry.min"/>
     <g:javascript library="eventInteractions"/>
 
 

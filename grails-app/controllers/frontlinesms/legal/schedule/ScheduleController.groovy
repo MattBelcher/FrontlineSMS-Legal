@@ -12,7 +12,9 @@ class ScheduleController {
             array {
                 for (e in eventsList) {
 
-                    event(id:e.id,title: e.eventTitle, start:  new Date(e.dateFieldSelected.year,e.dateFieldSelected.month,e.dateFieldSelected.date,e.startTimeField.hours,e.startTimeField.minutes),end:  new Date(e.dateFieldSelected.year,e.dateFieldSelected.month,e.dateFieldSelected.date,e.endTimeField.hours,e.endTimeField.minutes))
+                    def startTime = new Date(e.dateFieldSelected.year, e.dateFieldSelected.month, e.dateFieldSelected.date, e.startTimeField.hours, e.startTimeField.minutes)
+                    def endTime = new Date(e.dateFieldSelected.year, e.dateFieldSelected.month, e.dateFieldSelected.date, e.endTimeField.hours, e.endTimeField.minutes)
+                    event(id: e.id, title: e.eventTitle, start: startTime, end: endTime)
                 }
             }
         }
@@ -20,13 +22,13 @@ class ScheduleController {
     }
 
     def deleteEvent = {
-            def event=Event.get(params.id);
-            if(event!=null){
-                event.delete();
-                render "Event is successfully deleted"
-            }
-            else
-                render "Event not found!!!"
+        def event = Event.get(params.id);
+        if (event != null) {
+            event.delete();
+            render "Event is successfully deleted"
+        }
+        else
+            render "Event not found!!!"
     }
 
 }

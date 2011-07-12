@@ -4,7 +4,7 @@
     <title><g:layoutTitle default="Grails"/></title>
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}" />
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui-1.8.14.custom.css')}"/>
     <g:javascript library="jquery-1.6.1"/>
     <g:javascript library="jquery-ui-1.8.14.custom.min"/>
     <g:javascript library="mainLayout"/>
@@ -14,7 +14,6 @@
             frontlinesms.tabs();
         });
     </script>
-    <g:javascript library="jquery.timeentry.min"/>
     <g:layoutHead/>
 </head>
 
@@ -27,8 +26,10 @@
 </g:if>
 
 <span id="active-tab" class="${pageProperty(name: "body.class")}"></span>
+
 <div id="header">
     <div id="logo"></div>
+
     <div id="tabs">
         <div class="tab schedule">
             <g:link controller="schedule">Schedule</g:link>
@@ -46,10 +47,9 @@
                     <li><g:link controller="legalContact" action="create" name="createNewContact">Contact</g:link></li>
                 </ul>
             </li>
-        <ul>
-            </br>
-            </br>
-            </br>
+        </br>
+        </br>
+        </br>
             <li>Search By...</li>
             <ul>
                 <li><g:link controller="case" action="search" name="searchByCaseId">Case ID</g:link></li>

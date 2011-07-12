@@ -12,16 +12,18 @@ frontlinesms.linkContactToCase = function() {
         }
     });
 
-
-
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
         return false;
     });
 
     $(".contactLink").click(function() {
+        var involvement = prompt('INVOLVEMENT', '');
+        if (!involvement) {
+            involvement = "";
+        }
         var row = $('#contactsTable').find('#' + $(this).attr('id'));
-        $('#contacts').append('<tr><td>'+$(row).find('.contact-name').text()+'</td><td>'+$(row).find('.contact-number').text()+'</td></tr>');
+        $('#contacts').append('<tr><td>' + $(row).find('.contact-name').text() + '</td><td>' + $(row).find('.contact-number').text() + '</td><td>' + involvement + '</td></tr>');
         $("#link-contacts").dialog("close");
         return false;
     });

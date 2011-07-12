@@ -14,7 +14,7 @@ class SchedulePage extends Page {
                 null
             }
         }
-        isEventListSize {
+        eventListSize {
             try {
                 $("span[class='fc-event-title']").size()
 
@@ -28,7 +28,10 @@ class SchedulePage extends Page {
             $('#cancel-confirm-yes').click()
             true
         }
-        popupDialogEventTitle {$('#event-title').text()}
+        eventTitle { $('#event-title').text()}
+        eventDate { $('#event-date').text()}
+        eventStartTime { $('#event-start-time').text()}
+        eventEndTime { $('#event-end-time').text()}
 
     }
 }
