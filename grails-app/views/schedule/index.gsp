@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'schedule.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'theme.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.print.css')}" media="print"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'schedule.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'theme.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'fullcalendar.print.css')}" media="print"/>
     <g:javascript library="fullcalendar"/>
     <g:javascript library="calendarInteractions"/>
     <g:javascript library="eventDetails"/>
@@ -22,7 +22,7 @@
 </head>
 
 <body class="schedule">
-    <div id="schedule"></div>
+<div id="schedule"></div>
 
 <div id="view-event" title="Event Details">
     <label>Title :</label>
@@ -35,7 +35,7 @@
 </div>
 
 <div id="event-cancel-dialog" title="Cancel case creation?" style="display: none;">
-                <p>Are you sure you want to delete this appointment? Yes or No.</p>
-            </div>
+    <p>Are you sure you want to delete this appointment? Yes or No.</p>
+</div>
 </body>
 </html>

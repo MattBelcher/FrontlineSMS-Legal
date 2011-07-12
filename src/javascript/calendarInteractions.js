@@ -24,7 +24,6 @@ frontlinesms.calendarInteractions = function() {
                 eventColor: "rgb(100,100,100)",
                 eventClick: function(calEvent, jsEvent, view) {
                     $("#event-title").text(calEvent.title);
-
                     $("#event-date").text(calEvent.start.toString());
                     $('#event-id').text(calEvent.id);
                     $("#view-event").dialog("open");
@@ -35,9 +34,9 @@ frontlinesms.calendarInteractions = function() {
                 }
             })
 
-}    ;
+};
 
-frontlinesms.deleteEvent = function(){
+frontlinesms.deleteEvent = function() {
     var ajaxDefaults = {
         dataType: 'json',
         cache: false
@@ -71,4 +70,4 @@ frontlinesms.deleteEvent = function(){
 
     });
 
-}                ;
+};
