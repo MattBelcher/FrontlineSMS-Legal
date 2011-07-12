@@ -31,7 +31,7 @@
         <tr>
             <th>Contact Name</th>
             <th>Phone</th>
-            <th>Contact Type</th>
+            <th>Involvement</th>
         </tr>
         <g:if test="${contacts?.size > 0}">
             <g:each in="${contacts}">
