@@ -1,14 +1,8 @@
 var frontlinesms = this.frontlinesms || {};
 
-<<<<<<< HEAD
-frontlinesms.linkContacts = function() {
-    $("#link-contact").hide();
-    $("#link-contact").dialog({
-=======
 frontlinesms.linkContactToCase = function() {
    
     $("#link-contacts").dialog({
->>>>>>> 4cd41dd59e00d854a924fb929053b9f0610d1b63
         autoOpen: false,
         modal: true,
         buttons: {
@@ -21,7 +15,7 @@ frontlinesms.linkContactToCase = function() {
     
 
     $("#link-contact-button").click(function() {
-        $("#link-contact").dialog("open");
+        $("#link-contacts").dialog("open");
         return false;
     });
 
