@@ -12,7 +12,6 @@ frontlinesms.linkContactToCase = function() {
         }
     });
 
-
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
         return false;
