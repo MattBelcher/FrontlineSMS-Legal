@@ -18,20 +18,6 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         and: description == "whatever"
     }
 
-    @Ignore
-    def "add a contact to existing case"() {
-        given: aCase(caseId: "updateTest", description: "adding contact")
-
-        when:
-        to ShowCasePage, "updateTest"
-        contact("tom", "client")
-
-        then:
-        contactName == "tom"
-        contactType == "client"
-
-
-    }
 
     private Case aCase(options) {
         return new Case(options).save()
