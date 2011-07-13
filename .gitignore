@@ -13,3 +13,4 @@ devDB.log
 devDB.script
 devDB.properties
 testDb.*
+*.swp

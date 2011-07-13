@@ -30,6 +30,7 @@ class LegalContactControllerSpec extends ControllerSpec {
          controller.save()
 
          then:
+         controller.flash.message == "Contact Saved"
          redirectArgs == [action: "show", params: [primaryMobile: "666"]]
      }
 
@@ -45,11 +46,10 @@ class LegalContactControllerSpec extends ControllerSpec {
 
         then:
         redirectArgs == [action: "create", params: [name: "bla bla"]]
-        controller.flash.error == "primarymobile is required"
-
-
-
+        controller.flash.error == "Please enter a contact number. Contact cannot be saved without a contact number."
     }
+
+
 
 
 }
