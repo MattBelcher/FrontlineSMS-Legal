@@ -24,6 +24,7 @@
     <g:textField name="caseId" id="case-id" value="${caseToDisplay.caseId}"/>
     <label>Description</label>
     <g:textArea name="description" id="case-description" cols="100" rows="10" value="${caseToDisplay.description}"/>
+    <p><g:checkBox name="case-status" id="case-status" value="${true}"/>Case active</p>
     <div class="form-submit-area">
         <button id="link-contact-button">Link contacts</button>
     </div>

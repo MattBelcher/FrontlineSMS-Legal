@@ -12,4 +12,4 @@ web-app/js/*.js
 devDB.log
 devDB.script
 devDB.properties
-
+testDb.*

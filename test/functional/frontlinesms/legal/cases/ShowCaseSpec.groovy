@@ -16,6 +16,8 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then: caseId == "testCaseid"
         and: description == "whatever"
+       and: caseActive == true
+
     }
 
 
