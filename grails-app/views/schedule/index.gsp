@@ -38,7 +38,7 @@
 </div>
 
 <div id="event-cancel-dialog" title="Cancel case creation?" style="display: none;">
-    <p>Are you sure you want to delete this appointment? Yes or No.</p>
+    <p>Are you sure you want to delete this event? Yes or No.</p>
 </div>
 </body>
 </html>
