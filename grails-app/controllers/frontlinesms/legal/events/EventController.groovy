@@ -23,10 +23,10 @@ class EventController {
 
         }
         else {
-            formatParameters()
+            def formattedParams = formatParameters()
 
             if (isStartTimeBeforeEndTime()) {
-                def newEvent = new Event(eventTitle: params.eventTitle, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(params.startTimeField), endTimeField: Time.valueOf(params.endTimeField))
+                def newEvent = new Event(eventTitle: formattedParams.eventTitle, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(formattedParams.startTimeField), endTimeField: Time.valueOf(formattedParams.endTimeField))
                 if (newEvent.save(flush: true)) {
                     flash.message = "Event created."
                     redirect(controller: "schedule", action: "index")
@@ -48,14 +48,16 @@ class EventController {
     }
 
     private def formatParameters() {
-        params.startTimeField = TimeFormatter.formatTime(params.startTimeField)
-        params.endTimeField = TimeFormatter.formatTime(params.endTimeField)
-        params.eventTitle = (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
+        [
+            startTimeField: TimeFormatter.formatTime(params.startTimeField),
+            endTimeField: TimeFormatter.formatTime(params.endTimeField),
+            eventTitle: (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
+        ]
     }
 
     private def isStartTimeBeforeEndTime() {
-        Time start = Time.valueOf(params.startTimeField)
-        Time end = Time.valueOf(params.endTimeField)
+        Time start = Time.valueOf(TimeFormatter.formatTime(params.startTimeField))
+        Time end = Time.valueOf(TimeFormatter.formatTime(params.endTimeField))
         return start.before(end)
     }
 
