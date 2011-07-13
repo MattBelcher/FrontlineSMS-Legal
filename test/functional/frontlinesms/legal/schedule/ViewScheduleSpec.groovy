@@ -14,7 +14,7 @@ class ViewScheduleSpec extends FrontlinesmsLegalGebSpec {
 
         eventTitle="super SPECIAL event!"
         dateFieldSelected= new Date().format("MMMM d, yyyy")
-        startTimeField="08:09PM"
+        startTimeField="08:09AM"
         endTimeField="08:56AM"
 
         and:
