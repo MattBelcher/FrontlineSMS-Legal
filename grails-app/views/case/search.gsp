@@ -26,7 +26,8 @@
         <table class="search-results" id="SearchResults">
             <thead>
             <tr>
-                <th id="title">Case ID</th>
+                <th>Case ID</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +36,9 @@
                 <tr>
                     <td>
                         <g:link controller="case" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
+                    </td>
+                    <td>
+                        <%= legalCase.active ? "active" : "inactive" %>
                     </td>
                 </tr>
             </g:each>

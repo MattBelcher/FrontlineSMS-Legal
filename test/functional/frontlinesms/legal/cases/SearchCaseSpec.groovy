@@ -29,9 +29,10 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         at SearchCasePage
-        SearchResults.collect { it -> it.caseId }.contains("9999")
-
-
+        and:
+        searchResults.first().caseId == "9999"
+        and:
+        searchResults.first().active == "active"
     }
 
 
@@ -68,8 +69,8 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         search.click()
 
         then:
-        SearchResults.collect { it -> it.caseId }.contains("5678")
-        SearchResults.collect { it -> it.caseId }.contains("14")
+        searchResults.collect { it -> it.caseId }.contains("5678")
+        searchResults.collect { it -> it.caseId }.contains("14")
     }
 
     def 'should display an error message if no cases are found matching a given search criteria'() {
@@ -134,7 +135,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         search.click()
 
         then:
-        def results = SearchResults.collect { it -> it.caseId }
+        def results = searchResults.collect { it -> it.caseId }
         results.size() == 1
         results.contains("case-Id")
 
@@ -169,7 +170,7 @@ class SearchCaseSpec extends FrontlinesmsLegalGebSpec {
         search.click()
 
         then:
-        def results = SearchResults.collect { it -> it.caseId }
+        def results = searchResults.collect { it -> it.caseId }
         results.contains("0123")
         results.contains("0123456")
 
