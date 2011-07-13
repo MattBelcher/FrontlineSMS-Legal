@@ -12,4 +12,6 @@ class Event {
     String eventTitle
     Date dateFieldSelected
     Time startTimeField, endTimeField
+
+    static hasMany = [linkedContacts: EventContact]
 }
