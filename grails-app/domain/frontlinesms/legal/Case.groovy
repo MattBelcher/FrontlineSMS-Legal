@@ -14,5 +14,6 @@ class Case {
     static hasMany = [contacts: LegalContact]
     String caseId
     String description
+    boolean active = true
 
 }

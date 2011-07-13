@@ -19,6 +19,7 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
        and: caseActive == true
 
     }
+    
 
 
     private Case aCase(options) {

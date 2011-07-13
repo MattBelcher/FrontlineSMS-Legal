@@ -121,4 +121,16 @@ class CaseIntegrationSpec extends IntegrationSpec {
         def savedCase=Case.findByCaseId("4567")
         savedCase.contacts.contains(contact)
     }
+    def "new cases should be active by default"(){
+        given:
+        def newCase = new Case(caseId: "4567")
+        newCase.save();
+
+        when:
+        def storedCase = Case.findByCaseId("4567")
+
+        then:
+        storedCase.active
+
+    }
 }
