@@ -118,7 +118,7 @@ class CaseIntegrationSpec extends IntegrationSpec {
         newCase.save()
 
         then:
-        def savedCase=Case.findByCaseId("4567")
+        def savedCase = Case.findByCaseId("4567")
         savedCase.contacts.contains(contact)
     }
     def "new cases should be active by default"(){
@@ -131,6 +131,21 @@ class CaseIntegrationSpec extends IntegrationSpec {
 
         then:
         storedCase.active
+    }
+    def "should be able to link contacts to case"() {
+        given:
+        def newCase = new Case(caseId: "4567", description: "adding contact")
+        newCase.save()
+        def contact = new LegalContact(name: "Dumbledore", primaryMobile: "987654321").save()
+        contact.save()
+
+        when:
+        def caseContact = CaseContacts.link(newCase, contact, "witness")
+
+        then:
+        caseContact.legalCase.caseId == newCase.caseId
+        and:
+        caseContact.legalContact.primaryMobile == contact.primaryMobile
 
     }
 }
