@@ -3,11 +3,17 @@ package frontlinesms.legal.functionaltests.pages.cases
 import geb.Page
 
 class NewCasePage extends Page {
+    static at = { $("title").text() == "Create New Case" }
     static url = "case/create"
     static content = {
-        id { $("input", id: "case-id") }
+        caseId { $("input", id: "case-id") }
         description { $("input", id: "case-description") }
         save { $("input", id: "case-save") }
-        status { $("div", id: "status").text() }
+        cancel { $("button", id: "case-cancel") }
+        errorMessage { $("div", id: "errorMessage").text() }
+        caseCancelDialog { $("div" , id: "case-cancel-dialog")}
+        cancelYes { $("button", id: "cancel-confirm-yes")}
+        cancelNo { $("button", id: "cancel-confirm-no")}
+
     }
 }

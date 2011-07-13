@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Jasmine Test Runner</title>
+    <link rel="stylesheet" type="text/css" href="jasmine.css">
+    <script type="text/javascript" src="../../../../lib/javascript/jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="../../../../lib/javascript/jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="../../../../lib/javascript/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="../../../../lib/javascript/jquery-ui-1.8.14.custom.min.js"></script>
+
+
+    <script type="text/javascript" src="../../../../src/javascript/calendarInteractions.js"></script>
+    <script type="text/javascript" src="../../../../src/javascript/tabs.js"></script>
+    <script type="text/javascript" src="../../../../src/javascript/caseCreate.js"></script>
+    <script type="text/javascript" src="../../../../src/javascript/linkContactToCase.js"></script>
+    <script type="text/javascript" src="../../../../src/javascript/eventDetails.js"></script>
+
+    <script type="text/javascript" src="../calendarInteractionsSpec.js"></script>
+    <!--<script type="text/javascript" src="../tabsSpec.js"></script>-->
+    <script type="text/javascript" src="../caseCreateSpec.js"></script>
+    <script type="text/javascript" src="../linkContactToCaseSpec.js"></script>
+    <script type="text/javascript" src="../timeFormattingSpec.js"></script>
+</head>
+<body id="fixtures">
+
+<script type="text/javascript">
+    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+    jasmine.getEnv().execute();
+</script>
+
+</body>
+</html>
