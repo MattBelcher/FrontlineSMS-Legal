@@ -7,8 +7,8 @@ import frontlinesms.legal.LegalContact
 class LegalContactControllerSpec extends ControllerSpec {
     def "should save contact"() {
         setup:
-        def contact = []
-        mockDomain(LegalContact, contact)
+        def contacts = []
+        mockDomain(LegalContact, contacts)
         controller.params.name = 'bla bla'
         controller.params.primaryMobile = '333333'
 
@@ -19,7 +19,7 @@ class LegalContactControllerSpec extends ControllerSpec {
         LegalContact.count() == 1
     }
 
-    def 'should create action should redirect to Contact detail page'() {
+    def 'create action should redirect to Contact detail page'() {
          setup:
          mockDomain(LegalContact)
 
