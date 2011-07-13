@@ -55,10 +55,11 @@ frontlinesms.calendarInteractions = function() {
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,basicWeek,basicDay'
+                    right: 'month,agendaWeek,agendaDay'
                 },
                 defaultView: 'month',
-                eventColor: "rgb(100,100,100)",
+                allDayDefault: false,
+                eventColor: "rgb(0,162,232)",
                 eventClick: function(calEvent, jsEvent, view) {
                     frontlinesms.displayEventDetails(calEvent);
 
