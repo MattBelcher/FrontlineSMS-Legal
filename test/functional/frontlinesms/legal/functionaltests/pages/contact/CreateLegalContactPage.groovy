@@ -11,6 +11,7 @@ class CreateLegalContactPage extends Page {
         primaryMobile { $("input", id: "contact-primary-mobile")}
         notes { $("input", id: "contact-notes")}
         save { $("button", id: "contact-save") }
+        cancel { $("button", id: "contact-create-cancel") }
         saveWithoutNameDialog { $("div", id: "contact-save-no-name-dialog")}
         saveWithoutNameYes { $("button", id: "save-confirm-yes") }
   }

@@ -5,7 +5,14 @@
       <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
       <g:javascript library="contactCreate"/>
 
-      <title>Create New Contact</title></head>
+      <title>Create New Contact</title>
+      <script type="text/javascript">
+          $(function() {
+              frontlinesms.createNewContactOnLoad();
+          })
+      </script>
+
+  </head>
   <body>
     <h1 class="form-header">Contact Details</h1>
 
@@ -13,7 +20,12 @@
         <g:textField name="name" id="contact-name" value="${params.contactName}"/>
         <g:textField name="primaryMobile" id="contact-primary-mobile" value="${params.primaryMobile}"/>
         <g:textField name="notes" id="contact-notes" value="${params.notes}"/>
-        <button id="contact-save" onclick="frontlinesms.contactCreateWithoutNameConfirmAction();return false;">Save</button>
+
+        <div class="form-submit-area">
+            <button id="contact-save">Save</button>
+            <button id="contact-create-cancel">Cancel</button>
+        </div>
+
     </form>
 
     <div id="contact-save-no-name-dialog" title="Save Contact without Contact Name?" style="display: none;">

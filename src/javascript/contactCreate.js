@@ -5,6 +5,16 @@ frontlinesms.createNewContactOnLoad = function() {
         frontlinesms.contactCreateWithoutNameConfirmAction();
         return false;
     });
+    $("#contact-create-cancel").click(function() {
+        frontlinesms.contactCancelConfirmAction();
+        return false;
+    });
+};
+
+frontlinesms.contactCancelConfirmAction = function() {
+    if(($("#contact-name").val().trim() == "") && ($("#contact-primary-mobile").val().trim() == "") && ($("#contact-notes").val().trim() == "")) {
+         $(window.location).attr("href" ,"/");
+    }
 };
 
 frontlinesms.contactCreateWithoutNameConfirmAction = function() {

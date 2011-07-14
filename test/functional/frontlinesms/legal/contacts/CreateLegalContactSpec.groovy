@@ -5,7 +5,7 @@ import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
 import frontlinesms.legal.functionaltests.pages.HomePage
 import frontlinesms.legal.functionaltests.pages.contact.ShowContactPage
 
-class LegalContactSpec extends FrontlinesmsLegalGebSpec {
+class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
     def "should be able to navigate to the create page from the index page"() {
         given: to HomePage
         when:
@@ -59,4 +59,19 @@ class LegalContactSpec extends FrontlinesmsLegalGebSpec {
         assert at(ShowContactPage)
         primaryMobile == "8675309"
     }
+
+    def 'should go to home page when user chooses to cancel creation of contact when all fields are blank'() {
+        given:
+        to CreateLegalContactPage
+        name = ""
+        primaryMobile = ""
+        notes = ""
+
+        when:
+        cancel.click()
+
+        then:
+        assert at(HomePage)
+    }
+
 }
