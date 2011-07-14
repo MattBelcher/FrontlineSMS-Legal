@@ -1,11 +1,12 @@
 package frontlinesms.legal.contacts
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
-import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
 import frontlinesms.legal.functionaltests.pages.HomePage
+import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
 import frontlinesms.legal.functionaltests.pages.contact.ShowContactPage
 
 class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
+
     def "should be able to navigate to the create page from the index page"() {
         given: to HomePage
         when:
@@ -87,6 +88,22 @@ class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         assert at(HomePage)
+    }
+
+    def 'should return to create contact page when no is clicked on cancel creation of contact when some fields are filled in'(){
+        given:
+        to CreateLegalContactPage
+
+        when:
+        name = "Bob"
+        cancel.click()
+
+        and:
+        cancelNo.click()
+
+        then:
+        assert at(CreateLegalContactPage)
+        name.value() == "Bob"
     }
 
 }
