@@ -9,7 +9,7 @@ class CreateLegalContactPage extends Page {
     static content = {
         name { $("input", id: "contact-name") }
         primaryMobile { $("input", id: "contact-primary-mobile")}
-        notes { $("input", id: "contact-notes")}
+        notes { $("textarea", id: "contact-notes")}
         save { $("button", id: "contact-save") }
         cancel { $("button", id: "contact-create-cancel") }
         saveWithoutNameDialog { $("div", id: "contact-save-no-name-dialog")}
