@@ -114,6 +114,20 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         and:
         caseId == "1112"
 
+    }
+
+    def "should not allow update case if case id is blank"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = ""
+        and:
+        updateCaseButton.click()
+
+        then:
+        errorMessage == "Case number required"
 
     }
 

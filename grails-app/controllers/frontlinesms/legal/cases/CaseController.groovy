@@ -65,20 +65,22 @@ class CaseController {
         }
     }
     def update = {
-        def fetchedCase = Case.get(params.currentId);
-        def originalUniqueId = params.currentId;
-        def originalCaseId = fetchedCase.caseId;
+        def fetchedCase = Case.get(params.currentId)
+        def originalUniqueId = params.currentId
+        def originalCaseId = fetchedCase.caseId
         fetchedCase.caseId = params.caseId
         fetchedCase.description = params.description
         if (fetchedCase.save(flush: true)) {
             flash.message = "Case details updated"
             redirect(action: 'show', params: [id: fetchedCase.caseId])
         }
+        else if(params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()){
+            flash.error = "Case number required"
+            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
+        }
         else {
             flash.error = "Case number already exists. Please enter a unique case number."
             redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
-
-
         }
 
 
