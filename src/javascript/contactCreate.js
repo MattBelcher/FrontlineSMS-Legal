@@ -8,6 +8,11 @@ frontlinesms.createNewContactOnLoad = function() {
 };
 
 frontlinesms.contactCreateWithoutNameConfirmAction = function() {
+    var ajaxDefaults = {
+        dataType: 'json',
+        cache: false
+    };
+
     if (($("#contact-name").val().trim() == "")) {
         $("#contact-save-no-name-dialog").dialog({
                     modal: true,
@@ -15,6 +20,9 @@ frontlinesms.contactCreateWithoutNameConfirmAction = function() {
                         {
                             text: "Yes",
                             click: function() {
+                              $(this).dialog("close");
+                              $("#contact-save-form").submit();
+
                             },
                             id: "save-confirm-yes"
                         },
@@ -27,6 +35,9 @@ frontlinesms.contactCreateWithoutNameConfirmAction = function() {
                         }
                     ]
                 });
+    }
+    else {
+        $("#contact-save-form").submit();
     }
 };
 

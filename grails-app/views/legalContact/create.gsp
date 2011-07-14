@@ -9,14 +9,14 @@
   <body>
     <h1 class="form-header">Contact Details</h1>
 
-    <form action="save" method="post">
-        <g:textField name="contactName" id="contact-name" value="${params.contactName}"/>
+    <form action="save" method="POST" id="contact-save-form">
+        <g:textField name="name" id="contact-name" value="${params.contactName}"/>
         <g:textField name="primaryMobile" id="contact-primary-mobile" value="${params.primaryMobile}"/>
         <g:textField name="notes" id="contact-notes" value="${params.notes}"/>
-        <button id="save" onclick="frontlinesms.contactCreateWithoutNameConfirmAction();">Save</button>
+        <button id="contact-save" onclick="frontlinesms.contactCreateWithoutNameConfirmAction();return false;">Save</button>
     </form>
 
-    <div id="case-save-without-name-dialog" title="Save Contact without Contact Name?" style="display: none;">
+    <div id="contact-save-no-name-dialog" title="Save Contact without Contact Name?" style="display: none;">
         <p>Are you sure you would like to save contact without a name?</p>
     </div>
 

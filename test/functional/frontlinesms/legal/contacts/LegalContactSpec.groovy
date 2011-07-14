@@ -3,6 +3,7 @@ package frontlinesms.legal.contacts
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
 import frontlinesms.legal.functionaltests.pages.HomePage
+import frontlinesms.legal.functionaltests.pages.contact.ShowContactPage
 
 class LegalContactSpec extends FrontlinesmsLegalGebSpec {
     def "should be able to navigate to the create page from the index page"() {
@@ -22,10 +23,40 @@ class LegalContactSpec extends FrontlinesmsLegalGebSpec {
 
         then:
 
-        contactName.present
+        name.present
         primaryMobile.present
         notes.present
     }
 
+    def "should navigate to contact details page when user enters name and number"() {
+        given:
+        to CreateLegalContactPage
+        
+        when:
+        name = "Jack"
+        primaryMobile = "123456789"
+        
+        and:
+        save.click()
 
+        then:
+        assert at(ShowContactPage)
+    }
+
+    def "should save contact and redirect to show page when user chooses to save contact without name"() {
+        given:
+        to CreateLegalContactPage
+        name = ""
+        primaryMobile = "8675309"
+        
+        when:
+        save.click()
+
+        and:
+        saveWithoutNameYes.click()
+
+        then:
+        assert at(ShowContactPage)
+        primaryMobile == "8675309"
+    }
 }

@@ -31,7 +31,7 @@ class LegalContactControllerSpec extends ControllerSpec {
 
          then:
          controller.flash.message == "Contact Saved"
-         redirectArgs == [action: "show", params: [primaryMobile: "666"]]
+         redirectArgs == [action: "show", params: [id: "666"]]
      }
 
     def 'should display error if primaryMobile is blank'(){
