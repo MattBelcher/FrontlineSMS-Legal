@@ -107,9 +107,8 @@ class CaseControllerSpec extends ControllerSpec {
 
         then:
         models['contactList'] == newContact
-
-
     }
+
 
 
 }

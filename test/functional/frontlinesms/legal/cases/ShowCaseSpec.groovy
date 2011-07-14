@@ -16,11 +16,9 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then: caseId == "testCaseid"
         and: description == "whatever"
-        and: caseActive == true
+        and: caseActive.value() == "on"
 
     }
-
-
 
     private Case aCase(options) {
         return new Case(options).save()
@@ -130,6 +128,8 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         errorMessage == "Case number required"
 
     }
+
+
 
 
 }

@@ -164,7 +164,20 @@ class CaseIntegrationSpec extends IntegrationSpec {
 
         then:
         Case.findByCaseId(newCase.caseId).description == 'Changed description'
+    }
 
+     def "should be able to update the status of case"() {
+        given:
+        def newCase = new Case(caseId: "4567", description: "blah blah")
+        and:
+        newCase.save()
 
+        when:
+        def fetchedCase = Case.findByCaseId(newCase.caseId)
+        fetchedCase.active = false
+        fetchedCase.save()
+
+        then:
+        Case.findByCaseId(newCase.caseId).active == false
     }
 }

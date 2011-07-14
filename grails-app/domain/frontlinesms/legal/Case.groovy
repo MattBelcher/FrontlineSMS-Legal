@@ -16,7 +16,4 @@ class Case {
     String caseId
     String description
     boolean active = true
-
-
-
 }
