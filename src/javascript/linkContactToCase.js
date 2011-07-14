@@ -28,9 +28,3 @@ frontlinesms.linkContactToCase = function() {
         return false;
     });
 };
-
-frontlinesms.updateSearchResults = function (results) {
-
-    alert(results)
-
-};

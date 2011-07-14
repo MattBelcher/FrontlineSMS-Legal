@@ -7,6 +7,16 @@
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="jquery.timeentry.min"/>
     <g:javascript library="eventInteractions"/>
+    <g:javascript library="linkContactToEvent"/>
+    <g:javascript library="contactSearch"/>
+
+    <script type="text/javascript">
+        $(function() {
+            frontlinesms.linkContactToEvent();
+            frontlinesms.contactSearchOnLoad();
+
+        })
+    </script>
 
 
 </head>
@@ -27,7 +37,63 @@
     <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();
     return false;">Cancel</button>
 
+
+    <div class="form-submit-area">
+        <button id="link-contact-button">Link contacts</button>
+    </div>
+
+    <g:hiddenField name="linkedContacts" id="event-linked-contacts" value="${params.linkedContacts}" />
+    <table name="contacts" id="contacts">
+        <tr>
+            <th>Contact Name</th>
+            <th>Phone</th>
+        </tr>
+
+    </table>
+
+
 </form>
+
+<div id="link-contacts" title="Link Contacts">
+    <g:form action="">
+        <g:textField name="contactNameSearch" id="contact-name-search"/>
+        <table id="link-contacts-outer-table">
+            <thead>
+            <tr><td>Name</td></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div id="link-contacts-inner-table-div" style="height:200px;overflow: scroll; width:200px">
+                        <table id="contactsTable">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            <g:each in="${contactList}" var="contact">
+                                <tr class="contactLink" id="${contact.id}">
+
+                                    <td class="contact-name">
+                                        <a href="#"><%=contact.name%></a>
+                                    </td>
+
+                                    <td class="contact-number">
+                                        <a href="#"><%=contact.primaryMobile%></a>
+                                    </td>
+
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </g:form>
+</div>
+
+
 <div id="event-cancel-dialog" title="Cancel event creation?" style="display: none;">
     <p>Are you sure you want to cancel this event? Your event will not be saved?</p>
 </div>

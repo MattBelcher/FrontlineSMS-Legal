@@ -3,6 +3,7 @@ package frontlinesms.legal.events
 import frontlinesms.legal.Event
 import frontlinesms.legal.TimeFormatter
 import java.sql.Time
+import frontlinesms2.Contact
 
 class EventController {
 
@@ -12,6 +13,7 @@ class EventController {
         params.startTimeField = params.startTimeField ? params.startTimeField : ""
         params.dateFieldSelected = params.dateFieldSelected ? params.dateFieldSelected : ""
         params.endTimeField = params.endTimeField ? params.endTimeField : ""
+        [contactList: Contact.list()]
     }
 
     def save = {
