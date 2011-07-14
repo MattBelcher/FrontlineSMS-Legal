@@ -20,6 +20,7 @@ describe('linkContactToEvent', function () {
                 '<tr>' +
                 '<th>Contact Name</th>' +
                 '<th>Phone</th>' +
+                '<th style="display: none;"></th>' +
                 '</tr> </table>' +
 
                 '<button id="link-contact-button">Link contacts</button>';
@@ -28,6 +29,14 @@ describe('linkContactToEvent', function () {
         frontlinesms.linkContactToEvent();
 
     });
+
+    it('when remove button is clicked the appropriate contact is removed', function(){
+        $("#link-contact-button").click();
+        $("#fabio").click();
+        var secondRowSelector = "table#contacts tr:nth-child(2)";
+        $(secondRowSelector + " td.remove-contact-button").click();
+        expect($(secondRowSelector + ":contains('fabio')").size()).toEqual(0);
+    })
 
     it('when link-contacts button is clicked contacts dialog is opened', function () {
         $("#link-contact-button").click();
