@@ -16,10 +16,10 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then: caseId == "testCaseid"
         and: description == "whatever"
-       and: caseActive == true
+        and: caseActive == true
 
     }
-    
+
 
 
     private Case aCase(options) {
@@ -47,6 +47,76 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         and:
         contactsTable.collect { it -> it.primaryMobile }.contains("55555")
     }
+
+    def "should be able to edit description of case"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        description = "jughjbgjhnbj"
+        and:
+        updateCaseButton.click()
+
+        then:
+        statusMessage == "Case details updated"
+
+    }
+
+    def "should be able to edit case ID of case"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = "1123"
+        and:
+        updateCaseButton.click()
+
+        then:
+        statusMessage == "Case details updated"
+
+    }
+
+    def "should not update case id that already exists"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        new Case(caseId: "1123", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = "1123"
+        and:
+        updateCaseButton.click()
+
+        then:
+        errorMessage == "Case number already exists. Please enter a unique case number."
+
+    }
+
+    def "should show the same description on trying to update case id that already exists"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        new Case(caseId: "1123", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = "1123"
+        description = "new description"
+
+        and:
+        updateCaseButton.click()
+
+        then:
+        at ShowCasePage
+        description == "new description"
+
+        and:
+        caseId == "1112"
+
+
+    }
+
 
 }
 

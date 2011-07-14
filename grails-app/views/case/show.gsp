@@ -18,7 +18,7 @@
 
 <body>
 <h1 class="form-header">Case Details</h1>
-<g:form action="save" id="save-case-form">
+<g:form action="update" id="save-case-form">
     <label>Case Number</label>
     <g:hiddenField name="currentId" id="current-id" value="${caseToDisplay.id}"/>
     <g:textField name="caseId" id="case-id" value="${caseToDisplay.caseId}"/>
@@ -44,7 +44,7 @@
     </table>
 
     <div class="form-submit-area">
-        <g:actionSubmit id="case-save" value="Save"/>
+        <g:actionSubmit id="case-update" value="Update"/>
         <button id="case-cancel" onclick="frontlinesms.caseCancelConfirmAction();
         return false;">Cancel</button>
     </div>

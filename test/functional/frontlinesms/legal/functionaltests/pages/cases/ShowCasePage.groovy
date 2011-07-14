@@ -8,11 +8,14 @@ class ShowCasePage extends Page {
     static url = "case/show"
     static content = {
         caseId { $("input", id: "case-id").value() }
+        currentId {$("input", id: "current-Id").value()}
         description { $("textarea", id: "case-description").value()}
-        saveCaseButton {$("input", id: "case-save")}
+        updateCaseButton {$("input", id: "case-update")}
         caseActive { $("input", id: "case-status").value() != null }
         clickLinkContact {$("#link-contact-button")}
         contactsTable {$("#link-contacts-inner-table-div #contactsTable tbody tr").collect {module ContactRow, it} }
+        statusMessage { $("div", id: "status").text() }
+        errorMessage { $("div", id: "errorMessage").text() }
 
 
     }

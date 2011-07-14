@@ -14,7 +14,7 @@ class CaseController {
     def save = {
         def newCase = new Case(params)
 //        def linkedContacts = []
-//        linkedContacts = new LegalContact(params)
+        //        linkedContacts = new LegalContact(params)
         if (newCase.save(flush: true)) {
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
@@ -29,11 +29,22 @@ class CaseController {
             redirect(action: 'create', params: [description: params.description])
         }
 
+
     }
 
 
     def show = {
-        [caseToDisplay: Case.findByCaseId(params.id), contactList: Contact.list()]
+        if (params.description) {
+            def caseToDisplay = Case.get(params.uniqueId)
+            caseToDisplay.description = params.description
+            [caseToDisplay: caseToDisplay, contactList: Contact.list()]
+
+
+        }
+        else {
+            [caseToDisplay: Case.findByCaseId(params.id), contactList: Contact.list()]
+        }
+
 
     }
 
@@ -52,5 +63,24 @@ class CaseController {
         else {
             [foundCase: Case.getAll()]
         }
+    }
+    def update = {
+        def fetchedCase = Case.get(params.currentId);
+        def originalUniqueId = params.currentId;
+        def originalCaseId = fetchedCase.caseId;
+        fetchedCase.caseId = params.caseId
+        fetchedCase.description = params.description
+        if (fetchedCase.save(flush: true)) {
+            flash.message = "Case details updated"
+            redirect(action: 'show', params: [id: fetchedCase.caseId])
+        }
+        else {
+            flash.error = "Case number already exists. Please enter a unique case number."
+            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
+
+
+        }
+
+
     }
 }
