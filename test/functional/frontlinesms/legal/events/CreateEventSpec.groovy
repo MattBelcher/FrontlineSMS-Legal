@@ -22,22 +22,14 @@ class CreateEventSpec extends FrontlinesmsLegalGebSpec {
 
         then: datePicker.present
     }
-     def 'should open confirmation dialog when cancel is clicked'(){
-        given:
-        to NewEventPage
 
-        when:
-        cancel.click()
-
-        then:
-        eventCancelDialog.displayed == true
-    }
 
     def 'should hide cancel confirm dialog when no is clicked'(){
         given:
         to NewEventPage
 
         when:
+        eventTitle ='blah'
         cancel.click()
 
         and:
@@ -52,6 +44,7 @@ class CreateEventSpec extends FrontlinesmsLegalGebSpec {
         to NewEventPage
 
         when:
+        eventTitle ='blah'
         cancel.click()
 
         and:
@@ -66,6 +59,7 @@ class CreateEventSpec extends FrontlinesmsLegalGebSpec {
         to NewEventPage
 
         when:
+        eventTitle ='blah'
         cancel.click()
 
         and:

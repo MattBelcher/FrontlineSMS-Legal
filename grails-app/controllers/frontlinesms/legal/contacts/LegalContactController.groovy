@@ -8,14 +8,11 @@ class LegalContactController {
 
     def create = {}
 
-    def save =
-    {
-
+    def save = {
         def legalContact = new LegalContact(params)
-
         if (legalContact.save(flush: true)) {
             flash.message = "Contact Saved"
-            redirect(action: 'show', params: [primaryMobile: legalContact.primaryMobile])
+            redirect(action: 'show', params: [id: legalContact.primaryMobile])
         }
         else if (params.primaryMobile == null || params.primaryMobile == "" || params.primaryMobile.isAllWhitespace()) {
             flash.error = "Please enter a contact number. Contact cannot be saved without a contact number."
@@ -25,5 +22,7 @@ class LegalContactController {
 
     }
 
-    def show = {}
+    def show = {
+        [contactToDisplay: LegalContact.findByPrimaryMobile(params.id)]
+        }
 }
