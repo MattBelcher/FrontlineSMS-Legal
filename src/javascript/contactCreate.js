@@ -13,7 +13,9 @@ frontlinesms.contactCreateWithoutNameConfirmAction = function() {
         cache: false
     };
 
-    if (($("#contact-name").val().trim() == "")) {
+
+
+    if (($("#contact-name").val().trim() == "") && ($("#contact-primary-mobile").val().trim() != "")) {
         $("#contact-save-no-name-dialog").dialog({
                     modal: true,
                     buttons: [
