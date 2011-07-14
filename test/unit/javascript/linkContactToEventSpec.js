@@ -38,6 +38,16 @@ describe('linkContactToEvent', function () {
         expect($(secondRowSelector + ":contains('fabio')").size()).toEqual(0);
     })
 
+    it('when remove button is clicked the appropriate contact id is removed from hidden form field', function(){
+        $("#link-contact-button").click();
+        $("#fabio").click();
+        $("#link-contact-button").click();
+        $("#dahlia").click();
+        var secondRowSelector = "table#contacts tr:nth-child(2)";
+        $(secondRowSelector + " td.remove-contact-button").click();
+        expect($('#event-linked-contacts').val()).toEqual("dahlia");
+    })
+
     it('when link-contacts button is clicked contacts dialog is opened', function () {
         $("#link-contact-button").click();
         expect($('#link-contacts:visible').size()).toEqual(1);
