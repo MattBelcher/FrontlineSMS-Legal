@@ -49,7 +49,20 @@ class LegalContactControllerSpec extends ControllerSpec {
         controller.flash.error == "Please enter a contact number. Contact cannot be saved without a contact number."
     }
 
+    def 'should display error if primaryMobile is not unique'(){
+        given:
+        def cases = []
+        cases.add(new LegalContact(primaryMobile: '999'))
+        mockDomain(LegalContact, cases)
+        controller.params.name = 'Steve'
+        controller.params.primaryMobile = '999'
 
+        when:
+        controller.save()
 
-
+        then:
+        println cases
+        redirectArgs == [action: "create", params: [name: "Steve", notes:null, primaryMobile:'999']]
+        controller.flash.error == "Contact number already exists. Please enter a unique contact number."
+    }
 }
