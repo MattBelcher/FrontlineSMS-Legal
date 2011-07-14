@@ -4,6 +4,8 @@ import frontlinesms.legal.Event
 import frontlinesms.legal.TimeFormatter
 import java.sql.Time
 import frontlinesms2.Contact
+import frontlinesms.legal.LegalContact
+import frontlinesms.legal.EventContact
 
 class EventController {
 
@@ -30,6 +32,7 @@ class EventController {
             if (isStartTimeBeforeEndTime()) {
                 def newEvent = new Event(eventTitle: formattedParams.eventTitle, dateFieldSelected: new Date(params.dateFieldSelected), startTimeField: Time.valueOf(formattedParams.startTimeField), endTimeField: Time.valueOf(formattedParams.endTimeField))
                 if (newEvent.save(flush: true)) {
+                    linkContactsToEvent(newEvent)
                     flash.message = "Event created."
                     redirect(controller: "schedule", action: "index")
                 }
@@ -46,6 +49,16 @@ class EventController {
             }
 
 
+        }
+    }
+
+    private def linkContactsToEvent(event){
+        if (params.linkedContacts != null && params.linkedContacts != "") {
+            def contactId = params.linkedContacts.split(",")
+            contactId.each { it ->
+                def contact = LegalContact.findById(it as Integer)
+                EventContact.link(event, contact)
+            }
         }
     }
 

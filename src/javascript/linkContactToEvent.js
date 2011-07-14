@@ -25,6 +25,7 @@ frontlinesms.linkContactToEvent = function() {
 
 
         }
+        $("#link-contacts").dialog("close");
         return false;
     });
 };
@@ -38,7 +39,6 @@ frontlinesms.addLinkedContactIdToHiddenField= function(contactId){
 frontlinesms.addLinkedContactToTable=function(contactId){
      var row = $('#contactsTable').find('#' + contactId);
         $('#contacts').append('<tr><td>' + $(row).find('.contact-name').text() + '</td><td>' + $(row).find('.contact-number').text() + '</td></tr>');
-        $("#link-contacts").dialog("close");
 
 }
 
