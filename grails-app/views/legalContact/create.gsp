@@ -18,7 +18,7 @@
 
     <form action="save" method="POST" id="contact-save-form">
         <label>Contact Name</label>
-        <g:textField name="name" id="contact-name" value="${params.contactName}"/>
+        <g:textField name="name" id="contact-name" value="${params.name}"/>
         <label>Primary Number</label>
         <g:textField name="primaryMobile" id="contact-primary-mobile" value="${params.primaryMobile}"/>
         <label>Notes</label>
