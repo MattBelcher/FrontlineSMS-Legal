@@ -17,9 +17,12 @@
     <h1 class="form-header">Contact Details</h1>
 
     <form action="save" method="POST" id="contact-save-form">
-        <g:textField name="name" id="contact-name" value="${params.contactName}"/>
+        <label>Contact Name</label>
+        <g:textField name="name" id="contact-name" value="${params.name}"/>
+        <label>Primary Number</label>
         <g:textField name="primaryMobile" id="contact-primary-mobile" value="${params.primaryMobile}"/>
-        <g:textField name="notes" id="contact-notes" value="${params.notes}"/>
+        <label>Notes</label>
+        <g:textArea name="notes" id="contact-notes" value="${params.notes}" cols="100" rows="10"/>
 
         <div class="form-submit-area">
             <button id="contact-save">Save</button>

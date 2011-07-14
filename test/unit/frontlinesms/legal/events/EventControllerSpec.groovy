@@ -3,6 +3,8 @@ package frontlinesms.legal.events
 import frontlinesms.legal.Event
 import frontlinesms.legal.TimeFormatter
 import grails.plugin.spock.ControllerSpec
+import frontlinesms.legal.LegalContact
+import frontlinesms.legal.EventContact
 
 class EventControllerSpec extends ControllerSpec {
 
@@ -115,6 +117,49 @@ class EventControllerSpec extends ControllerSpec {
         controller.isStartTimeBeforeEndTime() == false
     }
 
+    def "should save contact when linked on the event"() {
+        setup:
+        mockDomain(Event)
+        mockDomain(EventContact)
+        mockDomain(LegalContact,[new LegalContact(id:1,name: "John Doe",primaryMobile: "435352",notes: "hii")])
+
+        when:
+        controller.params.eventTitle = "Event"
+        controller.params.dateFieldSelected = "July 12, 2011"
+        controller.params.startTimeField = "06:30AM"
+        controller.params.endTimeField = "07:30AM"
+        controller.params.linkedContacts = "1"
+
+        and:
+        controller.save()
+
+        then:
+         EventContact.count()==1
+    }
+
+    def "should save multiple contacts when linked on the event"() {
+        setup:
+        mockDomain(Event)
+        mockDomain(EventContact)
+        mockDomain(LegalContact,[
+                new LegalContact(id:1,name: "John Doe",primaryMobile: "435352",notes: "hii"),
+                new LegalContact(id:34,name: "Jane Do",primaryMobile: "546354",notes: ":)"),
+                new LegalContact(id:87,name: "Jason D",primaryMobile: "57766",notes: "???")
+        ])
+
+        when:
+        controller.params.eventTitle = "Event"
+        controller.params.dateFieldSelected = "July 12, 2011"
+        controller.params.startTimeField = "06:30AM"
+        controller.params.endTimeField = "07:30AM"
+        controller.params.linkedContacts = "1,34,87"
+
+        and:
+        controller.save()
+
+        then:
+         EventContact.count()==3
+    }
 
 }
 

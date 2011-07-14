@@ -45,7 +45,7 @@ class LegalContactControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        redirectArgs == [action: "create", params: [name: "bla bla"]]
+        redirectArgs == [action: "create", params: [name: "bla bla", notes:null]]
         controller.flash.error == "Please enter a contact number. Contact cannot be saved without a contact number."
     }
 
