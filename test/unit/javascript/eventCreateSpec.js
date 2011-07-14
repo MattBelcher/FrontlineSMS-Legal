@@ -18,7 +18,7 @@ describe('eventCreateCancelDialog', function () {
 
     });
     it('dialog should not pop up when cancel button is clicked with the form is empty', function () {
-        spyOn(frontlinesms,"redirectToHomePage").andReturn("/");
+        spyOn(frontlinesms,"redirectToHomePage").andReturn("#");
         $("#event-cancel").click();
         expect($('#event-cancel-dialog:hidden').size()).toEqual(1);
     });

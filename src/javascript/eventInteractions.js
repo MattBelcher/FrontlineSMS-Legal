@@ -18,12 +18,12 @@ frontlinesms.activateTimePicker = function() {
 }
 
 frontlinesms.redirectToHomePage = function() {
-    $(window.location).attr("href", "/");
+    return  "/"
 }
 
 frontlinesms.eventCancelConfirmAction = function() {
     if (frontlinesms.isPageEmpty()) {
-        frontlinesms.redirectToHomePage
+       $(window.location).attr("href", frontlinesms.redirectToHomePage());
     }
     else {
         $("#event-cancel-dialog").dialog({
