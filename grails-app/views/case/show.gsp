@@ -5,7 +5,7 @@
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
     <g:javascript library="linkContactToCase"/>
-    <g:javascript library="caseCreate"/>
+    <g:javascript library="updateCase"/>
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="contactSearch"/>
     <script type="text/javascript">
@@ -45,7 +45,7 @@
 
     <div class="form-submit-area">
         <g:actionSubmit id="case-update" value="Update"/>
-        <button id="case-cancel" onclick="frontlinesms.caseCancelConfirmAction();
+        <button id="case-update-cancel" onclick="frontlinesms.caseUpdateCancelConfirmAction();
         return false;">Cancel</button>
     </div>
 </g:form>
@@ -91,7 +91,7 @@
 </div>
 
 <div id="case-cancel-dialog" style="display: none;">
-    <p>Cancel any changes?</p>
+    <p>Do you wish to discard these changes?</p>
 </div>
 
 </body>
