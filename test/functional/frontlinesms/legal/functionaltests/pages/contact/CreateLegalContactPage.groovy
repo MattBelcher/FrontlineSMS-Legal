@@ -14,5 +14,6 @@ class CreateLegalContactPage extends Page {
         cancel { $("button", id: "contact-create-cancel") }
         saveWithoutNameDialog { $("div", id: "contact-save-no-name-dialog")}
         saveWithoutNameYes { $("button", id: "save-confirm-yes") }
+        cancelYes{$("button", id: "contact-create-cancel-confirm")}
   }
 }

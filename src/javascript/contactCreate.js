@@ -12,8 +12,30 @@ frontlinesms.createNewContactOnLoad = function() {
 };
 
 frontlinesms.contactCancelConfirmAction = function() {
-    if(($("#contact-name").val().trim() == "") && ($("#contact-primary-mobile").val().trim() == "") && ($("#contact-notes").val().trim() == "")) {
-         $(window.location).attr("href" ,"/");
+    if (($("#contact-name").val().trim() == "") && ($("#contact-primary-mobile").val().trim() == "") && ($("#contact-notes").val().trim() == "")) {
+        $(window.location).attr("href", "/");
+    }
+    else{
+        $("#contact-create-cancel-dialog").dialog({
+                modal: true,
+                buttons: [
+                    {
+                        text: "Yes",
+                        click: function(){
+                            $(window.location).attr("href", "/");
+                            $(this).dialog("close");
+                        },
+                        id: "contact-create-cancel-confirm"
+                    },
+                    {
+                        text: "No",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        id: "contact-create-cancel-abort"
+                    }
+                ]
+            });
     }
 };
 
@@ -24,7 +46,6 @@ frontlinesms.contactCreateWithoutNameConfirmAction = function() {
     };
 
 
-
     if (($("#contact-name").val().trim() == "") && ($("#contact-primary-mobile").val().trim() != "")) {
         $("#contact-save-no-name-dialog").dialog({
                     modal: true,
@@ -32,8 +53,8 @@ frontlinesms.contactCreateWithoutNameConfirmAction = function() {
                         {
                             text: "Yes",
                             click: function() {
-                              $(this).dialog("close");
-                              $("#contact-save-form").submit();
+                                $(this).dialog("close");
+                                $("#contact-save-form").submit();
 
                             },
                             id: "save-confirm-yes"

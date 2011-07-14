@@ -32,5 +32,9 @@
         <p>Are you sure you would like to save contact without a name?</p>
     </div>
 
+  <div id="contact-create-cancel-dialog" title="Cancel Contact Creation?" style="display: none;">
+    <p>Do you want to cancel creation of this contact? Your changes will not be saved.</p>
+</div>
+
   </body>
 </html>

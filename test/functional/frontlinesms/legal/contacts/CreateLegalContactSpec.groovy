@@ -74,4 +74,19 @@ class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
         assert at(HomePage)
     }
 
+    def 'should go to home page when yes is clicked on cancel creation of contact when some fields are filled in'() {
+        given:
+        to CreateLegalContactPage
+
+        when:
+        name = "Bob"
+        cancel.click()
+
+        and:
+        cancelYes.click()
+
+        then:
+        assert at(HomePage)
+    }
+
 }
