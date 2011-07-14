@@ -26,5 +26,8 @@
 
 
   </g:form>
+ <div class="form-submit-area" id="link-cases" title="Link Case to Contact">
+    <button id="link-case-button">Link Cases</button>
+</div>
   </body>
 </html>

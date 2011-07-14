@@ -9,6 +9,8 @@ class ShowContactPage extends Page {
         name{ $("input", id: "contact-name").value() }
         primaryMobile { $("input", id: "contact-primary-mobile").value()}
         notes {$("input", id: "contact-notes")}
+        linkCaseButton{ $("button", id: "link-case-button")}
+
     }
 }
 
