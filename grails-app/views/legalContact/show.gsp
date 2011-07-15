@@ -8,12 +8,26 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-    <meta name="layout" content="main">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
-
-    <title>Show Contact Page</title>
-</head>
+  <head>
+      <title>Show Contact Page</title>
+      <meta name="layout" content="main">
+      <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+      <g:javascript library="linkCaseToContact"/>
+      <script type="text/javascript">
+        $(function() {
+            frontlinesms.linkCaseToContact();
+        })
+    </script>
+  </head>
+  <body>
+  <h1 class="form-header">Case Details</h1>
+  <g:form action="save" id="contact-save-form">
+      <label>Contact Name</label>
+          <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
+      <label>Primary Mobile</label>
+                <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
+      <label>Notes</label>
+                      <g:textField name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
 
 <body>
 <h1 class="form-header">Case Details</h1>
@@ -25,9 +39,15 @@
     <label>Notes</label>
     <g:textArea name="notes" id="contact-notes" value="${contactToDisplay.notes}" cols="100" rows="10"/>
 
-</g:form>
-<div class="form-submit-area" id="link-cases" title="Link Case to Contact">
+  </g:form>
+
+ <div class="form-submit-area">
     <button id="link-case-button">Link Cases</button>
 </div>
-</body>
+
+<div id="link-case-dialog" title="Link Cases">
+        <p>O-0-0-0-0-0-0-0</p>
+</div>
+
+  </body>
 </html>
