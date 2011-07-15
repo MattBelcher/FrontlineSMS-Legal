@@ -2,6 +2,8 @@ package frontlinesms.legal.contacts
 
 import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.LegalContact
+import frontlinesms.legal.Case
+import frontlinesms2.Contact
 
 
 class LegalContactControllerSpec extends ControllerSpec {
@@ -64,5 +66,20 @@ class LegalContactControllerSpec extends ControllerSpec {
         println cases
         redirectArgs == [action: "create", params: [name: "Steve", notes:null, primaryMobile:'999']]
         controller.flash.error == "Contact number already exists. Please enter a unique contact number."
+    }
+
+    def 'should display all the cases when the popup appears'() {
+        given:
+        def newLegalContact = new LegalContact(primaryMobile: "4567")
+        mockDomain(LegalContact, [newLegalContact])
+        controller.params.primaryMobile = "4567"
+        def newCase = [new Case(caseId:'23')]
+        mockDomain(Case, newCase)
+
+        when:
+        def models = controller.show()
+
+        then:
+        models['foundCase'] == newCase
     }
 }

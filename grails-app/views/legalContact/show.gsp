@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Thoughtworks
-  Date: 7/13/11
-  Time: 8:20 PM
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
@@ -13,9 +5,12 @@
       <meta name="layout" content="main">
       <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
       <g:javascript library="linkCaseToContact"/>
+      <g:javascript library="picnet.table.filter.min"/>
+      <g:javascript library="caseSearch"/>
       <script type="text/javascript">
         $(function() {
             frontlinesms.linkCaseToContact();
+            frontlinesms.caseSearchOnLoad();
         })
     </script>
   </head>
@@ -37,7 +32,40 @@
 </div>
 
 <div id="link-case-dialog" title="Link Cases">
-        <p>O-0-0-0-0-0-0-0</p>
+    <h3 class="form-header">Search for Case by Case ID</h3>
+
+    <g:form action="search" method="POST">
+        <label>Enter the case ID to search for cases</label>
+        <g:textField class="wide-text-box" name="caseId" id="caseId"/>
+        <div class="form-submit-area">
+            <g:actionSubmit id="case-search" value="Search"/>
+        </div>
+
+        <g:if test="${foundCase}">
+            <table class="search-results" id="SearchResults">
+                <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <g:each in="${foundCase}" var="legalCase">
+                    <tr>
+                        <td>
+                            <g:link controller="contact" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
+                        </td>
+                        <td>
+                            <%= legalCase.active ? "active" : "inactive" %>
+                        </td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
+        </g:if>
+    </g:form>
+
 </div>
 
   </body>
