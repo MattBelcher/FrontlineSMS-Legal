@@ -32,6 +32,17 @@
     <label name="eventStartTime" id="event-start-time"></label><br/><br/>
     <label><b>End Time</b></label><br/>
     <label name="eventEndTime" id="event-end-time"></label><br/><br/>
+    <table id="event-contacts-table">
+        <thead>
+            <tr>
+                <th>Contact name</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
     <div align="right"><input type="button" id="delete-event" value="Delete"/></div>
     <label style="display:none" name="eventId" id="event-id"></label>
 

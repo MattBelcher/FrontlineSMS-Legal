@@ -14,6 +14,15 @@ class SchedulePage extends Page {
                 null
             }
         }
+        testEvent { $("span[class='fc-event-title']", text: "test event") }
+        eventContacts {
+            try {
+                $("tr[class='event-contact']")
+            }
+            catch (Exception e) {
+                null
+            }
+        }
         eventListSize {
             try {
                 $("span[class='fc-event-title']").size()

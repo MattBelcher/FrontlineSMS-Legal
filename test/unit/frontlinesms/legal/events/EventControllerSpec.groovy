@@ -161,5 +161,6 @@ class EventControllerSpec extends ControllerSpec {
          EventContact.count()==3
     }
 
+
 }
 
