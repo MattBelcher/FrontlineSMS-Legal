@@ -61,6 +61,7 @@ frontlinesms.calendarInteractions = function() {
                     right: 'month,agendaWeek,agendaDay'
                 },
                 defaultView: 'month',
+                timeFormat: 'hh:mm tt',
                 allDayDefault: false,
                 eventColor: "rgb(0,162,232)",
                 eventClick: function(calEvent, jsEvent, view) {

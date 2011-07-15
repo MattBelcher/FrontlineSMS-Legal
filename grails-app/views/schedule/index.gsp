@@ -15,9 +15,9 @@
             $('#view-event').hide();
             frontlinesms.calendarInteractions();
             frontlinesms.eventDetails();
-            <g:if test="${params?.year}">
-            <g:if test="${params?.month}">
-            $('#schedule').fullCalendar('gotoDate', ${params.year}, ${params.month});
+            <g:if test="${year}">
+            <g:if test="${month}">
+            $('#schedule').fullCalendar('gotoDate', ${year}, ${month});
             </g:if>
             </g:if>
         });

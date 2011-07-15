@@ -37,7 +37,7 @@ class EventController {
                 if (newEvent.save(flush: true)) {
                     linkContactsToEvent(newEvent)
                     flash.message = "Event created."
-                    redirect(controller: "schedule", action: "index", params:[year:YearFormat.format(selectedDate),month:selectedDate.month])
+                    chain(controller: "schedule", action: "index", model:[year:YearFormat.format(selectedDate),month:selectedDate.month])
                 }
                 else {
                     flash.error = "There was a problem saving your event."
