@@ -29,15 +29,6 @@
       <label>Notes</label>
                       <g:textField name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
 
-<body>
-<h1 class="form-header">Case Details</h1>
-<g:form action="save" id="contact-save-form">
-    <label>Name</label>
-    <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
-    <label>Number</label>
-    <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
-    <label>Notes</label>
-    <g:textArea name="notes" id="contact-notes" value="${contactToDisplay.notes}" cols="100" rows="10"/>
 
   </g:form>
 
