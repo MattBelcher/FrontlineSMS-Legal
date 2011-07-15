@@ -14,4 +14,12 @@ class Event {
     Time startTimeField, endTimeField
 
     static hasMany = [linkedContacts: EventContact]
+
+    def delete = {
+        def eventContacts = EventContact.findByEvent(this)
+        eventContacts.each{
+            it.delete()
+        }
+        this.delete()
+    }
 }

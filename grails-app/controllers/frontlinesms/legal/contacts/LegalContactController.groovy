@@ -1,7 +1,6 @@
 package frontlinesms.legal.contacts
 
 import frontlinesms.legal.LegalContact
-import frontlinesms2.Contact
 
 class LegalContactController {
 
