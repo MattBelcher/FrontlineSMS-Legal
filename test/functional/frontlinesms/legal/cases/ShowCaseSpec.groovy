@@ -4,6 +4,7 @@ import frontlinesms.legal.Case
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
 import frontlinesms2.Contact
+import frontlinesms.legal.LegalContact
 
 class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
@@ -24,8 +25,8 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
     def "should display all contacts in contact list table in pop-up dialog on load"() {
         setup:
-        new Contact(name: "fabio", primaryMobile: "22222").save(flush: true)
-        new Contact(name: "dev", primaryMobile: "55555").save(flush: true)
+        new LegalContact(name: "fabio", primaryMobile: "22222").save(flush: true)
+        new LegalContact(name: "dev", primaryMobile: "55555").save(flush: true)
         new Case(caseId: "1112").save(flush: true)
         when:
         to ShowCasePage, "1112"

@@ -4,9 +4,8 @@ import frontlinesms.legal.Event
 import frontlinesms.legal.EventContact
 import frontlinesms.legal.LegalContact
 import frontlinesms.legal.TimeFormatter
-import frontlinesms2.Contact
-import java.sql.Time
 import java.text.SimpleDateFormat
+import java.sql.Time
 
 class EventController {
 
@@ -16,7 +15,30 @@ class EventController {
         params.startTimeField = params.startTimeField ? params.startTimeField : ""
         params.dateFieldSelected = params.dateFieldSelected ? params.dateFieldSelected : ""
         params.endTimeField = params.endTimeField ? params.endTimeField : ""
-        [contactList: Contact.list()]
+        [contactList: LegalContact.list()]
+    }
+
+    def fetchEventContacts = {
+        if (params.eventId != null && params.eventId != "") {
+            def linkedContacts = EventContact.findContactsByEvent(Event.findById(params.eventId))
+            render(contentType: "text/json") {
+                array {
+                    for (c in linkedContacts) {
+                        contact(
+                            id: c.id,
+                            name: c.name,
+                            primaryMobile: c.primaryMobile,
+                            notes: c.notes
+                        )
+                    }
+                }
+            }
+        } else {
+            render(contentType: "text/json") {
+                array {
+                }
+            }
+        }
     }
 
     def save = {

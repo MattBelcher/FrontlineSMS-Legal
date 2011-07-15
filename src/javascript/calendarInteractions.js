@@ -14,7 +14,30 @@ frontlinesms.displayEventDetails = function(calEvent) {
          $('#event-end-time').text($('#event-start-time').text());
     $("#event-date").text($.datepicker.formatDate("MM d,yy", calEvent.start));
     $('#event-id').text(calEvent.id);
+    $.ajax({
+        url: "/event/fetchEventContacts",
+        type: "POST",
+        data : {
+            eventId: calEvent.id
+        },
+        success : function(data){
+            frontlinesms.constructContactsTable(data)
+        }
+    });
+
     $("#view-event").dialog("open");
+};
+
+frontlinesms.constructContactsTable = function(data) {
+    $('#event-contacts-table tbody *').remove();
+    for (var i = 0; i < data.length; i++) {
+        var newRow =
+            '<tr class="event-contact">' +
+                '<td>' + data[i]["name"] + '</td>' +
+                '<td>' + data[i]["primaryMobile"] + '</td>' +
+                '</tr>';
+        $('#event-contacts-table tbody').append(newRow);
+    }
 };
 
 frontlinesms.getFormattedTimeString = function(hr, min) {
@@ -67,11 +90,12 @@ frontlinesms.calendarInteractions = function() {
                 eventClick: function(calEvent, jsEvent, view) {
                     frontlinesms.displayEventDetails(calEvent);
 
-                },
-                windowResize: function () {
-                    $("#schedule").fullCalendar("option", "height", frontlinesms.calculateScheduleHeight($(window).height()))
-                }
-            })
+
+        },
+        windowResize: function () {
+            $("#schedule").fullCalendar("option", "height", frontlinesms.calculateScheduleHeight($(window).height()))
+        }
+    })
 
 
     var ajaxDefaults = {
@@ -80,30 +104,30 @@ frontlinesms.calendarInteractions = function() {
     };
     $("#delete-event").click(function() {
         $("#event-cancel-dialog").dialog({
-                    modal: true,
-                    buttons: [
-                        {
-                            text: "Yes",
-                            click: function() {
+            modal: true,
+            buttons: [
+                {
+                    text: "Yes",
+                    click: function() {
 
-                                $("#view-event").dialog("close");
-                                $.ajax("deleteEvent/" + $('#event-id').text(), ajaxDefaults);
-                                $('#schedule').fullCalendar('removeEvents', $('#event-id').text())
-                                $(this).dialog("close");
-                                return true;
-                            },
-                            id: "cancel-confirm-yes"
-                        },
-                        {
-                            text: "No",
-                            click: function() {
-                                $(this).dialog("close");
-                                return false;
-                            },
-                            id: "cancel-confirm-no"
-                        }
-                    ]
-                });
+                        $("#view-event").dialog("close");
+                        $.ajax("deleteEvent/" + $('#event-id').text(), ajaxDefaults);
+                        $('#schedule').fullCalendar('removeEvents', $('#event-id').text())
+                        $(this).dialog("close");
+                        return true;
+                    },
+                    id: "cancel-confirm-yes"
+                },
+                {
+                    text: "No",
+                    click: function() {
+                        $(this).dialog("close");
+                        return false;
+                    },
+                    id: "cancel-confirm-no"
+                }
+            ]
+        });
 
     });
 }

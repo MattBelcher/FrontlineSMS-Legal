@@ -136,9 +136,11 @@ class CaseIntegrationSpec extends IntegrationSpec {
 
     def "should be able to link contacts to case"() {
         given:
+        Contact.list()*.delete()
+        LegalContact.list()*.delete()
         def newCase = new Case(caseId: "4567", description: "adding contact")
         newCase.save()
-        def contact = new LegalContact(name: "Dumbledore", primaryMobile: "987654321").save()
+        def contact = new LegalContact(name: "Dumbledore", primaryMobile: "987654321")
         contact.save()
 
         when:
