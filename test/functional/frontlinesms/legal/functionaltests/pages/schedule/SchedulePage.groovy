@@ -32,6 +32,7 @@ class SchedulePage extends Page {
         eventDate { $('#event-date').text()}
         eventStartTime { $('#event-start-time').text()}
         eventEndTime { $('#event-end-time').text()}
+        atDate{$('span.fc-header-title').text()}
 
     }
 }

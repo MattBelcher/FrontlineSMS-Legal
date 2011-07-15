@@ -4,7 +4,8 @@ import frontlinesms.legal.Event
 
 class ScheduleController {
 
-    def index = { }
+    def index = {
+    [hh:"2011, 5"]}
 
     def fetchEvents = {
         def eventsList = Event.list()

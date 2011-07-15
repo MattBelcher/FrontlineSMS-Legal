@@ -41,6 +41,16 @@ class DeleteEventSpec extends FrontlinesmsLegalGebSpec {
         oldEventListSize == newEventListSize;
     }
 
+    def 'should redirect to the event date on successful creation of the event'() {
+
+        when:
+        createEvent("Test1")
+        then:
+        at SchedulePage
+        atDate == new Date().format("MMMM yyyy")
+
+    }
+
     def createEvent(title) {
         to NewEventPage
         eventTitle = title
