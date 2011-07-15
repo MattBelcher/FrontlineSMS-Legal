@@ -5,8 +5,6 @@ class EventContact {
         table 'event_contact_links'
     }
 
-    static belongsTo = [event:Event]
-
     LegalContact legalContact
     Event event
 
