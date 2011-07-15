@@ -20,6 +20,10 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
 </head>
 
 <body>
+
+<g:hiddenField name="linkedContactIds" id="linked-contact-ids" value=""/>
+<g:hiddenField name="InvolvementList" id="involvement-list" value=""/>
+
 <h1 class="form-header">Case Details</h1>
 <g:form action="save" method="post">
 
@@ -63,6 +67,7 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
 
 </g:form>
 
+
 <div id="link-contacts" title="Link Contacts">
     <g:form action="">
         <g:textField name="contactNameSearch" id="contact-name-search"/>
@@ -79,7 +84,8 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
                             </thead>
                             <tbody>
                             <g:each in="${contactList}" var="contact">
-                                <tr class="contactLink" id="${contact.name}">
+
+                                <tr class="contactLink" id="${contact.id}">
 
                                     <td class="contact-name">
                                         <a href="#"><%=contact.name%></a>

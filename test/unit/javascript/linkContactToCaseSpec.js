@@ -1,22 +1,24 @@
 describe('linkContactToCase', function () {
     beforeEach(function() {
         var tempHTML =
-            '<div id="link-contacts" title="Link Contacts">' +
+                '<input type="hidden" id="linked-contact-ids" value=""/>' +
+                        '<input type="hidden" id="involvement-list" value=""/> ' +
+                        '<div id="link-contacts" title="Link Contacts">' +
 
-                '<table id="contactsTable"> <tbody>' +
-                '<tr class="contactLink" id="fabio">' +
-                '<td  class="contact-name"> <a href="#" >fabio</a> </td>' +
-                '<td class="contact-number"> <a href="#">99999</a> </td>' +
-                '</tr> </tbody></table> </div>' +
+                        '<table id="contactsTable"> <tbody>' +
+                        '<tr class="contactLink" id="5">' +
+                        '<td  class="contact-name"> <a href="#" >fabio</a> </td>' +
+                        '<td class="contact-number"> <a href="#">99999</a> </td>' +
+                        '</tr> </tbody></table> </div>' +
 
-                '<table name="contacts" id="contacts">' +
-                '<tr>' +
-                '<th>Contact Name</th>' +
-                '<th>Phone</th>' +
-                '<th>Involvement</th>' +
-                '</tr> </table>' +
+                        '<table name="contacts" id="contacts">' +
+                        '<tr>' +
+                        '<th>Contact Name</th>' +
+                        '<th>Phone</th>' +
+                        '<th>Involvement</th>' +
+                        '</tr> </table>' +
 
-                '<button id="link-contact-button">Link contacts</button>';
+                        '<button id="link-contact-button">Link contacts</button>';
 
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.linkContactToCase();
@@ -31,9 +33,33 @@ describe('linkContactToCase', function () {
     it('when a contact is clicked on link contact dialog box it should appear on show case page table', function() {
         spyOn(window, 'prompt').andReturn('Client');
         $("#link-contact-button").click();
-        $("#fabio").click();
+        $("#5").click();
         expect($('#contacts tr > td:contains(fabio) + td:contains(99999) + td:contains(Client)').length).toEqual(1);
     });
+
+    it('when a contact is clicked in the link contacts  the Unique Id from database should be appended to linkedContactIds', function() {
+        spyOn(window, 'prompt').andReturn('Client');
+        $('#5').click();
+        var contactidList = $('#linked-contact-ids').val().split(',');
+        expect(contactidList.indexOf('5') > -1).toBeTruthy();
+    });
+
+    it('when a contact is clicked in the link contacts the involvement should be appended to the involvement-list', function() {
+        spyOn(window, 'prompt').andReturn('Client');
+        $('#5').click();
+        var involvementList = $('#involvement-list').val().split(',');
+        expect(involvementList.indexOf('Client') > -1).toBeTruthy();
+    });
+
+    it('when a contact has already been added, and is clicked again on the popup , the contact shouldnt get added again', function() {
+        spyOn(window, 'prompt').andReturn('Client');
+        $('#5').click();
+        var oldLinkedContacts = $('#linked-contact-ids').val();
+        $('#5').click();
+        var newLinkedContacts = $('#linked-contact-ids').val();
+        expect(oldLinkedContacts).toEqual(newLinkedContacts);
+    });
+
 
     afterEach(function() {
         $("#link-contacts, .contactLink, #contacts, #link-contact-button").remove();
