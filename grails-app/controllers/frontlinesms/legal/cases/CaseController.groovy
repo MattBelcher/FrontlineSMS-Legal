@@ -1,17 +1,19 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
-import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
 
 class CaseController {
 
     def create = {
-        [contactList: LegalContact.list()]
+        [contactList: Contact.list()]
 
     }
 
     def save = {
         def newCase = new Case(params)
+//        def linkedContacts = []
+        //        linkedContacts = new LegalContact(params)
         if (newCase.save(flush: true)) {
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
@@ -34,12 +36,12 @@ class CaseController {
         if (params.description) {
             def caseToDisplay = Case.get(params.uniqueId)
             caseToDisplay.description = params.description
-            [caseToDisplay: caseToDisplay, contactList: LegalContact.list()]
+            [caseToDisplay: caseToDisplay, contactList: Contact.list()]
 
 
         }
         else {
-            [caseToDisplay: Case.findByCaseId(params.id), contactList: LegalContact.list()]
+            [caseToDisplay: Case.findByCaseId(params.id), contactList: Contact.list()]
         }
 
 

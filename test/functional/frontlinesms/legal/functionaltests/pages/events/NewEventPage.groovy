@@ -20,15 +20,5 @@ class NewEventPage extends Page {
         cancelNo { $("button", id: "cancel-confirm-no")}
         startTimeField { $("input", id: "event-start-time")}
         endTimeField { $("input", id: "event-end-time")}
-        linkContactButton { $("button", id: "link-contact-button")}
-        contactsToLink {
-            try {
-                $("tr[class='contactLink']")
-            }
-            catch (Exception e) {
-                null
-            }
-        }
-
     }
 }

@@ -1,10 +1,11 @@
 package frontlinesms.legal.events
 
 import frontlinesms.legal.Event
-import frontlinesms.legal.EventContact
-import frontlinesms.legal.LegalContact
 import frontlinesms.legal.TimeFormatter
 import java.sql.Time
+import frontlinesms2.Contact
+import frontlinesms.legal.LegalContact
+import frontlinesms.legal.EventContact
 
 class EventController {
 
@@ -14,30 +15,7 @@ class EventController {
         params.startTimeField = params.startTimeField ? params.startTimeField : ""
         params.dateFieldSelected = params.dateFieldSelected ? params.dateFieldSelected : ""
         params.endTimeField = params.endTimeField ? params.endTimeField : ""
-        [contactList: LegalContact.list()]
-    }
-
-    def fetchEventContacts = {
-        if (params.eventId != null && params.eventId != "") {
-            def linkedContacts = EventContact.findContactsByEvent(Event.findById(params.eventId))
-            render(contentType: "text/json") {
-                array {
-                    for (c in linkedContacts) {
-                        contact(
-                            id: c.id,
-                            name: c.name,
-                            primaryMobile: c.primaryMobile,
-                            notes: c.notes
-                        )
-                    }
-                }
-            }
-        } else {
-            render(contentType: "text/json") {
-                array {
-                }
-            }
-        }
+        [contactList: Contact.list()]
     }
 
     def save = {
@@ -64,8 +42,9 @@ class EventController {
                     redirect(action: "create", params: [eventTitle: params.eventTitle, dateFieldSelected: params.dateFieldSelected, startTimeField: params.startTimeField, endTimeField: params.endTimeField])
                 }
             }
-            else {
-                flash.error = "End time cannot be before the start time."
+            else
+            {
+                flash.error= "End time cannot be before the start time."
                 redirect(action: "create", params: [eventTitle: params.eventTitle, dateFieldSelected: params.dateFieldSelected, startTimeField: params.startTimeField, endTimeField: params.endTimeField])
             }
 
@@ -73,7 +52,7 @@ class EventController {
         }
     }
 
-    private def linkContactsToEvent(event) {
+    private def linkContactsToEvent(event){
         if (params.linkedContacts != null && params.linkedContacts != "") {
             def contactId = params.linkedContacts.split(",")
             contactId.each { it ->
@@ -85,9 +64,9 @@ class EventController {
 
     private def formatParameters() {
         [
-                startTimeField: TimeFormatter.formatTime(params.startTimeField),
-                endTimeField: TimeFormatter.formatTime(params.endTimeField),
-                eventTitle: (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
+            startTimeField: TimeFormatter.formatTime(params.startTimeField),
+            endTimeField: TimeFormatter.formatTime(params.endTimeField),
+            eventTitle: (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
         ]
     }
 

@@ -2,7 +2,6 @@ package frontlinesms.legal
 
 import frontlinesms2.Contact
 import grails.plugin.spock.IntegrationSpec
-import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 class CaseIntegrationSpec extends IntegrationSpec {
 
@@ -137,12 +136,9 @@ class CaseIntegrationSpec extends IntegrationSpec {
 
     def "should be able to link contacts to case"() {
         given:
-        (ApplicationHolder.application.getArtefacts("Domain") as List).each {
-            it.newInstance().list()*.delete()
-        }
         def newCase = new Case(caseId: "4567", description: "adding contact")
         newCase.save()
-        def contact = new LegalContact(name: "Dumbledore", primaryMobile: "987654321")
+        def contact = new LegalContact(name: "Dumbledore", primaryMobile: "987654321").save()
         contact.save()
 
         when:
