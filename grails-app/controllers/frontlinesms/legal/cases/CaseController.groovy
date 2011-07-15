@@ -12,8 +12,6 @@ class CaseController {
 
     def save = {
         def newCase = new Case(params)
-//        def linkedContacts = []
-        //        linkedContacts = new LegalContact(params)
         if (newCase.save(flush: true)) {
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
@@ -73,7 +71,7 @@ class CaseController {
             flash.message = "Case details updated"
             redirect(action: 'show', params: [id: fetchedCase.caseId])
         }
-        else if(params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()){
+        else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number required"
             redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
         }

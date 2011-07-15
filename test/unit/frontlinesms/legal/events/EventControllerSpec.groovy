@@ -1,7 +1,6 @@
 package frontlinesms.legal.events
 
 import frontlinesms.legal.Event
-import frontlinesms.legal.TimeFormatter
 import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.LegalContact
 import frontlinesms.legal.EventContact
@@ -101,21 +100,32 @@ class EventControllerSpec extends ControllerSpec {
 
     def "should return true for isStartTimeBeforeEndTime if startTime is before endTime"() {
         when:
-        controller.params.startTimeField = TimeFormatter.formatTime("06:30AM")
-        controller.params.endTimeField = TimeFormatter.formatTime("06:30PM")
+        controller.params.startTimeField = "06:30AM"
+        controller.params.endTimeField = "06:30PM"
+
+        then:
+        controller.isStartTimeBeforeEndTime() == true
+    }
+    def 'should return true if start time  and end time are equal'() {
+        when:
+        controller.params.startTimeField = "04:30PM"
+        controller.params.endTimeField = "04:30PM"
 
         then:
         controller.isStartTimeBeforeEndTime() == true
     }
 
+
     def "should return false for isStartTimeBeforeEndTime if startTime is after endTime"() {
         when:
-        controller.params.startTimeField = TimeFormatter.formatTime("06:30PM")
-        controller.params.endTimeField = TimeFormatter.formatTime("06:30AM")
+        controller.params.startTimeField = "06:30PM"
+        controller.params.endTimeField = "06:30AM"
 
         then:
         controller.isStartTimeBeforeEndTime() == false
     }
+
+
 
     def "should save contact when linked on the event"() {
         setup:

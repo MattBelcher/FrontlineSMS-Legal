@@ -1,11 +1,11 @@
 package frontlinesms.legal.events
 
 import frontlinesms.legal.Event
-import frontlinesms.legal.TimeFormatter
-import java.sql.Time
-import frontlinesms2.Contact
-import frontlinesms.legal.LegalContact
 import frontlinesms.legal.EventContact
+import frontlinesms.legal.LegalContact
+import frontlinesms.legal.TimeFormatter
+import frontlinesms2.Contact
+import java.sql.Time
 
 class EventController {
 
@@ -42,9 +42,8 @@ class EventController {
                     redirect(action: "create", params: [eventTitle: params.eventTitle, dateFieldSelected: params.dateFieldSelected, startTimeField: params.startTimeField, endTimeField: params.endTimeField])
                 }
             }
-            else
-            {
-                flash.error= "End time cannot be before the start time."
+            else {
+                flash.error = "End time cannot be before the start time."
                 redirect(action: "create", params: [eventTitle: params.eventTitle, dateFieldSelected: params.dateFieldSelected, startTimeField: params.startTimeField, endTimeField: params.endTimeField])
             }
 
@@ -52,7 +51,7 @@ class EventController {
         }
     }
 
-    private def linkContactsToEvent(event){
+    private def linkContactsToEvent(event) {
         if (params.linkedContacts != null && params.linkedContacts != "") {
             def contactId = params.linkedContacts.split(",")
             contactId.each { it ->
@@ -64,17 +63,22 @@ class EventController {
 
     private def formatParameters() {
         [
-            startTimeField: TimeFormatter.formatTime(params.startTimeField),
-            endTimeField: TimeFormatter.formatTime(params.endTimeField),
-            eventTitle: (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
+                startTimeField: TimeFormatter.formatTime(params.startTimeField),
+                endTimeField: TimeFormatter.formatTime(params.endTimeField),
+                eventTitle: (params.eventTitle == null || params.eventTitle.trim() == "") ? "Untitled Event" : params.eventTitle.trim()
         ]
     }
 
     private def isStartTimeBeforeEndTime() {
         Time start = Time.valueOf(TimeFormatter.formatTime(params.startTimeField))
         Time end = Time.valueOf(TimeFormatter.formatTime(params.endTimeField))
+        println("Start: ${start.hours}")
+        println("End:" + end.hours)
+        if (start.equals(end))
+            return true
         return start.before(end)
     }
+
 
     private def checkForNullDateTimes() {
         return (params.dateFieldSelected == null || params.startTimeField == null || params.endTimeField == null || params.dateFieldSelected == "" || params.startTimeField == "" || params.endTimeField == "")

@@ -4,6 +4,7 @@ import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
 import frontlinesms2.Contact
+import org.junit.Ignore
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -101,14 +102,12 @@ class CaseControllerSpec extends ControllerSpec {
         controller.params.id = "4567"
         def newContact = [new Contact()]
         mockDomain(Contact, newContact)
-
         when:
         def models = controller.show()
 
         then:
         models['contactList'] == newContact
     }
-
 
 
 }

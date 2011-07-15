@@ -21,9 +21,6 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
 
 <body>
 
-<g:hiddenField name="linkedContactIds" id="linked-contact-ids" value=""/>
-<g:hiddenField name="InvolvementList" id="involvement-list" value=""/>
-
 <h1 class="form-header">Case Details</h1>
 <g:form action="save" method="post">
 
@@ -51,11 +48,11 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
             <th>Involvement</th>
         </tr>
         %{--<g:if test="${contacts?.size > 0}">--}%
-            %{--<g:each in="${contacts}">--}%
-                %{--<tr>--}%
-                    %{--<td><g:textField value="${it.name}" name="contactName"/></td>--}%
-                %{--</tr>--}%
-            %{--</g:each>--}%
+        %{--<g:each in="${contacts}">--}%
+        %{--<tr>--}%
+        %{--<td><g:textField value="${it.name}" name="contactName"/></td>--}%
+        %{--</tr>--}%
+        %{--</g:each>--}%
         %{--</g:if>--}%
     </table>
 
@@ -64,6 +61,9 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
         <input type="submit" id="case-save" value="Save"/>
         <button id="case-cancel">Cancel</button>
     </div>
+
+    <g:hiddenField name="linkedContactIds" id="linked-contact-ids" value=""/>
+    <g:hiddenField name="involvementList" id="involvement-list" value=""/>
 
 </g:form>
 

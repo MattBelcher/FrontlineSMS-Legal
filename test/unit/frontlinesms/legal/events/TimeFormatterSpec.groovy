@@ -20,4 +20,37 @@ class TimeFormatterSpec extends UnitSpec {
         then:
         assert formattedTime == "20:45:00"
     }
+
+def "should format 12:45 AM to 00:45:00"() {
+        when:
+        def formattedTime = TimeFormatter.formatTime("12:45AM")
+
+        then:
+        assert formattedTime == "00:45:00"
+    }
+    def "should format 12:45 PM to 12:45:00"() {
+            when:
+            def formattedTime = TimeFormatter.formatTime("12:45PM")
+
+            then:
+            assert formattedTime == "12:45:00"
+        }
+    def "should format 06:45 PM to 18:45:00"() {
+               when:
+               def formattedTime = TimeFormatter.formatTime("06:45PM")
+
+               then:
+               assert formattedTime == "18:45:00"
+           }
+
+     def "should format 06:45 AM to 06:45:00"() {
+               when:
+               def formattedTime = TimeFormatter.formatTime("06:45AM")
+
+               then:
+               assert formattedTime == "06:45:00"
+           }
+
+
+
 }
