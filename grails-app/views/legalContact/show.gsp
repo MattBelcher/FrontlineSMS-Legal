@@ -8,26 +8,26 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head>
-      <meta name="layout" content="main">
-      <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+<head>
+    <meta name="layout" content="main">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
 
     <title>Show Contact Page</title>
-  </head>
-  <body>
-  <h1 class="form-header">Case Details</h1>
-  <g:form action="save" id="contact-save-form">
-      <label>Contact Name</label>
-          <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
-      <label>Primary Mobile</label>
-                <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
-      <label>Notes</label>
-                      <g:textField name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
+</head>
 
+<body>
+<h1 class="form-header">Case Details</h1>
+<g:form action="save" id="contact-save-form">
+    <label>Name</label>
+    <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
+    <label>Number</label>
+    <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
+    <label>Notes</label>
+    <g:textArea name="notes" id="contact-notes" value="${contactToDisplay.notes}" cols="100" rows="10"/>
 
-  </g:form>
- <div class="form-submit-area" id="link-cases" title="Link Case to Contact">
+</g:form>
+<div class="form-submit-area" id="link-cases" title="Link Case to Contact">
     <button id="link-case-button">Link Cases</button>
 </div>
-  </body>
+</body>
 </html>

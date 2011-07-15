@@ -2,7 +2,6 @@ package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
 import frontlinesms2.Contact
-import frontlinesms.legal.LegalContact
 
 class CaseController {
 
