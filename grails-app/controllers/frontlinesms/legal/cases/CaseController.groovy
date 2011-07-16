@@ -2,7 +2,6 @@ package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
 import frontlinesms2.Contact
-import frontlinesms.legal.LegalContact
 
 class CaseController {
 
@@ -13,8 +12,6 @@ class CaseController {
 
     def save = {
         def newCase = new Case(params)
-//        def linkedContacts = []
-        //        linkedContacts = new LegalContact(params)
         if (newCase.save(flush: true)) {
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
@@ -70,11 +67,16 @@ class CaseController {
         def originalCaseId = fetchedCase.caseId
         fetchedCase.caseId = params.caseId
         fetchedCase.description = params.description
+        if(params.caseStatus==null)
+            fetchedCase.active = ""
+         else{
+            fetchedCase.active = "checked"
+        }
         if (fetchedCase.save(flush: true)) {
             flash.message = "Case details updated"
             redirect(action: 'show', params: [id: fetchedCase.caseId])
         }
-        else if(params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()){
+        else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number required"
             redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
         }

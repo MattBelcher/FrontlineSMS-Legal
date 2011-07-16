@@ -3,8 +3,6 @@ package frontlinesms.legal.cases
 import frontlinesms.legal.Case
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
-import spock.lang.Ignore
-import frontlinesms.legal.LegalContact
 import frontlinesms2.Contact
 
 class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
@@ -46,20 +44,7 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         contactsTable.collect { it -> it.primaryMobile }.contains("55555")
     }
 
-    def "should be able to edit description of case"() {
-        setup:
-        new Case(caseId: "1112", description: "ertyui").save(flush: true)
-        when:
-        to ShowCasePage, "1112"
-        and:
-        description = "jughjbgjhnbj"
-        and:
-        updateCaseButton.click()
 
-        then:
-        statusMessage == "Case details updated"
-
-    }
 
     def "should be able to edit case ID of case"() {
         setup:
@@ -91,6 +76,8 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         errorMessage == "Case number already exists. Please enter a unique case number."
 
     }
+
+
 
     def "should show the same description on trying to update case id that already exists"() {
         setup:
@@ -129,7 +116,26 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
     }
 
+    def "should update status"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = "1112"
+        description = "new description"
 
+
+        and:
+        caseActive.value("off")
+        and:
+        updateCaseButton.click()
+
+        then:
+        true
+       caseActive.value() == null
+
+    }
 
 
 }

@@ -1,9 +1,8 @@
 package frontlinesms.legal.cases
 
-import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.Case
-import frontlinesms.legal.LegalContact
 import frontlinesms2.Contact
+import grails.plugin.spock.ControllerSpec
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -109,6 +108,21 @@ class CaseControllerSpec extends ControllerSpec {
         models['contactList'] == newContact
     }
 
+    def 'should update case details'() {
+        setup:
+        def existingCase = new Case(caseId: '12344', description: 'hiiii')
+        mockDomain(Case, [existingCase])
+        controller.params.currentId ="7"
+        controller.params.caseId = '12344'
+        controller.params.description = 'hagsdhs'
+        controller.params.caseActive = false
+        when:
+        controller.update()
 
+        then:
+        existingCase.active == false
+
+
+    }
 
 }
