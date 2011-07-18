@@ -9,16 +9,17 @@
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="contactSearch"/>
     <script type="text/javascript">
-        $(function() {
-            frontlinesms.linkContactToCase();
-            frontlinesms.contactSearchOnLoad();
+     $(function() {
+         frontlinesms.showCaseOnLoad();
+         frontlinesms.linkContactToCase();
+         frontlinesms.contactSearchOnLoad();
         })
     </script>
 </head>
 
 <body>
 <h1 class="form-header">Case Details</h1>
-<g:form action="update" id="save-case-form">
+<g:form action="update" id="save-case-form" >
     <label>Case Number</label>
     <g:hiddenField name="currentId" id="current-id" value="${caseToDisplay.id}"/>
     <g:textField name="caseId" id="case-id" value="${caseToDisplay.caseId}"/>
@@ -46,8 +47,7 @@
 
     <div class="form-submit-area">
         <g:actionSubmit id="case-update" value="Update"/>
-        <button id="case-update-cancel" onclick="frontlinesms.caseUpdateCancelConfirmAction();
-        return false;">Cancel</button>
+        <button id="case-update-cancel">Cancel</button>
     </div>
 </g:form>
 
@@ -91,7 +91,7 @@
     </g:form>
 </div>
 
-<div id="case-cancel-dialog" style="display: none;">
+<div id="case-update-cancel-dialog" style="display: none;">
     <p>Do you wish to discard these changes?</p>
 </div>
 

@@ -3,7 +3,7 @@ describe('linkCaseToContact', function () {
         var tempHTML =
             '<div id="link-case-dialog" title="Link Cases">' +
                     '</div>' +
-                    '<p>I am the Walrus</p>' +
+
 
                 '<button id="link-case-button">Link cases</button>' ;
         $(tempHTML).appendTo("#fixtures");
@@ -17,7 +17,7 @@ describe('linkCaseToContact', function () {
     });
 
     afterEach(function() {
-        $("#link-cases").remove();
+        $("#link-case-dialog, #link-case-button").remove();
     })
 
 
