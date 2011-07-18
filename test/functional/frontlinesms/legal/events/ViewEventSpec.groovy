@@ -25,13 +25,6 @@ class ViewEventSpec extends FrontlinesmsLegalGebSpec {
 
     }
 
-
-
-
-
-
-
-
     def createContact(number) {
         to CreateLegalContactPage
         name = "Fred"
