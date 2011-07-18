@@ -9,10 +9,17 @@ class TimeFormatter {
     static def formatTime (time) {
         if (time.contains("AM")) {
                time = time.substring(0, HOURS_COLON_MINUTES)
-               time = time.concat(":00")
+             def hour = time.substring(0,HOURS);
+             hour = (hour as Integer) % 12
+             hour = (hour < 10) ? "0" + hour : hour + ""
+            time = hour + time.substring(HOURS, HOURS_COLON_MINUTES) + ":00"
+//             if(hour == "12"){
+//                time="00:"+time.substring(3);
+//             }
         } else {
-            def tempHours = time.substring(0, HOURS)
-            int hoursVal = Integer.parseInt(tempHours) + TWENTY_FOUR_HOUR_OFFSET
+            def hour = time.substring(0,HOURS);
+            def tempHours = (hour as Integer) % 12
+            int hoursVal = tempHours + TWENTY_FOUR_HOUR_OFFSET
             def finalTime = hoursVal + time.substring(HOURS, HOURS_COLON_MINUTES)
             time = finalTime.concat(":00")
         }

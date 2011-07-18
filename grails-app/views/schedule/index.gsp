@@ -15,6 +15,11 @@
             $('#view-event').hide();
             frontlinesms.calendarInteractions();
             frontlinesms.eventDetails();
+            <g:if test="${year}">
+            <g:if test="${month}">
+            $('#schedule').fullCalendar('gotoDate', ${year}, ${month});
+            </g:if>
+            </g:if>
         });
     </script>
     <title>Schedule</title>
@@ -23,7 +28,7 @@
 <body class="schedule">
 <div id="schedule"></div>
 
-<div id="view-event"  title="Event Details" style="display: none;">
+<div id="view-event" title="Event Details" style="display: none;">
     <label><b>Title</b></label><br/>
     <label name="eventTitle" id="event-title"></label><br/><br/>
     <label><b>Date</b></label><br/>
@@ -32,6 +37,7 @@
     <label name="eventStartTime" id="event-start-time"></label><br/><br/>
     <label><b>End Time</b></label><br/>
     <label name="eventEndTime" id="event-end-time"></label><br/><br/>
+
     <div align="right"><input type="button" id="delete-event" value="Delete"/></div>
     <label style="display:none" name="eventId" id="event-id"></label>
 

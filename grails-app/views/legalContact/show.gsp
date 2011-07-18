@@ -1,18 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Thoughtworks
-  Date: 7/13/11
-  Time: 8:20 PM
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
+      <title>Show Contact Page</title>
       <meta name="layout" content="main">
       <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
-
-    <title>Show Contact Page</title>
+      <g:javascript library="linkCaseToContact"/>
+      <g:javascript library="picnet.table.filter.min"/>
+      <g:javascript library="caseSearch"/>
+      <script type="text/javascript">
+        $(function() {
+            frontlinesms.linkCaseToContact();
+            frontlinesms.caseSearchOnLoad();
+        })
+    </script>
   </head>
   <body>
   <h1 class="form-header">Case Details</h1>
@@ -26,8 +26,47 @@
 
 
   </g:form>
- <div class="form-submit-area" id="link-cases" title="Link Case to Contact">
+
+ <div class="form-submit-area">
     <button id="link-case-button">Link Cases</button>
 </div>
+
+<div id="link-case-dialog" title="Link Cases">
+    <h3 class="form-header">Search for Case by Case ID</h3>
+
+    <g:form action="search" method="POST">
+        <label>Enter the case ID to search for cases</label>
+        <g:textField class="wide-text-box" name="caseId" id="caseId"/>
+        <div class="form-submit-area">
+            <g:actionSubmit id="case-search" value="Search"/>
+        </div>
+
+        <g:if test="${foundCase}">
+            <table class="search-results" id="SearchResults">
+                <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <g:each in="${foundCase}" var="legalCase">
+                    <tr>
+                        <td>
+                            <g:link controller="contact" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
+                        </td>
+                        <td>
+                            <%= legalCase.active ? "active" : "inactive" %>
+                        </td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
+        </g:if>
+    </g:form>
+
+</div>
+
   </body>
 </html>

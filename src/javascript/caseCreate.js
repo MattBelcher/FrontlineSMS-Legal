@@ -1,6 +1,7 @@
 var frontlinesms = this.frontlinesms || {};
 
 frontlinesms.createNewCaseOnLoad = function() {
+
     $("#case-cancel").click(function() {
         frontlinesms.caseCancelConfirmAction();
         return false;

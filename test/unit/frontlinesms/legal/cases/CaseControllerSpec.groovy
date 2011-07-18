@@ -1,8 +1,10 @@
 package frontlinesms.legal.cases
 
-import frontlinesms.legal.Case
-import frontlinesms2.Contact
 import grails.plugin.spock.ControllerSpec
+import frontlinesms.legal.Case
+import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
+import org.junit.Ignore
 
 class CaseControllerSpec extends ControllerSpec {
 

@@ -8,7 +8,10 @@ frontlinesms.calculateScheduleHeight = function (windowHeight) {
 frontlinesms.displayEventDetails = function(calEvent) {
     $("#event-title").text(calEvent.title);
     $('#event-start-time').text(frontlinesms.getFormattedTimeString(calEvent.start.getHours(), calEvent.start.getMinutes()));
-    $('#event-end-time').text(frontlinesms.getFormattedTimeString(calEvent.end.getHours(), calEvent.end.getMinutes()));
+    if(calEvent.end!=null)
+        $('#event-end-time').text(frontlinesms.getFormattedTimeString(calEvent.end.getHours(), calEvent.end.getMinutes()));
+    else
+         $('#event-end-time').text($('#event-start-time').text());
     $("#event-date").text($.datepicker.formatDate("MM d,yy", calEvent.start));
     $('#event-id').text(calEvent.id);
     $("#view-event").dialog("open");
@@ -58,6 +61,7 @@ frontlinesms.calendarInteractions = function() {
                     right: 'month,agendaWeek,agendaDay'
                 },
                 defaultView: 'month',
+                timeFormat: 'hh:mm tt',
                 allDayDefault: false,
                 eventColor: "rgb(0,162,232)",
                 eventClick: function(calEvent, jsEvent, view) {
