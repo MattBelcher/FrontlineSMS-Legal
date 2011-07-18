@@ -11,7 +11,7 @@ class ViewEventSpec extends FrontlinesmsLegalGebSpec {
     def "should display linked contacts for event when event is clicked"() {
         given:
         Event
-        createContact("123456789")
+        createContact("76575658")
         createEventWithLink("test event")
         to SchedulePage, "index"
 

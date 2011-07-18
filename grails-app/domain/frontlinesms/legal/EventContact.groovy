@@ -5,6 +5,8 @@ class EventContact {
         table 'event_contact_links'
     }
 
+    static belongsTo = [event :Event]
+
     LegalContact legalContact
     Event event
 
@@ -23,7 +25,7 @@ class EventContact {
 
 
     static LegalContact[] findContactsByEvent(Event event) {
-        def linkedContacts = EventContact.findByEvent(event)
+        def linkedContacts = EventContact.findAllByEvent(event)
         linkedContacts.collect { it -> it.legalContact}
 
     }

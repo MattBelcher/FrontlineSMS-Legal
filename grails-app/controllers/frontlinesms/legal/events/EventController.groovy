@@ -79,6 +79,7 @@ class EventController {
     private def linkContactsToEvent(event) {
         if (params.linkedContacts != null && params.linkedContacts != "") {
             def contactId = params.linkedContacts.split(",")
+            println "contactId = ${contactId}"
             contactId.each { it ->
                 def contact = LegalContact.findById(it as Integer)
                 EventContact.link(event, contact)

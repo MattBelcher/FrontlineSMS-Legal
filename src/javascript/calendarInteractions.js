@@ -20,6 +20,10 @@ frontlinesms.displayEventDetails = function(calEvent) {
         data : {
             eventId: calEvent.id
         },
+        dataType: 'json',
+        error: function (data){
+            console.log("Failed to get linked contacts for event.");
+        },
         success : function(data){
             frontlinesms.constructContactsTable(data)
         }

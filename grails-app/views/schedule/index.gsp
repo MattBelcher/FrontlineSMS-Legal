@@ -53,7 +53,7 @@
 
 </div>
 
-<div id="event-cancel-dialog" title="Cancel case creation?" style="display: none;">
+<div id="event-cancel-dialog" title="Cancel event?" style="display: none;">
     <p>Are you sure you want to delete this event? Yes or No.</p>
 </div>
 </body>
