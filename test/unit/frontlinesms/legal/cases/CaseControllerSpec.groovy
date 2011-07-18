@@ -114,6 +114,7 @@ class CaseControllerSpec extends ControllerSpec {
         setup:
         def existingCase = new Case(caseId: '12344', description: 'hiiii')
         mockDomain(Case, [existingCase])
+
         controller.params.currentId ="7"
         controller.params.caseId = '12344'
         controller.params.description = 'hagsdhs'
