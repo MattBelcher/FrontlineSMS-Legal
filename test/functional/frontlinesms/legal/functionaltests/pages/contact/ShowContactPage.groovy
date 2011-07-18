@@ -8,7 +8,7 @@ class ShowContactPage extends Page {
     static content = {
         name{ $("input", id: "contact-name").value() }
         primaryMobile { $("input", id: "contact-primary-mobile").value()}
-        notes {$("input", id: "contact-notes")}
+        notes {$("textarea", id: "contact-notes")}
         linkCaseButton{ $("button", id: "link-case-button")}
 
     }

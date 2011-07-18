@@ -22,7 +22,7 @@
       <label>Primary Mobile</label>
                 <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
       <label>Notes</label>
-                      <g:textField name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
+                      <g:textArea rows="10" cols="100" name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
 
 
   </g:form>
