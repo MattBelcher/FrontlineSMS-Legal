@@ -15,8 +15,8 @@ class BootStrap {
 
     def init = { servletContext ->
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-        def ant = new AntBuilder()
         if (Environment.current == Environment.DEVELOPMENT) {
+            def ant = new AntBuilder()
             jsWatcher.start()
 
             ant.java(jar: "lib/java/jruby-complete-1.6.2.jar", fork: "true", spawn: "true") {
