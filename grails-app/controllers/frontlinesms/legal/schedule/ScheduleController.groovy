@@ -2,6 +2,7 @@ package frontlinesms.legal.schedule
 
 import frontlinesms.legal.Event
 import frontlinesms.legal.EventContact
+import frontlinesms.legal.LegalContact
 
 class ScheduleController {
 
@@ -23,17 +24,12 @@ class ScheduleController {
     }
 
         def fetchEventContacts = {
-        if (params.eventId != null && params.eventId != "") {
-            def linkedContacts = EventContact.findContactsByEvent(Event.findById(params.eventId))
+        if (params.id != null && params.id != "") {
+            def linkedContacts = EventContact.findContactsByEvent(Event.findById(params.id))
             render(contentType: "text/json") {
                 array {
                     for (c in linkedContacts) {
-                        contact(
-                            id: c.id,
-                            name: c.name,
-                            primaryMobile: c.primaryMobile,
-                            notes: c.notes
-                        )
+                        event(id: c.id, name: c.name, primaryMobile: c.primaryMobile, notes: c.notes)
                     }
                 }
             }

@@ -15,18 +15,18 @@ frontlinesms.displayEventDetails = function(calEvent) {
     $("#event-date").text($.datepicker.formatDate("MM d,yy", calEvent.start));
     $('#event-id').text(calEvent.id);
     $.ajax({
-        url: "fetchEventContacts",
+        url: "fetchEventContacts/"+calEvent.id,
         type: "POST",
-        data : {
-            eventId: calEvent.id
-        },
+
         dataType: 'json',
         error: function (data){
             console.log("Failed to get linked contacts for event.");
         },
         success : function(data){
+            console.log("Success"+data.toString()+"  "+calEvent.id);
             frontlinesms.constructContactsTable(data)
-        }
+        },
+                cache:false
     });
 
     $("#view-event").dialog("open");
