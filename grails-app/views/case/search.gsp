@@ -6,7 +6,7 @@
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="caseSearch"/>
     <script type="text/javascript">
-        $(function(){
+        $(function() {
             frontlinesms.caseSearchOnLoad();
         })
     </script>
@@ -38,7 +38,7 @@
                         <g:link controller="case" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
                     </td>
                     <td>
-                        <%= legalCase.active ? "active" : "inactive" %>
+                        <%=legalCase.active ? "active" : "inactive"%>
                     </td>
                 </tr>
             </g:each>
