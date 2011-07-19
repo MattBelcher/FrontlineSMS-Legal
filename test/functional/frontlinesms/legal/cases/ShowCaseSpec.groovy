@@ -134,7 +134,26 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
         then:
         true
-       caseActive.value() == null
+        caseActive.value() == null
+
+    }
+
+    def "should show the same case status on trying to update case id that already exists"() {
+        setup:
+        new Case(caseId: "1112", description: "ertyui").save(flush: true)
+        new Case(caseId: "1123", description: "ertyui").save(flush: true)
+        when:
+        to ShowCasePage, "1112"
+        and:
+        caseId = "1123"
+        description = "new description"
+        caseActive.value("off")
+        and:
+        updateCaseButton.click()
+
+        then:
+        at ShowCasePage
+        caseActive.value() == null
 
     }
 

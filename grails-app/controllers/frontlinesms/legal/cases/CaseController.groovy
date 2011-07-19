@@ -34,6 +34,12 @@ class CaseController {
         if (params.description) {
             def caseToDisplay = Case.get(params.uniqueId)
             caseToDisplay.description = params.description
+            if (params.caseStatus == null)
+                caseToDisplay.active = ""
+            else {
+                caseToDisplay.active = "true"
+            }
+            caseToDisplay.active = params.caseStatus
             [caseToDisplay: caseToDisplay, contactList: LegalContact.list()]
 
 
@@ -67,10 +73,12 @@ class CaseController {
         def originalCaseId = fetchedCase.caseId
         fetchedCase.caseId = params.caseId
         fetchedCase.description = params.description
-        if(params.caseStatus==null)
+        if (params.caseStatus == null) {
+
             fetchedCase.active = ""
-         else{
-            fetchedCase.active = "checked"
+        }
+        else {
+            fetchedCase.active = "true"
         }
         if (fetchedCase.save(flush: true)) {
             flash.message = "Case details updated"
@@ -78,11 +86,11 @@ class CaseController {
         }
         else if (params.caseId == null || params.caseId == "" || params.caseId.isAllWhitespace()) {
             flash.error = "Case number required"
-            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
+            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId, caseStatus: params.caseStatus])
         }
         else {
             flash.error = "Case number already exists. Please enter a unique case number."
-            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId])
+            redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId, caseStatus: params.caseStatus])
         }
 
 
