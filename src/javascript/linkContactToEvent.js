@@ -64,7 +64,7 @@ frontlinesms.addLinkedContactToTable = function(contactId) {
                 $(row).find('.contact-number').text() +
             '</td>' +
             '<td class="remove-contact-button">' +
-                'Remove' +
+                '<a href="">Remove</a>' +
             '</td>'
     );
     $('#contacts').append(rowToAdd);

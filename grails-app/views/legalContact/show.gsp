@@ -17,9 +17,9 @@
   <body>
   <h1 class="form-header">Contact Details</h1>
   <g:form action="save" id="contact-save-form">
-      <label>Contact Name</label>
+      <label>Name</label>
           <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
-      <label>Primary Mobile</label>
+      <label>Number</label>
                 <g:textField name="primaryMobile" id="contact-primary-mobile" value="${contactToDisplay.primaryMobile}"/>
       <label>Notes</label>
                       <g:textArea rows="10" cols="100" name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
@@ -36,7 +36,7 @@
 
     <g:form action="search" method="POST">
         <label>Enter the case ID to search for cases</label>
-        <g:textField class="wide-text-box" name="caseId" id="caseId"/>
+        <g:textField class="medium-text-box" name="caseId" id="caseId"/>
         <div class="form-submit-area">
             <g:actionSubmit id="case-search" value="Search"/>
         </div>

@@ -33,13 +33,16 @@
     <g:textField name="startTimeField" id="event-start-time" value="${params.startTimeField}"/><br><br>
     <label>End time</label>
     <g:textField name="endTimeField" id="event-end-time" value="${params.endTimeField}"/><br><br>
-    <input type="submit" id="event-save" value="Save"/>
-    <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();
-    return false;">Cancel</button>
+
 
 
     <div class="form-submit-area">
         <button id="link-contact-button">Link contacts</button>
+    </div>
+    <br>
+    <div class="form-submit-area">
+    <input type="submit" id="event-save" value="Save"/>
+ <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();return false;">Cancel</button>
     </div>
 
     <g:hiddenField name="linkedContacts" id="event-linked-contacts" value="${params.linkedContacts}" />
