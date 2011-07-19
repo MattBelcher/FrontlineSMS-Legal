@@ -15,7 +15,7 @@ frontlinesms.displayEventDetails = function(calEvent) {
     $("#event-date").text($.datepicker.formatDate("MM d,yy", calEvent.start));
     $('#event-id').text(calEvent.id);
     $.ajax({
-        url: "/event/fetchEventContacts",
+        url: "fetchEventContacts",
         type: "POST",
         data : {
             eventId: calEvent.id

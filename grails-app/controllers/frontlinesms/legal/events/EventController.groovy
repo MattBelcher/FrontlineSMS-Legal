@@ -18,28 +18,6 @@ class EventController {
         [contactList: LegalContact.list()]
     }
 
-    def fetchEventContacts = {
-        if (params.eventId != null && params.eventId != "") {
-            def linkedContacts = EventContact.findContactsByEvent(Event.findById(params.eventId))
-            render(contentType: "text/json") {
-                array {
-                    for (c in linkedContacts) {
-                        contact(
-                            id: c.id,
-                            name: c.name,
-                            primaryMobile: c.primaryMobile,
-                            notes: c.notes
-                        )
-                    }
-                }
-            }
-        } else {
-            render(contentType: "text/json") {
-                array {
-                }
-            }
-        }
-    }
 
     def save = {
         if (checkForNullDateTimes()) {
