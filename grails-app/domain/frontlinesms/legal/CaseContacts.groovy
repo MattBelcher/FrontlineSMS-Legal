@@ -1,5 +1,7 @@
 package frontlinesms.legal
 
+import frontlinesms2.Contact
+
 class CaseContacts {
 
     static mapping = {
@@ -10,14 +12,17 @@ class CaseContacts {
     Case legalCase
     String involvement
 
-    static CaseContacts link(legalCase, legalContact, involvement ) {
 
+    static belongsTo = [legalCase :Case]
+
+    static CaseContacts link(legalCase, legalContact, involvement ) {
         def contactCaseLink = CaseContacts.findByLegalCaseAndLegalContact(legalCase, legalContact)
         if(!contactCaseLink){
             contactCaseLink = new CaseContacts()
+            contactCaseLink.involvement = involvement
             legalContact?.addToLinkedCases(contactCaseLink)
             legalCase?.addToLinkedContacts(contactCaseLink)
-            contactCaseLink.save()
+            contactCaseLink.save(flush:true)
         }
         return contactCaseLink
 

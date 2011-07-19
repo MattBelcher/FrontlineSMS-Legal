@@ -2,6 +2,7 @@ package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
+import frontlinesms.legal.CaseContacts
 
 class CaseController {
 
@@ -12,7 +13,20 @@ class CaseController {
 
     def save = {
         def newCase = new Case(params)
+
         if (newCase.save(flush: true)) {
+            if(params.linkedContactIds !="" && params.linkedContactIds != null){
+                def idList = params.linkedContactIds.split(',') as List
+                def involvementList = params.involvementList.split(',') as List
+                idList = idList.subList(1,idList.size())
+                involvementList = involvementList.subList(1,involvementList.size())
+
+                idList.eachWithIndex{ id, i ->
+                    def linkedContact = LegalContact.get(id as Long)
+                    CaseContacts.link(newCase,linkedContact, involvementList[i])
+                }
+            }
+
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
         }
@@ -25,8 +39,6 @@ class CaseController {
             def enteredDescription = params.description
             redirect(action: 'create', params: [description: params.description])
         }
-
-
     }
 
 
@@ -36,14 +48,10 @@ class CaseController {
             caseToDisplay.description = params.description
             caseToDisplay.active = params.caseStatus
             [caseToDisplay: caseToDisplay, contactList: LegalContact.list()]
-
-
         }
         else {
             [caseToDisplay: Case.findByCaseId(params.id), contactList: LegalContact.list()]
         }
-
-
     }
 
     def search = {
@@ -56,12 +64,12 @@ class CaseController {
             else {
                 [foundCase: foundCases]
             }
-
         }
         else {
             [foundCase: Case.getAll()]
         }
     }
+
     def update = {
         def fetchedCase = Case.get(params.currentId)
         def originalUniqueId = params.currentId
@@ -87,7 +95,5 @@ class CaseController {
             flash.error = "Case number already exists. Please enter a unique case number."
             redirect(action: 'show', params: [id: originalCaseId, description: fetchedCase.description, uniqueId: originalUniqueId, caseStatus: params.caseStatus])
         }
-
-
     }
 }

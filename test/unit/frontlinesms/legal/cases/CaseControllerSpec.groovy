@@ -5,6 +5,7 @@ import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
 import frontlinesms2.Contact
 import org.junit.Ignore
+import frontlinesms.legal.CaseContacts
 
 class CaseControllerSpec extends ControllerSpec {
 
@@ -22,7 +23,7 @@ class CaseControllerSpec extends ControllerSpec {
         redirectArgs == [action: "show", params: [id: "1234"]]
     }
 
-    def "should save case"() {
+    def "should save case with Id and description"() {
         setup:
         def cases = []
         mockDomain(Case, cases)
@@ -34,6 +35,24 @@ class CaseControllerSpec extends ControllerSpec {
 
         then:
         Case.count() == 1
+    }
+
+    def "should save contact link when linked on create case"() {
+        setup:
+        mockDomain(Case)
+        mockDomain(CaseContacts)
+        mockDomain(LegalContact, [new LegalContact(id: 1, name: "John Doe", primaryMobile: "435352", notes: "hii")])
+
+        when:
+        controller.params.caseId = "2"
+        controller.params.linkedContactIds = ",1"
+        controller.params.involvementList = ",somthing"
+
+        and:
+        controller.save()
+
+        then:
+        CaseContacts.count() == 1
     }
 
     def 'should display error message and redirect to create when case id is blank'() {
@@ -85,7 +104,7 @@ class CaseControllerSpec extends ControllerSpec {
         def newCase = new Case(caseId: "1234")
         def contactList = []
         mockDomain(Case, [newCase])
-        mockDomain(Contact, contactList)
+        mockDomain(LegalContact, contactList)
         controller.params.id = "1234"
 
         when:
@@ -123,8 +142,6 @@ class CaseControllerSpec extends ControllerSpec {
 
         then:
         existingCase.active == false
-
-
     }
 
 
