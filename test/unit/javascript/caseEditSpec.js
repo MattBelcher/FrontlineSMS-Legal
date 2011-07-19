@@ -30,3 +30,20 @@ describe('caseEditCancelDialog', function () {
 
 
 });
+
+describe('submit button', function(){
+    beforeEach(function(){
+        var tempHTML =
+            '<input id="case-id" type="text" value="" />' +
+            '<button id="case-update" disabled="disabled">Submit</button>' +
+        $(tempHTML).appendTo("#fixtures");
+        frontlinesms.showCaseOnLoad();
+    });
+
+    it ('should be enabled if changes have been made', function(){
+        $('case-id').change();
+        expect($('#case-update:disabled').val()).toBeUndefined();
+    })
+
+
+})                                                             ;

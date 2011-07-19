@@ -4,9 +4,11 @@ frontlinesms.showCaseOnLoad = function() {
     modified = false
     $('input').change(function() {
         modified = true;
+       $('#case-update').removeAttr("disabled");
     });
     $('textarea').change(function(){
         modified = true;
+        $('#case-update').removeAttr("disabled");
     })
     $("#case-update-cancel").click(function() {
         frontlinesms.caseUpdateCancelConfirmAction(modified);

@@ -5,7 +5,7 @@
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
     <g:javascript library="linkContactToCase"/>
-    <g:javascript library="updateCase"/>
+    <g:javascript library="caseUpdate"/>
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="contactSearch"/>
     <script type="text/javascript">
@@ -46,7 +46,7 @@
     </table>
 
     <div class="form-submit-area">
-        <g:actionSubmit id="case-update" value="Update"/>
+        <g:actionSubmit id="case-update" value="Update" disabled="disabled"/>
         <button id="case-update-cancel">Cancel</button>
     </div>
 </g:form>
