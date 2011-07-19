@@ -15,7 +15,7 @@
     </script>
   </head>
   <body>
-  <h1 class="form-header">Case Details</h1>
+  <h1 class="form-header">Contact Details</h1>
   <g:form action="save" id="contact-save-form">
       <label>Contact Name</label>
           <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
@@ -25,11 +25,11 @@
                       <g:textArea rows="10" cols="100" name="notes" id="contact-notes" value="${contactToDisplay.notes}"/>
 
 
+      <div class="form-submit-area">
+          <button id="link-case-button">Link Cases</button>
+      </div>
   </g:form>
 
- <div class="form-submit-area">
-    <button id="link-case-button">Link Cases</button>
-</div>
 
 <div id="link-case-dialog" title="Link Cases">
     <h3 class="form-header">Search for Case by Case ID</h3>
