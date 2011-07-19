@@ -34,11 +34,6 @@ class CaseController {
         if (params.description) {
             def caseToDisplay = Case.get(params.uniqueId)
             caseToDisplay.description = params.description
-            if (params.caseStatus == null)
-                caseToDisplay.active = ""
-            else {
-                caseToDisplay.active = "true"
-            }
             caseToDisplay.active = params.caseStatus
             [caseToDisplay: caseToDisplay, contactList: LegalContact.list()]
 
