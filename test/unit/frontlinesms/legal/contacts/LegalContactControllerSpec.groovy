@@ -7,6 +7,24 @@ import frontlinesms2.Contact
 
 
 class LegalContactControllerSpec extends ControllerSpec {
+
+    def "update action should update contact"() {
+        given:
+        def newLegalContact = new LegalContact(id: 666, name: "John Doe", primaryMobile: "5285", notes: "He is anonymous.")
+        mockDomain(LegalContact, [newLegalContact])
+        controller.params.name = "Steve Jobs"
+        controller.params.primaryMobile = "5285"
+        controller.params.notes = "Identified."
+        controller.params.id = 666
+
+        when:
+        controller.update()
+
+        then:
+        newLegalContact.name == "Steve Jobs"
+    }
+
+
     def "should save contact"() {
         setup:
         def contacts = []
@@ -23,7 +41,8 @@ class LegalContactControllerSpec extends ControllerSpec {
 
     def 'create action should redirect to Contact detail page'() {
          setup:
-         mockDomain(LegalContact)
+         def contacts = []
+         mockDomain(LegalContact, contacts)
 
          controller.params.name = 'Steve Jobs'
          controller.params.primaryMobile = '666'
@@ -33,7 +52,7 @@ class LegalContactControllerSpec extends ControllerSpec {
 
          then:
          controller.flash.message == "Contact Saved"
-         redirectArgs == [action: "show", params: [id: "666"]]
+         redirectArgs.action == "show"
      }
 
     def 'should display error if primaryMobile is blank'(){

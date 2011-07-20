@@ -1,20 +1,48 @@
 package frontlinesms.legal.contact
 
-import grails.plugin.spock.IntegrationSpec
 import frontlinesms.legal.LegalContact
-import frontlinesms2.Contact
+import grails.plugin.spock.IntegrationSpec
 
 class LegalContactIntegrationSpec extends IntegrationSpec {
     def "phone number should be unique"() {
-        setup:
-        def firstContact = new Contact(name: "fabio", address: "1234 a").save()
-        def secondContact = new Contact(name: "dev", address: "5678 b").save()
+        given:
+        new LegalContact(name: "fabio", primaryMobile: "1234").save()
 
         when:
-        new LegalContact(contact: firstContact, primaryMobile: "1234" ).save()
-        def secondLegalContact = new LegalContact(contact: secondContact, primaryMobile: "1234").save()
+        def secondContact = new LegalContact(name: "dev", primaryMobile: "1234").save()
 
         then:
-        secondLegalContact == null
+        secondContact == null
     }
+
+    def "should be able to update contact details after creating a contact"() {
+
+        given:
+        def aLegalContact = new LegalContact(name: "Tester", primaryMobile: "12345678").save()
+
+        when:
+        aLegalContact.name = "ChangedName"
+        aLegalContact.save()
+        def foundContact = LegalContact.findById(aLegalContact.id)
+
+        then:
+        foundContact.name == aLegalContact.name
+    }
+
+    def "should have errors if primaryMobile is already taken"() {
+        given:
+        new LegalContact(name: "John Doe", primaryMobile: "5285", notes: "He is anonymous.").save(flush: true)
+        new LegalContact(name: "", primaryMobile: "7777", notes: "").save(flush: true)
+
+        when:
+        def SteveJobs = LegalContact.findByPrimaryMobile("5285")
+        SteveJobs.primaryMobile = "7777"
+        SteveJobs.name = "Steve Jobs"
+        SteveJobs.save(flush: true)
+
+        then:
+        SteveJobs.hasErrors() == true
+
+    }
+
 }
