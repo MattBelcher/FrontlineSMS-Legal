@@ -3,7 +3,7 @@ package frontlinesms.legal.contacts
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.HomePage
 import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
-import frontlinesms.legal.functionaltests.pages.contact.ShowContactPage
+import frontlinesms.legal.functionaltests.pages.contact.ShowLegalContactPage
 
 class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
 
@@ -41,7 +41,7 @@ class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
         save.click()
 
         then:
-        assert at(ShowContactPage)
+        assert at(ShowLegalContactPage)
     }
 
     def "should save contact and redirect to show page when user chooses to save contact without name"() {
@@ -57,7 +57,7 @@ class CreateLegalContactSpec extends FrontlinesmsLegalGebSpec {
         saveWithoutNameYes.click()
 
         then:
-        assert at(ShowContactPage)
+        assert at(ShowLegalContactPage)
         primaryMobile == "8675309"
     }
 

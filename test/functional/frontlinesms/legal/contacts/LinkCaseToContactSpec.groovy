@@ -1,7 +1,7 @@
 package frontlinesms.legal.contacts
 
 import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
-import frontlinesms.legal.functionaltests.pages.contact.ShowContactPage
+import frontlinesms.legal.functionaltests.pages.contact.ShowLegalContactPage
 import frontlinesms.legal.functionaltests.pages.contact.CreateLegalContactPage
 
 class LinkCaseToContactSpec extends FrontlinesmsLegalGebSpec{
@@ -17,7 +17,7 @@ class LinkCaseToContactSpec extends FrontlinesmsLegalGebSpec{
         save.click()
 
         then:
-        assert at(ShowContactPage)
+        assert at(ShowLegalContactPage)
         linkCaseButton.present
     }
 }

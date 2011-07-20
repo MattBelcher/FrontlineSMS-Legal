@@ -3,7 +3,11 @@ package frontlinesms.legal.contacts
 import grails.plugin.spock.ControllerSpec
 import frontlinesms.legal.LegalContact
 import frontlinesms.legal.Case
-import frontlinesms2.Contact
+import frontlinesms.legal.Event
+import frontlinesms.legal.EventContact
+import frontlinesms.legal.LegalContact
+import grails.plugin.spock.ControllerSpec
+import java.sql.Time
 
 
 class LegalContactControllerSpec extends ControllerSpec {
@@ -40,22 +44,21 @@ class LegalContactControllerSpec extends ControllerSpec {
     }
 
     def 'create action should redirect to Contact detail page'() {
-         setup:
-         def contacts = []
-         mockDomain(LegalContact, contacts)
+        setup:
+        mockDomain(LegalContact)
 
-         controller.params.name = 'Steve Jobs'
-         controller.params.primaryMobile = '666'
+        controller.params.name = 'Steve Jobs'
+        controller.params.primaryMobile = '666'
 
-         when:
-         controller.save()
+        when:
+        controller.save()
 
-         then:
-         controller.flash.message == "Contact Saved"
-         redirectArgs.action == "show"
-     }
+        then:
+        controller.flash.message == "Contact Saved"
+        redirectArgs.action == 'show'
+    }
 
-    def 'should display error if primaryMobile is blank'(){
+    def 'should display error if primaryMobile is blank'() {
 
         given:
 
@@ -66,11 +69,11 @@ class LegalContactControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        redirectArgs == [action: "create", params: [name: "bla bla", notes:null]]
+        redirectArgs == [action: "create", params: [name: "bla bla", notes: null]]
         controller.flash.error == "Please enter a contact number. Contact cannot be saved without a contact number."
     }
 
-    def 'should display error if primaryMobile is not unique'(){
+    def 'should display error if primaryMobile is not unique'() {
         given:
         def cases = []
         cases.add(new LegalContact(primaryMobile: '999'))
@@ -82,8 +85,7 @@ class LegalContactControllerSpec extends ControllerSpec {
         controller.save()
 
         then:
-        println cases
-        redirectArgs == [action: "create", params: [name: "Steve", notes:null, primaryMobile:'999']]
+        redirectArgs == [action: "create", params: [name: "Steve", notes: null, primaryMobile: '999']]
         controller.flash.error == "Contact number already exists. Please enter a unique contact number."
     }
 
@@ -91,9 +93,11 @@ class LegalContactControllerSpec extends ControllerSpec {
         given:
         def newLegalContact = new LegalContact(primaryMobile: "4567")
         mockDomain(LegalContact, [newLegalContact])
-        controller.params.primaryMobile = "4567"
+        controller.params.id = newLegalContact.id
         def newCase = [new Case(caseId:'23')]
         mockDomain(Case, newCase)
+        mockDomain(Event, [])
+        mockDomain(EventContact, [])
 
         when:
         def models = controller.show()
@@ -101,4 +105,80 @@ class LegalContactControllerSpec extends ControllerSpec {
         then:
         models['foundCase'] == newCase
     }
+
+    def 'should return past and future event'() {
+        def yearOffsetForDate=1900 //To fix bug in java.sql.Date year attribute
+        def contact1 = new LegalContact(primaryMobile: "123")
+
+        def pastEvent = new Event(eventTitle: "Past", dateFieldSelected: new Date(1990-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+        def futureEvent = new Event(eventTitle: "Future", dateFieldSelected: new Date(2020-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+
+        def pastEventContact = new EventContact(event: pastEvent, legalContact: contact1)
+        def futureEventContact = new EventContact(event: futureEvent, legalContact: contact1)
+        def eventContactList = [pastEventContact, futureEventContact]
+
+        contact1.linkedEvents = eventContactList
+        mockDomain(Case, [])
+        mockDomain(LegalContact, [contact1])
+        mockDomain(EventContact, eventContactList)
+
+        when:
+        controller.params.id = contact1.id
+        def models = controller.show()
+
+        then:
+        models["pastEvents"].contains(pastEvent)
+        models["futureEvents"].contains(futureEvent)
+    }
+
+    def 'should return overlapping past events'() {
+        given:
+          def yearOffsetForDate=1900
+        def contact1 = new LegalContact(primaryMobile: "123")
+
+        def pastEvent1 = new Event(eventTitle: "Past1", dateFieldSelected: new Date(1990-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+        def pastEvent2 = new Event(eventTitle: "Past2", dateFieldSelected: new Date(1990-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+
+        def eventContactList = [new EventContact(event: pastEvent1, legalContact: contact1), new EventContact(event: pastEvent2, legalContact: contact1)]
+
+        contact1.linkedEvents = eventContactList
+
+        mockDomain(Case, [])
+        mockDomain(LegalContact, [contact1])
+        mockDomain(EventContact, eventContactList)
+
+
+        when:
+        controller.params.id = contact1.id
+        def models = controller.show()
+
+        then:
+        models["pastEvents"].contains(pastEvent1)
+        models["pastEvents"].contains(pastEvent2)
+    }
+
+    def 'should return overlapping future events'() {
+          def yearOffsetForDate=1900
+        def contact1 = new LegalContact(primaryMobile: "123")
+
+        def futureEvent1 = new Event(eventTitle: "Future1", dateFieldSelected: new Date(2020-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+        def futureEvent2 = new Event(eventTitle: "Future2", dateFieldSelected: new Date(2020-yearOffsetForDate, 7, 3), startTimeField: new Time(13, 50, 0), endTimeField: new Time(15, 30, 0))
+
+        def eventContactList = [new EventContact(event: futureEvent1, legalContact: contact1), new EventContact(event: futureEvent2, legalContact: contact1)]
+
+        contact1.linkedEvents = eventContactList
+
+        mockDomain(Case, [])
+        mockDomain(LegalContact, [contact1])
+        mockDomain(EventContact, eventContactList)
+
+        when:
+        controller.params.id = contact1.id
+        def models = controller.show()
+
+        then:
+        models["futureEvents"].contains(futureEvent1)
+        models["futureEvents"].contains(futureEvent2)
+    }
+
 }

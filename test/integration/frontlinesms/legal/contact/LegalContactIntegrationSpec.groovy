@@ -1,7 +1,7 @@
 package frontlinesms.legal.contact
 
-import frontlinesms.legal.LegalContact
 import grails.plugin.spock.IntegrationSpec
+import frontlinesms.legal.LegalContact
 
 class LegalContactIntegrationSpec extends IntegrationSpec {
     def "phone number should be unique"() {
