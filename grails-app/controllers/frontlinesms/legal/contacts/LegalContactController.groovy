@@ -17,15 +17,15 @@ class LegalContactController {
     }
 
     def update = {
-        def legalContact = LegalContact.get(params.id)
+        def legalContact = LegalContact.get(params.currentId)
         updateLegalContact(legalContact)
-        redirect(action: 'show', params: [id: legalContact.id])
+        redirect(action: 'show', params: [contactId: params.currentId])
     }
 
     private def saveLegalContact(legalContact) {
         if (legalContact.save(flush: true)) {
             flash.message = "Contact Saved"
-            redirect(action: 'show', params: [id: legalContact.id])
+            redirect(action: 'show', params: [contactId: legalContact.id])
         }
         else if (params.primaryMobile == null || params.primaryMobile == "" || params.primaryMobile.isAllWhitespace()) {
             flash.error = "Please enter a contact number. Contact cannot be saved without a contact number."
@@ -55,6 +55,7 @@ class LegalContactController {
     }
 
     def show = {
-        [foundCase: Case.list(), contactToDisplay: LegalContact.findById(params.id)]
+        println "params = ${params}"
+        [foundCase: Case.list(), contactToDisplay: LegalContact.findById(params.contactId)]
         }
 }

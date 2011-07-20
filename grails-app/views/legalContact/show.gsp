@@ -7,16 +7,19 @@
       <g:javascript library="linkCaseToContact"/>
       <g:javascript library="picnet.table.filter.min"/>
       <g:javascript library="caseSearch"/>
+      <g:javascript library="contactCreate"/>
       <script type="text/javascript">
         $(function() {
             frontlinesms.linkCaseToContact();
             frontlinesms.caseSearchOnLoad();
+            frontlinesms.createNewContactOnLoad();
         })
     </script>
   </head>
   <body>
   <h1 class="form-header">Contact Details</h1>
-  <g:form action="save" id="contact-save-form">
+  <form action="update" id="contact-save-form" method="post">
+      <g:hiddenField name="currentId" value="${contactToDisplay.id}"/>
       <label>Name</label>
           <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
       <label>Number</label>
@@ -28,7 +31,13 @@
       <div class="form-submit-area">
           <button id="link-case-button">Link Cases</button>
       </div>
-  </g:form>
+
+      <div class="form-submit-area">
+          <input type="submit" id="contact-save" value="Update"/>
+          <button id="contact-create-cancel">Cancel</button>
+      </div>
+
+  </form>
 
 
 <div id="link-case-dialog" title="Link Cases">
@@ -67,6 +76,15 @@
     </g:form>
 
 </div>
+
+  <div id="contact-save-no-name-dialog" title="Save Contact without a Name?" style="display: none;">
+      <p>Are you sure you would like to save contact without a name?</p>
+  </div>
+
+<div id="contact-create-cancel-dialog" title="Discard Changes?" style="display: none;">
+  <p>Do you want to discard changes to this contact? Your changes will not be saved.</p>
+  </div>
+
 
   </body>
 </html>

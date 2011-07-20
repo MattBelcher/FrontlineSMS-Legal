@@ -15,7 +15,7 @@ class LegalContactControllerSpec extends ControllerSpec {
         controller.params.name = "Steve Jobs"
         controller.params.primaryMobile = "5285"
         controller.params.notes = "Identified."
-        controller.params.id = 666
+        controller.params.currentId = 666
 
         when:
         controller.update()
