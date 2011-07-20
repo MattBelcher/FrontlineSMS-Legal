@@ -39,11 +39,7 @@
     <div class="form-submit-area">
         <button id="link-contact-button">Link contacts</button>
     </div>
-    <br>
-    <div class="form-submit-area">
-    <input type="submit" id="event-save" value="Save"/>
- <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();return false;">Cancel</button>
-    </div>
+
 
     <g:hiddenField name="linkedContacts" id="event-linked-contacts" value="${params.linkedContacts}" />
     <table name="contacts" id="contacts">
@@ -53,7 +49,11 @@
         </tr>
 
     </table>
-
+     <br>
+    <div class="form-submit-area">
+    <input type="submit" id="event-save" value="Save"/>
+ <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();return false;">Cancel</button>
+    </div>
 
 </form>
 
