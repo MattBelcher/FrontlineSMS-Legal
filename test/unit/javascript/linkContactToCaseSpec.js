@@ -2,7 +2,7 @@ describe('linkContactToCase', function () {
     beforeEach(function() {
         var tempHTML =
             '<input type="hidden" id="linked-contact-ids" value=""/>' +
-                '<input type="hidden" id="involvement-list" value=""/> ' +
+            '<input type="hidden" id="involvement-list" value=""/> ' +
                 '<div id="link-contacts" title="Link Contacts">' +
 
                 '<table id="contactsTable"> <tbody>' +

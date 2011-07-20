@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="grails.converters.JSON" contentType="text/html;charset=UTF-8" %>
+<%@ page import="org.springframework.web.util.HtmlUtils" contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
       <title>Show Contact Page</title>
@@ -20,6 +21,7 @@
   <h1 class="form-header">Contact Details</h1>
   <form action="update" id="contact-save-form" method="post">
       <g:hiddenField name="currentId" value="${contactToDisplay.id}"/>
+      <g:hiddenField name="linkedCases" id="contact-linked-cases" value="${contactToDisplay.linkedCases}"/>
       <label>Name</label>
           <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
       <label>Number</label>
@@ -31,6 +33,17 @@
       <div class="form-submit-area">
           <button id="link-case-button">Link Cases</button>
       </div>
+
+      <table name="cases" id="cases">
+          <thead>
+          <tr>
+              <th>Case Number</th>
+              <th>Relationship</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
 
       <div class="form-submit-area">
           <input type="submit" id="contact-save" value="Update"/>
@@ -61,9 +74,9 @@
                 <tbody>
 
                 <g:each in="${foundCase}" var="legalCase">
-                    <tr>
-                        <td>
-                            <g:link controller="contact" action="show" id="${legalCase.caseId}"><%=legalCase.caseId%></g:link>
+                    <tr class="caseLink" id="${legalCase.id}">
+                        <td class="case-name">
+                            <%= HtmlUtils.htmlEscape(legalCase.caseId) %>
                         </td>
                         <td>
                             <%= legalCase.active ? "active" : "inactive" %>

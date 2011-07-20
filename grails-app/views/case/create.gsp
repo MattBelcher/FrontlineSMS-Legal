@@ -45,15 +45,8 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
         <tr>
             <th>Contact Name</th>
             <th>Phone</th>
-            <th>Involvement</th>
+            <th>Relationship</th>
         </tr>
-        %{--<g:if test="${contacts?.size > 0}">--}%
-        %{--<g:each in="${contacts}">--}%
-        %{--<tr>--}%
-        %{--<td><g:textField value="${it.name}" name="contactName"/></td>--}%
-        %{--</tr>--}%
-        %{--</g:each>--}%
-        %{--</g:if>--}%
     </table>
 
 

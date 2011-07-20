@@ -55,7 +55,6 @@ class LegalContactController {
     }
 
     def show = {
-        println "params = ${params}"
         [foundCase: Case.list(), contactToDisplay: LegalContact.findById(params.contactId)]
         }
 }
