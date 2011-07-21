@@ -58,7 +58,90 @@
           </g:each>
           </tbody>
       </table>
+       <g:if test="${pastEvents}">
+      <span>Past Event:</span>
+      <table id="past-events" name="pastEvents">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Time</th>
+          </tr>
+          </thead>
+          <tbody>
 
+          <g:each in="${pastEvents}" var="event">
+              <tr>
+                  <td>
+                      <%=event.eventTitle%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("dd-MMM-yyyy").format(event.dateFieldSelected)%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("hh:mm a").format(event.startTimeField)%> - <%=new SimpleDateFormat("hh:mm a").format(event.endTimeField)%>
+                  </td>
+              </tr>
+          </g:each>
+          </tbody>
+      </table>
+  </g:if>
+   <g:if test="${ongoingEvents}">
+      <span>Ongoing Event:</span>
+      <table id="current-events" name="currentEvents">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Time</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <g:each in="${ongoingEvents}" var="event">
+              <tr>
+                  <td>
+                      <%=event.eventTitle%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("dd-MMM-yyyy").format(event.dateFieldSelected)%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("hh:mm a").format(event.startTimeField)%> - <%=new SimpleDateFormat("hh:mm a").format(event.endTimeField)%>
+                  </td>
+              </tr>
+          </g:each>
+          </tbody>
+      </table>
+  </g:if>
+  <g:if test="${futureEvents}">
+      <span>Upcoming Event:</span>
+      <table class="future-events" id="future-events" name="futureEvents">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Time</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <g:each in="${futureEvents}" var="event">
+              <tr>
+                  <td>
+                      <%=event.eventTitle%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("dd-MMM-yyyy").format(event.dateFieldSelected)%>
+                  </td>
+                  <td>
+                      <%=new SimpleDateFormat("hh:mm a").format(event.startTimeField)%> - <%=new SimpleDateFormat("hh:mm a").format(event.endTimeField)%>
+                  </td>
+              </tr>
+          </g:each>
+          </tbody>
+      </table>
+  </g:if>
       <div class="form-submit-area">
           <button id="contact-save">Update</button>
           <button id="contact-create-cancel">Cancel</button>
@@ -111,62 +194,7 @@
 <div id="contact-create-cancel-dialog" title="Discard Changes?" style="display: none;">
   <p>Do you want to discard changes to this contact? Your changes will not be saved.</p>
   </div>
-  <g:if test="${pastEvents}">
-      <span>Last Event:</span>
-      <table class="past-events" id="past-events" name="pastEvents">
-          <thead>
-          <tr>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Time</th>
-          </tr>
-          </thead>
-          <tbody>
 
-          <g:each in="${pastEvents}" var="event">
-              <tr>
-                  <td>
-                      <%=event.eventTitle%>
-                  </td>
-                  <td>
-                      <%=new SimpleDateFormat("dd-MMM-yyyy").format(event.dateFieldSelected)%>
-                  </td>
-                  <td>
-                      <%=new SimpleDateFormat("hh:mm a").format(event.startTimeField)%> - <%=new SimpleDateFormat("hh:mm a").format(event.endTimeField)%>
-                  </td>
-              </tr>
-          </g:each>
-          </tbody>
-      </table>
-  </g:if>
-  <g:if test="${futureEvents}">
-      <span>Future Event:</span>
-      <table class="future-events" id="future-events" name="futureEvents">
-          <thead>
-          <tr>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Time</th>
-          </tr>
-          </thead>
-          <tbody>
-
-          <g:each in="${futureEvents}" var="event">
-              <tr>
-                  <td>
-                      <%=event.eventTitle%>
-                  </td>
-                  <td>
-                      <%=new SimpleDateFormat("dd-MMM-yyyy").format(event.dateFieldSelected)%>
-                  </td>
-                  <td>
-                      <%=new SimpleDateFormat("hh:mm a").format(event.startTimeField)%> - <%=new SimpleDateFormat("hh:mm a").format(event.endTimeField)%>
-                  </td>
-              </tr>
-          </g:each>
-          </tbody>
-      </table>
-  </g:if>
 
 
   </body>

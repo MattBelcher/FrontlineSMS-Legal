@@ -18,7 +18,6 @@
         })
     </script>
 
-
 </head>
 
 <body>
@@ -29,11 +28,10 @@
     <g:textField id="event-title" name="eventTitle" value="${params.eventTitle}"/><br><br>
     <label>Date</label>
     <g:textField name="dateFieldSelected" id="event-date" value="${params.dateFieldSelected}"/><br><br>
-    <label>Start time</label>
+    <label>Start time (UTC)</label>
     <g:textField name="startTimeField" id="event-start-time" value="${params.startTimeField}"/><br><br>
-    <label>End time</label>
+    <label>End time (UTC)</label>
     <g:textField name="endTimeField" id="event-end-time" value="${params.endTimeField}"/><br><br>
-
 
 
     <div class="form-submit-area">
@@ -41,7 +39,7 @@
     </div>
 
 
-    <g:hiddenField name="linkedContacts" id="event-linked-contacts" value="${params.linkedContacts}" />
+    <g:hiddenField name="linkedContacts" id="event-linked-contacts" value="${params.linkedContacts}"/>
     <table name="contacts" id="contacts">
         <tr>
             <th>Contact Name</th>
@@ -49,10 +47,12 @@
         </tr>
 
     </table>
-     <br>
+    <br>
+
     <div class="form-submit-area">
-    <input type="submit" id="event-save" value="Save"/>
- <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();return false;">Cancel</button>
+        <input type="submit" id="event-save" value="Save"/>
+        <button id="event-cancel" onclick="frontlinesms.eventCancelConfirmAction();
+        return false;">Cancel</button>
     </div>
 
 </form>

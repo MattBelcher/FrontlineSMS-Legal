@@ -62,11 +62,11 @@ class LegalContactController {
     }
 
     private def linkCasesToContact(caseListString, legalContact) {
-            def caseList = new HashMap<Long, String>(JSON.parse(caseListString))
-            CaseContacts.findAllByLegalContact(legalContact)*.delete(flush: true)
-            caseList.each { it ->
-                CaseContacts.link(Case.findById(it.key as Long), legalContact, it.value )
-            }
+        def caseList = new HashMap<Long, String>(JSON.parse(caseListString))
+        CaseContacts.findAllByLegalContact(legalContact)*.delete(flush: true)
+        caseList.each { it ->
+            CaseContacts.link(Case.findById(it.key as Long), legalContact, it.value)
+        }
     }
 
     private def pairUpCaseIdAndRelationship(caseContacts) {
@@ -84,27 +84,46 @@ class LegalContactController {
         def currentDate = new Date()
         def pastEventList = []
         def futureEventList = []
-        def pastTime = new Date()
-        def futureTime = null
-
+        def nearestPastEventTime = null
+        def nearestFutureEventTime = null
+        def ongoingEventList = []
         linkedEvents.each {eventContact ->
-            def e = eventContact.event
-            def linkedEventTime = new Date(e.dateFieldSelected.year, e.dateFieldSelected.month, e.dateFieldSelected.date, e.startTimeField.hours, e.startTimeField.minutes)
-
-            if (linkedEventTime.after(currentDate)) {
-                if (futureTime == null || !linkedEventTime.before(futureTime)) {
-                    futureTime = linkedEventTime
-                    futureEventList.add(e)
+            def eventIterator = eventContact.event
+            def linkedEventStartTime = new Date(eventIterator.dateFieldSelected.year, eventIterator.dateFieldSelected.month, eventIterator.dateFieldSelected.date, eventIterator.startTimeField.hours, eventIterator.startTimeField.minutes)
+            def linkedEventEndTime = new Date(eventIterator.dateFieldSelected.year, eventIterator.dateFieldSelected.month, eventIterator.dateFieldSelected.date, eventIterator.endTimeField.hours, eventIterator.endTimeField.minutes)
+            println("Current Date: " + currentDate)
+            println("Linked event Date: " + linkedEventStartTime)
+            println(linkedEventStartTime.after(currentDate))
+            if (linkedEventStartTime.after(currentDate)) {
+                println(linkedEventEndTime)
+                if (nearestFutureEventTime == null || linkedEventStartTime.compareTo(nearestFutureEventTime) < 0) {
+                    nearestFutureEventTime = linkedEventStartTime
+                    futureEventList = [eventIterator]
+                }
+                else if (linkedEventStartTime.compareTo(nearestFutureEventTime) == 0) {
+                    nearestFutureEventTime = linkedEventStartTime
+                    futureEventList.add(eventIterator)
                 }
             }
             else {
-                if (!linkedEventTime.after(pastTime)) {
-                    pastTime = linkedEventTime
-                    pastEventList.add(e)
+                if (linkedEventEndTime.compareTo(currentDate) > 0) {
+                    ongoingEventList.add(eventIterator)
                 }
+                else if (nearestPastEventTime == null || linkedEventEndTime.compareTo(nearestPastEventTime) > 0) {
+                    nearestPastEventTime = linkedEventEndTime
+                    pastEventList = [eventIterator]
+                }
+                else if (linkedEventEndTime == nearestPastEventTime) {
+                    nearestPastEventTime = linkedEventEndTime
+                    pastEventList.add(eventIterator)
+                }
+
             }
         }
+        if (!ongoingEventList.isEmpty()) {
+            futureEventList = null
+        }
         def contactLinkedCases = pairUpCaseIdAndRelationship(tempContact.linkedCases) as JSON
-        [allCases: Case.list(), contactToDisplay: LegalContact.findById(params.id), pastEvents: pastEventList, futureEvents: futureEventList, contactLinkedCases: contactLinkedCases.toString()]
+        [allCases: Case.list(), contactToDisplay: LegalContact.findById(params.id), pastEvents: pastEventList, ongoingEvents: ongoingEventList, futureEvents: futureEventList, contactLinkedCases: contactLinkedCases.toString()]
     }
 }

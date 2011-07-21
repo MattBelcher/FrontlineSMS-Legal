@@ -13,7 +13,7 @@ class ShowLegalContactPage extends Page {
         linkCaseButton { $("button", id: "link-case-button")}
         pastEventsTable {$("#past-events tbody tr").collect {module EventRow, it} }
         futureEventsTable {$("#future-events tbody tr").collect {module EventRow, it} }
-        linkedContactsTable {$("#future-events tbody tr").collect {module CaseRow, it} }
+//        linkedContactsTable {$("#future-events tbody tr").collect {module CaseRow, it} }
          casesToLink {
             try {
                 $("tr[class='caseLink']")
@@ -22,6 +22,9 @@ class ShowLegalContactPage extends Page {
                 null
             }
         }
+//=======
+        currentEventsTable {$("#current-events tbody tr").collect {module EventRow, it} }
+//>>>>>>> Anshul/Deva: Completed Legal-5: View upcoming and last event for a client
     }
 }
 class EventRow extends Module {
