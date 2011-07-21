@@ -32,10 +32,10 @@
             <g:each in="${foundContact}" var="legalContact">
                 <tr>
                     <td>
-                        <g:link controller="legalContact" action="show" id="${legalContact.name}"><%=legalContact.name%></g:link>
+                        <g:link controller="legalContact" action="show" id="${legalContact.id}"><%=legalContact.name%></g:link>
                     </td>
                     <td>
-                        <g:link controller="legalContact" action="show" id="${legalContact.primaryMobile}"><%=legalContact.primaryMobile%></g:link>
+                        <g:link controller="legalContact" action="show" id="${legalContact.id}"><%=legalContact.primaryMobile%></g:link>
 
                     </td>
                 </tr>
