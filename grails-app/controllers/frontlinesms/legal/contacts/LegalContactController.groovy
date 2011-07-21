@@ -1,5 +1,7 @@
 package frontlinesms.legal.contacts
 
+import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
 import frontlinesms.legal.Case
 import frontlinesms.legal.CaseContacts
 import frontlinesms.legal.LegalContact
@@ -13,8 +15,13 @@ class LegalContactController {
     }
 
     def search = {
-        [foundContact: LegalContact.list()]
-
+        if (params.name) {
+            def foundContacts = LegalContact.findAllByNameLike("${params.name}%")
+            [foundContact: foundContacts as List]
+        }
+        else {
+            [foundContact: LegalContact.list()]
+        }
     }
 
     def save = {
