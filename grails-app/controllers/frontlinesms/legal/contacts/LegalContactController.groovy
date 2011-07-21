@@ -1,7 +1,11 @@
 package frontlinesms.legal.contacts
 
-import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
+import frontlinesms2.Contact
+import frontlinesms.legal.Case
+import frontlinesms.legal.CaseContacts
+import frontlinesms.legal.LegalContact
+import grails.converters.JSON
 
 class LegalContactController {
 
@@ -57,10 +61,19 @@ class LegalContactController {
             flash.error = "Contact number already exists. Please enter a unique contact number."
         }
     }
+    
+    private def pairUpCaseIdAndRelationship(caseContacts) {
+        def returnList = new HashMap<Long, String>()
+        caseContacts.each { it ->
+            returnList[it.legalCase.id] = it.involvement
+        }
+        return returnList
+    }
 
     def show = {
 
-        def linkedEvents = LegalContact.findById(params.id).linkedEvents
+        def tempContact = LegalContact.findById(params.id)
+        def linkedEvents = tempContact.linkedEvents
         def currentDate = new Date()
         def pastEventList = []
         def futureEventList = []
@@ -84,6 +97,7 @@ class LegalContactController {
                 }
             }
         }
-        [foundCase: Case.list(), contactToDisplay: LegalContact.findById(params.id), pastEvents: pastEventList, futureEvents: futureEventList]
+        def contactLinkedCases = pairUpCaseIdAndRelationship(tempContact.linkedCases) as JSON
+        [allCases: Case.list(), contactToDisplay: LegalContact.findById(params.id), pastEvents: pastEventList, futureEvents: futureEventList, contactLinkedCases: contactLinkedCases.toString()]
     }
 }

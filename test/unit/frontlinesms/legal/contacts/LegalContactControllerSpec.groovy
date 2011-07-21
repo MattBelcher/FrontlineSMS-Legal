@@ -1,7 +1,5 @@
 package frontlinesms.legal.contacts
 
-import grails.plugin.spock.ControllerSpec
-import frontlinesms.legal.LegalContact
 import frontlinesms.legal.Case
 import frontlinesms.legal.Event
 import frontlinesms.legal.EventContact
@@ -91,9 +89,8 @@ class LegalContactControllerSpec extends ControllerSpec {
 
     def 'should display all the cases when the popup appears'() {
         given:
-        def newLegalContact = new LegalContact(primaryMobile: "4567")
-        mockDomain(LegalContact, [newLegalContact])
-        controller.params.id = newLegalContact.id
+        mockDomain(LegalContact, [new LegalContact(id:666, name: "John Doe", primaryMobile: "5285", notes: "He is anonymous.")])
+        controller.params.id = 666
         def newCase = [new Case(caseId:'23')]
         mockDomain(Case, newCase)
         mockDomain(Event, [])
@@ -103,7 +100,7 @@ class LegalContactControllerSpec extends ControllerSpec {
         def models = controller.show()
 
         then:
-        models['foundCase'] == newCase
+        models['allCases'] == newCase
     }
 
     def 'should return past and future event'() {

@@ -21,7 +21,7 @@
   <h1 class="form-header">Contact Details</h1>
   <form action="update" id="contact-save-form" method="post">
       <g:hiddenField name="currentId" value="${contactToDisplay.id}"/>
-      <g:hiddenField name="linkedCases" id="contact-linked-cases" value="${contactToDisplay.linkedCases}"/>
+      <g:hiddenField name="linkedCases" id="contact-linked-cases" value="${contactLinkedCases}"/>
       <label>Name</label>
           <g:textField name="name" id="contact-name" value="${contactToDisplay.name}"/>
       <label>Number</label>
@@ -42,6 +42,20 @@
           </tr>
           </thead>
           <tbody>
+          <g:each in="${contactToDisplay.linkedCases}" var="legalCase">
+              <tr>
+                  <td>
+                      <span class="id" style="display:none;"><%= legalCase.legalCase.caseId %></span>
+                      <%= HtmlUtils.htmlEscape(legalCase.legalCase.id) %>
+                  </td>
+                  <td>
+                      <%= HtmlUtils.htmlEscape(legalCase.involvement) %>
+                  </td>
+                  <td class="remove-case-button">
+                      <a href="">Remove</a>
+                  </td>
+              </tr>
+          </g:each>
           </tbody>
       </table>
 
@@ -63,7 +77,7 @@
             <g:actionSubmit id="case-search" value="Search"/>
         </div>
 
-        <g:if test="${foundCase}">
+        <g:if test="${allCases}">
             <table class="search-results" id="SearchResults">
                 <thead>
                 <tr>
@@ -73,7 +87,7 @@
                 </thead>
                 <tbody>
 
-                <g:each in="${foundCase}" var="legalCase">
+                <g:each in="${allCases}" var="legalCase">
                     <tr class="caseLink" id="${legalCase.id}">
                         <td class="case-name">
                             <%= HtmlUtils.htmlEscape(legalCase.caseId) %>

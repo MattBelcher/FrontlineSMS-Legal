@@ -28,4 +28,10 @@ class CaseContacts {
 
     }
 
+    static Case[] findCasesByLegalContact(LegalContact contact) {
+        def linkedCases = EventContact.findAllByLegalContact(contact)
+        linkedCases.collect { it -> it.legalCase}
+
+    }
+
 }

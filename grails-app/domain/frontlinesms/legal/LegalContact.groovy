@@ -8,5 +8,5 @@ class LegalContact extends Contact{
         primaryMobile(unique: true, blank: false, nullable: false)
     }
 
-    static hasMany = [linkedCases : CaseContacts,linkedEvents: EventContact]
+    static hasMany = [linkedCases : CaseContacts, linkedEvents: EventContact]
 }
