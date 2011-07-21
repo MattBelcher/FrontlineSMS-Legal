@@ -87,15 +87,12 @@ class LegalContactController {
         def nearestPastEventTime = null
         def nearestFutureEventTime = null
         def ongoingEventList = []
+
         linkedEvents.each {eventContact ->
             def eventIterator = eventContact.event
             def linkedEventStartTime = new Date(eventIterator.dateFieldSelected.year, eventIterator.dateFieldSelected.month, eventIterator.dateFieldSelected.date, eventIterator.startTimeField.hours, eventIterator.startTimeField.minutes)
             def linkedEventEndTime = new Date(eventIterator.dateFieldSelected.year, eventIterator.dateFieldSelected.month, eventIterator.dateFieldSelected.date, eventIterator.endTimeField.hours, eventIterator.endTimeField.minutes)
-            println("Current Date: " + currentDate)
-            println("Linked event Date: " + linkedEventStartTime)
-            println(linkedEventStartTime.after(currentDate))
             if (linkedEventStartTime.after(currentDate)) {
-                println(linkedEventEndTime)
                 if (nearestFutureEventTime == null || linkedEventStartTime.compareTo(nearestFutureEventTime) < 0) {
                     nearestFutureEventTime = linkedEventStartTime
                     futureEventList = [eventIterator]
