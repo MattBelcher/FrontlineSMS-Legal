@@ -18,9 +18,9 @@
 <g:form action="search" method="POST">
     <label>Enter the case ID to search for cases</label>
     <g:textField class="wide-text-box" name="caseId" id="caseId"/>
-    <div class="form-submit-area">
-        <g:actionSubmit id="case-search" value="Search"/>
-    </div>
+    %{--<div class="form-submit-area">--}%
+        %{--<g:actionSubmit id="case-search" value="Search"/>--}%
+    %{--</div>--}%
 
     <g:if test="${foundCase}">
         <table class="search-results" id="SearchResults">
