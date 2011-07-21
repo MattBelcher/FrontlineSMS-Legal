@@ -15,7 +15,7 @@ class LegalContactController {
     }
 
     def search = {
-        render "<h1> hello world </h1>"
+        [foundContact: LegalContact.list()]
 
     }
 
