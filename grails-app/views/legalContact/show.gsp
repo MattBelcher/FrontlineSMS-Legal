@@ -73,9 +73,6 @@
     <g:form action="search" method="POST">
         <label>Enter the case ID to search for cases</label>
         <g:textField class="medium-text-box" name="caseId" id="caseId"/>
-        <div class="form-submit-area">
-            <g:actionSubmit id="case-search" value="Search"/>
-        </div>
 
         <g:if test="${allCases}">
             <table class="search-results" id="SearchResults">
