@@ -19,7 +19,7 @@
   </head>
   <body>
   <h1 class="form-header">Contact Details</h1>
-  <form action="update" id="contact-save-form" method="post">
+  <form action="../update" id="contact-save-form" method="post">
       <g:hiddenField name="currentId" value="${contactToDisplay.id}"/>
       <g:hiddenField name="linkedCases" id="contact-linked-cases" value="${contactLinkedCases}"/>
       <label>Name</label>
@@ -45,8 +45,8 @@
           <g:each in="${contactToDisplay.linkedCases}" var="legalCase">
               <tr>
                   <td>
-                      <span class="id" style="display:none;"><%= legalCase.legalCase.caseId %></span>
-                      <%= HtmlUtils.htmlEscape(legalCase.legalCase.id) %>
+                      <span class="id" style="display:none;"><%= legalCase.legalCase.id %></span>
+                      <%= HtmlUtils.htmlEscape(legalCase.legalCase.caseId) %>
                   </td>
                   <td>
                       <%= HtmlUtils.htmlEscape(legalCase.involvement) %>
@@ -60,7 +60,7 @@
       </table>
 
       <div class="form-submit-area">
-          <input type="submit" id="contact-save" value="Update"/>
+          <button id="contact-save">Update</button>
           <button id="contact-create-cancel">Cancel</button>
       </div>
 

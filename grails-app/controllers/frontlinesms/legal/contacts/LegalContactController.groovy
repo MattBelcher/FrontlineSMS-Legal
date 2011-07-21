@@ -1,7 +1,5 @@
 package frontlinesms.legal.contacts
 
-import frontlinesms.legal.LegalContact
-import frontlinesms2.Contact
 import frontlinesms.legal.Case
 import frontlinesms.legal.CaseContacts
 import frontlinesms.legal.LegalContact
@@ -52,7 +50,8 @@ class LegalContactController {
         legalContact.notes = params.notes
 
         if (legalContact.validate() && legalContact.save(flush: true)) {
-            flash.message = "Contact Saved"
+            linkCasesToContact(params.linkedCases, legalContact)
+            flash.message = "Contact Updated"
         }
         else if (params.primaryMobile == null || params.primaryMobile == "" || params.primaryMobile.isAllWhitespace()) {
             flash.error = "Please enter a contact number. Contact cannot be saved without a contact number."
@@ -61,7 +60,15 @@ class LegalContactController {
             flash.error = "Contact number already exists. Please enter a unique contact number."
         }
     }
-    
+
+    private def linkCasesToContact(caseListString, legalContact) {
+            def caseList = new HashMap<Long, String>(JSON.parse(caseListString))
+            CaseContacts.findAllByLegalContact(legalContact)*.delete(flush: true)
+            caseList.each { it ->
+                CaseContacts.link(Case.findById(it.key as Long), legalContact, it.value )
+            }
+    }
+
     private def pairUpCaseIdAndRelationship(caseContacts) {
         def returnList = new HashMap<Long, String>()
         caseContacts.each { it ->
@@ -72,7 +79,7 @@ class LegalContactController {
 
     def show = {
 
-        def tempContact = LegalContact.findById(params.id)
+        def tempContact = LegalContact.findById(params.id as Long)
         def linkedEvents = tempContact.linkedEvents
         def currentDate = new Date()
         def pastEventList = []
