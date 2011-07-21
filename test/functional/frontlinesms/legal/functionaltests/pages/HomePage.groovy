@@ -11,5 +11,6 @@ class HomePage extends Page {
         createNewContact {$("a", name: "createNewContact")}
         errorMessage { $("div", id: "errorMessage")}
         statusMessage { $("div", id: "status")}
+        searchContactLink { $("a", name:"contactSearch" )}
     }
 }

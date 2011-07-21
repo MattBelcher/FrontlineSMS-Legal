@@ -10,6 +10,11 @@ class LegalContactController {
     def create = {
     }
 
+    def search = {
+        render "<h1> hello world </h1>"
+
+    }
+
     def save = {
         def legalContact = new LegalContact(params)
         saveLegalContact(legalContact)

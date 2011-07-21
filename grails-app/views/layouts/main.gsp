@@ -47,12 +47,13 @@
                     <li><g:link controller="legalContact" action="create" name="createNewContact">Contact</g:link></li>
                 </ul>
             </li>
-        </br>
-        </br>
-        </br>
+        <br/>
+        <br/>
+        <br/>
             <li>Search By...</li>
             <ul>
                 <li><g:link controller="case" action="search" name="searchByCaseId">Case ID</g:link></li>
+                <li><g:link controller="legalContact" action="search" name="contactSearch">Contact</g:link></li>
             </ul>
         </ul>
     </div>
