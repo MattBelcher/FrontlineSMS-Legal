@@ -103,6 +103,7 @@ class CaseControllerSpec extends ControllerSpec {
         given:
         def newCase = new Case(caseId: "1234")
         def contactList = []
+        mockDomain(CaseContacts)
         mockDomain(Case, [newCase])
         mockDomain(LegalContact, contactList)
         controller.params.id = "1234"
@@ -118,6 +119,7 @@ class CaseControllerSpec extends ControllerSpec {
         given:
         def newCase = new Case(caseId: "4567")
         mockDomain(Case, [newCase])
+        mockDomain(CaseContacts)
         controller.params.id = "4567"
         def newContact = [new Contact()]
         mockDomain(Contact, newContact)

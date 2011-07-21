@@ -1,4 +1,4 @@
-z<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <html>
 <head>
@@ -47,6 +47,13 @@ z<%@ page contentType="text/html;charset=UTF-8" %>
             <th>Phone</th>
             <th>Relationship</th>
         </tr>
+        <g:if test="${contacts?.size > 0}">
+        <g:each in="${contacts}">
+        <tr name="contactRow" id="contact-row">
+        <td><g:textField value="${it.name}" name="contactName"/></td>
+        </tr>
+        </g:each>
+        </g:if>
     </table>
 
 

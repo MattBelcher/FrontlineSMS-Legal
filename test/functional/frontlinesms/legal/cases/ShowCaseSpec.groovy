@@ -5,6 +5,7 @@ import frontlinesms.legal.functionaltests.FrontlinesmsLegalGebSpec
 import frontlinesms.legal.functionaltests.pages.cases.ShowCasePage
 import frontlinesms2.Contact
 import frontlinesms.legal.LegalContact
+import frontlinesms.legal.CaseContacts
 
 class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
 
@@ -44,8 +45,6 @@ class ShowCaseSpec extends FrontlinesmsLegalGebSpec {
         and:
         contactsTable.collect { it -> it.primaryMobile }.contains("55555")
     }
-
-
 
     def "should be able to edit case ID of case"() {
         setup:

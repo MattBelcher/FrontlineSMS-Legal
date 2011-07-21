@@ -30,16 +30,22 @@
     <div class="form-submit-area">
         <button id="link-contact-button">Link contacts</button>
     </div>
+    <g:hiddenField name="linkedContactIds" id="linked-contact-ids" value=""/>
+    <g:hiddenField name="involvementList" id="involvement-list" value=""/>
+
     <table name="contacts" id="contacts">
         <tr>
             <th>Contact Name</th>
             <th>Phone</th>
             <th>Involvement</th>
         </tr>
-        <g:if test="${contacts?.size > 0}">
-            <g:each in="${contacts}">
-                <tr>
-                    <td><g:textField value="${it.name}" name="contactName"/></td>
+        <g:if test="${linkedContactRowData?.size() > 0}">
+            <g:each in="${linkedContactRowData}">
+                <tr name="contactRow" id="contact-row">
+                    <td value="${it.contactName}" name="contactName">${it.contactName}</td>
+                    <td value="${it.contactNumber}" name="contactName">${it.contactNumber}</td>
+                    <td value="${it.contactInvolvement}" name="contactName">${it.contactInvolvement}</td>
+                    <td class="remove-contact-button">Remove</td>
                 </tr>
             </g:each>
         </g:if>
@@ -68,7 +74,7 @@
                             </thead>
                             <tbody>
                             <g:each in="${contactList}" var="contact">
-                                <tr class="contactLink" id="${contact.name}">
+                                <tr class="contactLink" id="<%=contact.id%>">
 
                                     <td class="contact-name">
                                         <a href="#"><%=contact.name%></a>

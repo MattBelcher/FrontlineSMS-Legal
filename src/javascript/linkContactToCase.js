@@ -1,16 +1,19 @@
 var frontlinesms = this.frontlinesms || {};
 
+frontlinesms.buildContactsRow = function (row, involvement) {
+    $('#contacts').append('<tr id=' + $(this).attr('id') + '><td>' + $(row).find('.contact-name').text() + '</td><td>' + $(row).find('.contact-number').text() + '</td><td>' + involvement + '</td><td class="remove-contact-button">Remove</td></tr>');
+}
 frontlinesms.linkContactToCase = function() {
     $('#linked-contact-ids').val("");
     $("#link-contacts").dialog({
-        autoOpen: false,
-        modal: true,
-        buttons: {
-            "Cancel": function() {
-                $(this).dialog("close");
-            }
-        }
-    });
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
 
     $("#link-contact-button").click(function() {
         $("#link-contacts").dialog("open");
@@ -49,13 +52,13 @@ frontlinesms.linkContactToCase = function() {
                 involvement = "";
             }
 
-            invlovementList = $('#involvement-list').val().split(',');
-            invlovementList.push(involvement);
-            $('#involvement-list').val(invlovementList);
+            involvementList = $('#involvement-list').val().split(',');
+            involvementList.push(involvement);
+            $('#involvement-list').val(involvementList);
             contactIdList.push($(this).attr('id'));
             $('#linked-contact-ids').val(contactIdList);
             var row = $('#contactsTable').find('#' + $(this).attr('id'));
-            $('#contacts').append('<tr id=' + $(this).attr('id') + '><td>' + $(row).find('.contact-name').text() + '</td><td>' + $(row).find('.contact-number').text() + '</td><td>' + involvement + '</td><td class="remove-contact-button">Remove</td></tr>');
+            frontlinesms.buildContactsRow(row, involvement);
             $("#link-contacts").dialog("close");
             return false;
         }

@@ -3,6 +3,7 @@ package frontlinesms.legal.cases
 import frontlinesms.legal.Case
 import frontlinesms.legal.LegalContact
 import frontlinesms.legal.CaseContacts
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
 class CaseController {
 
@@ -15,16 +16,8 @@ class CaseController {
         def newCase = new Case(params)
 
         if (newCase.save(flush: true)) {
-            if(params.linkedContactIds !="" && params.linkedContactIds != null){
-                def idList = params.linkedContactIds.split(',') as List
-                def involvementList = params.involvementList.split(',') as List
-                idList = idList.subList(1,idList.size())
-                involvementList = involvementList.subList(1,involvementList.size())
-
-                idList.eachWithIndex{ id, i ->
-                    def linkedContact = LegalContact.get(id as Long)
-                    CaseContacts.link(newCase,linkedContact, involvementList[i])
-                }
+            if (params.linkedContactIds != "" && params.linkedContactIds != null) {
+                saveLinkedContacts(newCase)
             }
 
             flash.message = "Case created"
@@ -41,16 +34,28 @@ class CaseController {
         }
     }
 
+    private def saveLinkedContacts(newCase) {
+        def idList = params.linkedContactIds.split(',') as List
+        def involvementList = params.involvementList.split(',') as List
+        idList = idList.subList(1, idList.size())
+        involvementList = involvementList.subList(1, involvementList.size())
+
+        idList.eachWithIndex { id, i ->
+            def linkedContact = LegalContact.get(id as Long)
+            CaseContacts.link(newCase, linkedContact, involvementList[i])
+        }
+    }
+
 
     def show = {
         if (params.description) {
             def caseToDisplay = Case.get(params.uniqueId)
             caseToDisplay.description = params.description
             caseToDisplay.active = params.caseStatus
-            [caseToDisplay: caseToDisplay, contactList: LegalContact.list()]
+            [caseToDisplay: caseToDisplay, linkedContactList: CaseContacts.findContactsByCase(caseToDisplay), contactList: LegalContact.list(), linkedContactRowData: CaseContacts.findContactsAndInvolvementByCase(caseToDisplay)]
         }
         else {
-            [caseToDisplay: Case.findByCaseId(params.id), contactList: LegalContact.list()]
+            [caseToDisplay: Case.findByCaseId(params.id), linkedContactList: CaseContacts.findContactsByCase(Case.findByCaseId(params.id)), contactList: LegalContact.list(), linkedContactRowData: CaseContacts.findContactsAndInvolvementByCase(Case.findByCaseId(params.id))]
         }
     }
 
@@ -84,6 +89,9 @@ class CaseController {
             fetchedCase.active = "true"
         }
         if (fetchedCase.save(flush: true)) {
+            if (params.linkedContactIds != "" && params.linkedContactIds != null) {
+                saveLinkedContacts(params, fetchedCase)
+            }
             flash.message = "Case details updated"
             redirect(action: 'show', params: [id: fetchedCase.caseId])
         }

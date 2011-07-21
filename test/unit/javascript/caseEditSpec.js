@@ -35,15 +35,30 @@ describe('submit button', function(){
     beforeEach(function(){
         var tempHTML =
             '<input id="case-id" type="text" value="" />' +
-            '<button id="case-update" disabled="disabled">Submit</button>' +
+                    '<table id="test-table"><tr class="contactLink" id="contact-link"></tr>' +
+                    '<tr><td class="remove-contact-button"></td></tr></table>' +
+            '<button id="case-update" disabled="disabled">Submit</button>';
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.showCaseOnLoad();
     });
 
-    it ('should be enabled if changes have been made', function(){
-        $('case-id').change();
-        expect($('#case-update:disabled').val()).toBeUndefined();
+    it ('should be enabled if changes have been to the id', function(){
+        $('#case-id').change();
+        expect($('#case-update').attr('disabled')).toBeUndefined();
     })
 
+    it ('should be enabled if contacts have been linked', function(){
+        $('.contactLink').click()
+        expect($('#case-update').attr('disabled')).toBeUndefined();
+    })
+
+    it ('should be enabled if contacts have been removed', function(){
+        $('.remove-contact-button').click()
+        expect($('#case-update').attr('disabled')).toBeUndefined();
+    })
+
+    afterEach(function(){
+        $("#case-update, #contact-link, #case-id, #test-table").remove();
+    })
 
 })                                                             ;

@@ -4,9 +4,13 @@ frontlinesms.showCaseOnLoad = function() {
     modified = false
     $('input').change(function() {
         modified = true;
-       $('#case-update').removeAttr("disabled");
+        $('#case-update').removeAttr('disabled');
     });
-    $('textarea').change(function(){
+    $('textarea').change(function() {
+        modified = true;
+        $('#case-update').removeAttr("disabled");
+    })
+    $('tr.contactLink, td.remove-contact-button').click(function() {
         modified = true;
         $('#case-update').removeAttr("disabled");
     })
@@ -46,6 +50,6 @@ frontlinesms.caseUpdateCancelConfirmAction = function(setter) {
     }
 };
 
-frontlinesms.goHome = function(){
+frontlinesms.goHome = function() {
     $(window.location).attr("href", "/");
 };
