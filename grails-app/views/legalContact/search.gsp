@@ -14,10 +14,10 @@
   </head>
   <body>
 
-  <h1 class="form-header">Search for Contact by name</h1>
+  <h1 class="form-header">Search for Contact by Name/Mobile Number</h1>
 
 <g:form action="search" method="POST" >
-    <label>Enter the contact Name to search for a contact</label>
+    <label>Enter the contact Name/Mobile Number to search for a contact</label>
     <g:textField class="wide-text-box" name="contact-search-bar" id="contact-search-bar" value=""/>
     <g:if test="${foundContact}">
         <table class="search-results" id="SearchResults">
