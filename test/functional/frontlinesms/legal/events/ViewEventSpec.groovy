@@ -8,7 +8,7 @@ import frontlinesms.legal.Event
 import spock.lang.Ignore
 
 class ViewEventSpec extends FrontlinesmsLegalGebSpec {
-//    @Ignore
+    @Ignore
     def "should display linked contacts for event when event is clicked"() {
         given:
         createContact("76575658")
