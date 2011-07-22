@@ -39,7 +39,7 @@
     <label name="eventEndTime" id="event-end-time"></label><br/><br/>
     <table id="event-contacts-table">
         <thead>
-            <tr>
+            <tr class="event-contact">
                 <th>Contact name</th>
                 <th>Phone number</th>
             </tr>
