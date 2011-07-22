@@ -34,7 +34,7 @@ class CaseContacts {
     static List findContactsAndInvolvementByCase(Case legalCase){
         def linkedContacts = CaseContacts.findAllByLegalCase(legalCase)
         def nestedListofInvolvmentsAndContacts = []
-        linkedContacts.each{it -> nestedListofInvolvmentsAndContacts.add([contactName: it.legalContact.name, contactNumber: it.legalContact.primaryMobile, contactInvolvement: it.involvement])}
+        linkedContacts.each{it -> nestedListofInvolvmentsAndContacts.add([id: it.legalContact.id, contactName: it.legalContact.name, contactNumber: it.legalContact.primaryMobile, contactInvolvement: it.involvement])}
         println nestedListofInvolvmentsAndContacts
         nestedListofInvolvmentsAndContacts as List
     }

@@ -1,9 +1,9 @@
 package frontlinesms.legal.cases
 
 import frontlinesms.legal.Case
-import frontlinesms.legal.LegalContact
 import frontlinesms.legal.CaseContacts
-import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
+import frontlinesms.legal.LegalContact
+import grails.converters.JSON
 
 class CaseController {
 
@@ -16,10 +16,7 @@ class CaseController {
         def newCase = new Case(params)
 
         if (newCase.save(flush: true)) {
-            if (params.linkedContactIds != "" && params.linkedContactIds != null) {
-                saveLinkedContacts(newCase)
-            }
-
+            saveLinkedContacts(newCase)
             flash.message = "Case created"
             redirect(action: 'show', params: [id: newCase.caseId])
         }
@@ -35,28 +32,32 @@ class CaseController {
     }
 
     private def saveLinkedContacts(newCase) {
-        def idList = params.linkedContactIds.split(',') as List
-        def involvementList = params.involvementList.split(',') as List
-        idList = idList.subList(1, idList.size())
-        involvementList = involvementList.subList(1, involvementList.size())
+        def parsedJSON = params.caseLinkedContacts ? params.caseLinkedContacts : "{}"
+        def contactList = new HashMap<Long, String>(JSON.parse(parsedJSON))
 
-        idList.eachWithIndex { id, i ->
-            def linkedContact = LegalContact.get(id as Long)
-            CaseContacts.link(newCase, linkedContact, involvementList[i])
+        CaseContacts.findAllByLegalCase(newCase)*.delete(flush: true)
+        contactList.each { it ->
+            CaseContacts.link(newCase, LegalContact.findById(it.key as Long), it.value)
         }
     }
 
 
     def show = {
+        def caseToDisplay = (params.description) ? Case.get(params.uniqueId) : Case.findByCaseId(params.id)
+        def caseLinkedContacts = pairUpContactIdAndRelationship(caseToDisplay.linkedContacts) as JSON
         if (params.description) {
-            def caseToDisplay = Case.get(params.uniqueId)
             caseToDisplay.description = params.description
             caseToDisplay.active = params.caseStatus
-            [caseToDisplay: caseToDisplay, linkedContactList: CaseContacts.findContactsByCase(caseToDisplay), contactList: LegalContact.list(), linkedContactRowData: CaseContacts.findContactsAndInvolvementByCase(caseToDisplay)]
         }
-        else {
-            [caseToDisplay: Case.findByCaseId(params.id), linkedContactList: CaseContacts.findContactsByCase(Case.findByCaseId(params.id)), contactList: LegalContact.list(), linkedContactRowData: CaseContacts.findContactsAndInvolvementByCase(Case.findByCaseId(params.id))]
+        [caseToDisplay: caseToDisplay, caseLinkedContacts: caseLinkedContacts, contactList: LegalContact.list(), linkedContactRowData: CaseContacts.findContactsAndInvolvementByCase(caseToDisplay)]
+    }
+
+    private def pairUpContactIdAndRelationship(caseContacts) {
+        def returnList = new HashMap<Long, String>()
+        caseContacts.each { it ->
+            returnList[it.legalContact.id] = it.involvement
         }
+        return returnList
     }
 
     def search = {
@@ -89,9 +90,7 @@ class CaseController {
             fetchedCase.active = "true"
         }
         if (fetchedCase.save(flush: true)) {
-            if (params.linkedContactIds != "" && params.linkedContactIds != null) {
-                saveLinkedContacts(params, fetchedCase)
-            }
+            saveLinkedContacts(fetchedCase)
             flash.message = "Case details updated"
             redirect(action: 'show', params: [id: fetchedCase.caseId])
         }

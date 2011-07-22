@@ -12,6 +12,7 @@ class CaseControllerSpec extends ControllerSpec {
     def 'should create action should redirect to Case detail page'() {
         setup:
         mockDomain(Case)
+        mockDomain(CaseContacts)
 
         controller.params.caseId = '1234'
         controller.params.description = 'hagsdhs'
@@ -27,6 +28,7 @@ class CaseControllerSpec extends ControllerSpec {
         setup:
         def cases = []
         mockDomain(Case, cases)
+        mockDomain(CaseContacts)
         controller.params.caseId = '1234'
         controller.params.description = 'hagsdhs'
 
@@ -45,8 +47,7 @@ class CaseControllerSpec extends ControllerSpec {
 
         when:
         controller.params.caseId = "2"
-        controller.params.linkedContactIds = ",1"
-        controller.params.involvementList = ",somthing"
+        controller.params.caseLinkedContacts = "{'1':'something'}"
 
         and:
         controller.save()
@@ -135,6 +136,7 @@ class CaseControllerSpec extends ControllerSpec {
         setup:
         def existingCase = new Case(caseId: '12344', description: 'hiiii')
         mockDomain(Case, [existingCase])
+        mockDomain(CaseContacts)
         controller.params.currentId = existingCase.id
         controller.params.caseId = '12344'
         controller.params.description = 'hagsdhs'

@@ -54,7 +54,7 @@ describe('linkCaseToContact', function () {
     });
 
     afterEach(function() {
-        $("#link-case-dialog, #link-case-button").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 

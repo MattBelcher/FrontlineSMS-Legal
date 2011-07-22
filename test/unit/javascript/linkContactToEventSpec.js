@@ -75,7 +75,7 @@ describe('linkContactToEvent', function () {
 
 
     afterEach(function() {
-        $("#link-contacts, .contactLink, #contacts, #link-contact-button, #event-linked-contacts").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 

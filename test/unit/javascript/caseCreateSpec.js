@@ -1,12 +1,14 @@
 describe('caseCreateCancelDialog', function () {
     beforeEach(function(){
         var tempHTML =
+            '<div id="test-div">' +
             '<input id="case-id" type="text" value=""/>' +
             '<input id="case-description" type="text" value=""/>' +
             '<button id="case-cancel">Cancel</button>' +
             '<div id="case-cancel-dialog" title="Cancel case creation?" style="display: none;">' +
                 '<p>Are you sure you do not want to save this case?</p>' +
-            '</div>';
+            '</div>' +
+                '</div>';
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.createNewCaseOnLoad();
     });
@@ -28,7 +30,7 @@ describe('caseCreateCancelDialog', function () {
     });
 
     afterEach(function(){
-        $("#case-cancel, #case-cancel-dialog, #case-id, #case-description").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 

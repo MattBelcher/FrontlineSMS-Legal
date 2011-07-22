@@ -1,8 +1,8 @@
 describe('linkContactToCase', function () {
     beforeEach(function() {
         var tempHTML =
-            '<input type="hidden" id="linked-contact-ids" value=""/>' +
-            '<input type="hidden" id="involvement-list" value=""/> ' +
+            '<div id="text-div">' +
+                '<input type="hidden" id="case-linked-contacts" value=""/>' +
                 '<div id="link-contacts" title="Link Contacts">' +
 
                 '<table id="contactsTable"> <tbody>' +
@@ -26,7 +26,9 @@ describe('linkContactToCase', function () {
                 '<th style="display: none;"></th>' +
                 '</tr> </table>' +
 
-                '<button id="link-contact-button">Link contacts</button>';
+                '<button id="link-contact-button">Link contacts</button>' +
+                '</div>' +
+                '</div>';
 
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.linkContactToCase();
@@ -45,18 +47,19 @@ describe('linkContactToCase', function () {
         expect($('#contacts tr > td:contains(fabio) + td:contains(99999) + td:contains(Client)').length).toEqual(1);
     });
 
-    it('when a contact is clicked in the link contacts  the Unique Id from database should be appended to linkedContactIds', function() {
+    it('when a contact is clicked in the link contacts  the Unique Id from database should be appended to caseLinkedContact', function() {
         spyOn(window, 'prompt').andReturn('Client');
         $('#5').click();
-        var contactidList = $('#linked-contact-ids').val().split(',');
-        expect(contactidList.indexOf('5') > -1).toBeTruthy();
+        expect($('#case-linked-contacts').val()).toEqual("{\"5\":\"Client\"}");
     });
 
-    it('when a contact is clicked in the link contacts the involvement should be appended to the involvement-list', function() {
+    it('when a contact is removed from the linked contacts list the Unique Id from database should be removed from caseLinkedContact', function() {
         spyOn(window, 'prompt').andReturn('Client');
         $('#5').click();
-        var involvementList = $('#involvement-list').val().split(',');
-        expect(involvementList.indexOf('Client') > -1).toBeTruthy();
+        $('#6').click();
+        var firstContactSelector = "table#contacts tr:nth-child(2)";
+        $(firstContactSelector + " td.remove-contact-button").click();
+        expect($('#case-linked-contacts').val()).toEqual("{\"6\":\"Client\"}");
     });
 
     it('when a contact has already been added, and is clicked again on the popup , the contact shouldnt get added again', function() {
@@ -89,7 +92,7 @@ describe('linkContactToCase', function () {
 
 
     afterEach(function() {
-        $("#link-contacts, .contactLink, #contacts, #link-contact-button").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 

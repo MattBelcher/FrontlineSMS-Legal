@@ -26,8 +26,6 @@ frontlinesms.linkCaseToContact = function() {
             var relationship = prompt("Relationship to case:") || "";
             frontlinesms.addLinkedCaseToHiddenField(caseId, relationship);
             frontlinesms.addLinkedCaseToTable(caseId, relationship);
-
-
         }
         $("#link-case-dialog").dialog("close");
         return false;
@@ -43,7 +41,6 @@ frontlinesms.linkCaseToContact = function() {
 
 frontlinesms.checkIfContactHasCaseLinked = function(caseId) {
     var linkedCases = $.parseJSON($('#contact-linked-cases').val()) || {};
-//    return(typeof linkedCases[caseId]!= 'undefined');
     return (caseId in linkedCases);
 };
 

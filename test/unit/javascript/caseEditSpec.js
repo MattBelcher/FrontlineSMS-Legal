@@ -1,12 +1,14 @@
 describe('caseEditCancelDialog', function () {
     beforeEach(function(){
         var tempHTML =
+            '<div id="test-div">' +
             '<input id="case-id" type="text" value="" change/>' +
             '<textarea id="case-description" type="text" value=""/>' +
             '<button id="case-update-cancel">Cancel</button>' +
             '<div id="case-update-cancel-dialog" title="Cancel Changes?" style="display: none;">' +
                 '<p>Are you sure you do not want to save this case?</p>' +
-            '</div>';
+            '</div>' +
+                '</div>';
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.showCaseOnLoad();
         spyOn(frontlinesms,"goHome").andReturn("#");
@@ -25,7 +27,7 @@ describe('caseEditCancelDialog', function () {
     })
 
     afterEach(function(){
-        $("#case-update-cancel-dialog, #case-cancel-dialog, #case-id, #case-description").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 
@@ -34,10 +36,12 @@ describe('caseEditCancelDialog', function () {
 describe('submit button', function(){
     beforeEach(function(){
         var tempHTML =
+            '<div id="test-div">' +
             '<input id="case-id" type="text" value="" />' +
                     '<table id="test-table"><tr class="contactLink" id="contact-link"></tr>' +
                     '<tr><td class="remove-contact-button"></td></tr></table>' +
-            '<button id="case-update" disabled="disabled">Submit</button>';
+            '<button id="case-update" disabled="disabled">Submit</button>' +
+                '</div>';
         $(tempHTML).appendTo("#fixtures");
         frontlinesms.showCaseOnLoad();
     });
@@ -58,7 +62,7 @@ describe('submit button', function(){
     })
 
     afterEach(function(){
-        $("#case-update, #contact-link, #case-id, #test-table").remove();
+        $('body#fixtures > *').not(".jasmine_reporter").not('script').remove()
     })
 
 })                                                             ;
