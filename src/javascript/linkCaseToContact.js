@@ -21,8 +21,9 @@ frontlinesms.linkCaseToContact = function() {
 
     $(".caseLink").click(function() {
         var caseId = $(this).attr('id');
-        var relationship = prompt("Relationship to case:") || "";
+
         if (!frontlinesms.checkIfContactHasCaseLinked(caseId)) {
+            var relationship = prompt("Relationship to case:") || "";
             frontlinesms.addLinkedCaseToHiddenField(caseId, relationship);
             frontlinesms.addLinkedCaseToTable(caseId, relationship);
 
