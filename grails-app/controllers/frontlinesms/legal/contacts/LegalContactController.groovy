@@ -36,6 +36,7 @@ class LegalContactController {
     }
 
     private def saveLegalContact(legalContact) {
+
         if (legalContact.save(flush: true)) {
             flash.message = "Contact Saved"
             redirect(action: 'show', params: [id: legalContact.id])
@@ -48,6 +49,10 @@ class LegalContactController {
             flash.error = "Contact number already exists. Please enter a unique contact number."
             redirect(action: 'create', params: [name: params.name, notes: params.notes, primaryMobile: params.primaryMobile])
         }
+        else if (params.notes.size() > 1024) {
+                flash.error = "Please reduce the number of characters entered in notes field to save contact. Notes field cannot have more than 1024 characters"
+                redirect(action: 'create', params: [name: params.name, notes: params.notes, primaryMobile: params.primaryMobile])
+            }
     }
 
     private def updateLegalContact(legalContact) {
