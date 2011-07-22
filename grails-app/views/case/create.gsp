@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-
 <html>
 <head>
+    <title>Create New Case</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
 
@@ -10,11 +10,11 @@
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="contactSearch"/>
 
-    <title>Create New Case</title>
     <script type="text/javascript">
         $(function() {
             frontlinesms.createNewCaseOnLoad();
             frontlinesms.linkContactToCase();
+            frontlinesms.contactSearchOnLoad();
         })
     </script>
 </head>
@@ -39,6 +39,7 @@
     <div class="form-submit-area">
         <button id="link-contact-button">Link contacts</button>
     </div>
+    <g:hiddenField name="caseLinkedContacts" id="case-linked-contacts" value="${caseLinkedContacts}"/>
 
 
     <table name="contacts" id="contacts">
@@ -61,9 +62,6 @@
         <input type="submit" id="case-save" value="Save"/>
         <button id="case-cancel">Cancel</button>
     </div>
-
-    <g:hiddenField name="linkedContactIds" id="linked-contact-ids" value=""/>
-    <g:hiddenField name="involvementList" id="involvement-list" value=""/>
 
 </g:form>
 

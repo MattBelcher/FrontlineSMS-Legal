@@ -4,10 +4,12 @@
     <title>ShowCasePage</title>
     <meta name="layout" content="main">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+
     <g:javascript library="linkContactToCase"/>
     <g:javascript library="caseUpdate"/>
     <g:javascript library="picnet.table.filter.min"/>
     <g:javascript library="contactSearch"/>
+
     <script type="text/javascript">
      $(function() {
          frontlinesms.showCaseOnLoad();
@@ -20,10 +22,12 @@
 <body>
 <h1 class="form-header">Case Details</h1>
 <g:form action="update" id="save-case-form" >
+
     <label>Case Number</label>
     <g:hiddenField name="currentId" id="current-id" value="${caseToDisplay.id}"/>
     <g:textField name="caseId" id="case-id" value="${caseToDisplay.caseId}"/>
     <label>Description</label>
+
     <g:textArea name="description" id="case-description" cols="100" rows="10" value="${caseToDisplay.description}"/>
     <p><g:checkBox name="caseStatus" id="case-status" checked="${caseToDisplay.active}"/>Case active</p>
 
@@ -72,7 +76,6 @@
                     <div id="link-contacts-inner-table-div" style="height:200px;overflow: scroll; width:200px">
                         <table id="contactsTable">
                             <thead>
-                            <tr><td>Name</td></tr>
                             </thead>
                             <tbody>
                             <g:each in="${contactList}" var="contact">
