@@ -65,7 +65,7 @@
           <tr>
               <th>Title</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Time (UTC)</th>
           </tr>
           </thead>
           <tbody>
@@ -93,7 +93,7 @@
           <tr>
               <th>Title</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Time (UTC)</th>
           </tr>
           </thead>
           <tbody>
@@ -121,7 +121,7 @@
           <tr>
               <th>Title</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Time (UTC)</th>
           </tr>
           </thead>
           <tbody>
